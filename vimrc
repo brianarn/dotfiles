@@ -1,11 +1,13 @@
 " Brian Arnold's .vimrc file
 " Last change: 2010-06-29
-
+"
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
 set nocompatible
 
 "---- Mappings
+" Soon to be some! Really!
+let mapleader = ","
 
 "---- Colorization
 " If term has color or we're in GUI, colorize!
@@ -14,13 +16,6 @@ if &t_Co > 2 || has("gui_running")
 	set background=dark			" Set background to dark,
 								" nicer syntax highlighting
 	colorscheme elflord			" Nice coloring scheme
-	" Alter the colorscheme just a bit
-	highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
-endif
-
-" If we're specifically a GUI though, we want a different colorscheme
-if has("gui_running")
-	colorscheme murphy			" I prefer this look in a GUI
 	" Alter the colorscheme just a bit
 	highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
 endif
@@ -54,14 +49,8 @@ if has("autocmd") " Autocommands are available
 	" Use a downloaded VB.NET syntax highlighter
 	" See http://www.vim.org/scripts/script.php?script_id=1525
 	autocmd BufRead,BufNewFile *.vb	set filetype=vbnet
-	" If we're in Windows, I'm probably at work, so I want the following
-	" tweaks:
-	if has("win32") && has("gui_running")
-		" Position in the upper left corner
-		winpos 0 0
-		" Size up a bit
-		set lines=55		" Feels right
-		set columns=120		" Also feels right
+	" Special tweaks for Windows
+	if has("win32")
 		" Old CompIQ stuff below
 		" Set PRC and UDF as SQL files
 		"autocmd BufRead,BufNewFile *.PRC	set filetype=sql
@@ -113,6 +102,7 @@ set wildchar=<TAB>				" Changes wildcard expansion from ^E
 set wildmenu					" Show completions in status line
 set shell=$SHELL				" Defines my shell
 set dictionary=/usr/dict/words	" Dictionary
+set history=50					" Moar history
 
 "---- Perl customizations
 let perl_include_pod=1				" Recognize POD, color differently
