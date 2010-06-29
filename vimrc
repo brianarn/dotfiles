@@ -8,6 +8,7 @@ set nocompatible
 "---- Mappings
 " Soon to be some! Really!
 let mapleader = ","
+let g:mapleader = ","
 
 "---- Colorization
 " If term has color or we're in GUI, colorize!
@@ -35,20 +36,29 @@ if has("autocmd") " Autocommands are available
 	" Let's use an autocmd group so we can delete easily
 	augroup BrianPresets
 	au!
+
 	" I want my simple text files to wrap at 78 characters
 	autocmd FileType text setlocal textwidth=78
+
+	" Javascript Stuff
+	autocmd BufRead,BufNewFile *.json	set filetype=javascript
+
 	" No wrapping with aspvbs files
 	autocmd FileType aspvbs setlocal textwidth=0
+
 	" Tweak for Ruby on Rails
 	autocmd BufRead,BufNewFile *.rhtml	set filetype=eruby
 	autocmd BufRead,BufNewFile *.erb	set filetype=eruby
 	autocmd BufRead,BufNewFile *.rjs	set filetype=ruby
+
 	" Use a custom CF MX format file for ColdFusion
 	autocmd BufRead,BufNewFile *.cfm	set filetype=cfmx
 	autocmd BufRead,BufNewFile *.cfc	set filetype=cfmx
+
 	" Use a downloaded VB.NET syntax highlighter
 	" See http://www.vim.org/scripts/script.php?script_id=1525
 	autocmd BufRead,BufNewFile *.vb	set filetype=vbnet
+
 	" Special tweaks for Windows
 	if has("win32")
 		" Old CompIQ stuff below
@@ -62,6 +72,7 @@ if has("autocmd") " Autocommands are available
 		" Assume .cls are VB files
 		"autocmd BufRead,BufNewFile *.cls	set filetype=vb
 	endif
+
 	augroup END
 else " No autocommands, so just set up some simple formatting
 	set textwidth=78				" Width of window, I like mine small
