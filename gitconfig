@@ -1,0 +1,8 @@
+# LOCAL CONFIG
+
+# DO NOT EDIT BELOW THIS LINE
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
