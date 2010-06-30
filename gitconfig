@@ -1,8 +1,13 @@
 # LOCAL CONFIG
 
 # DO NOT EDIT BELOW THIS LINE
+[user]
+	name = Brian Arnold
+	email = brianarn@gmail.com
+
 [alias]
 	st = status
+	dh = push dreamhost
 
 [color]
 	diff = auto
