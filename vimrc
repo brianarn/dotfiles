@@ -10,6 +10,10 @@ set nocompatible
 let mapleader = ","
 let g:mapleader = ","
 
+" Someone suggested F2 for NERDTree, so I'll try that
+" See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
+map <F2> :NERDTreeToggle<CR>
+
 "---- Colorization
 " If term has color or we're in GUI, colorize!
 if &t_Co > 2 || has("gui_running")
@@ -153,3 +157,9 @@ let g:explHideFiles='^\.,.gz$,.exe$,.zip$,^vssver.scc$'	" Hide files
 														" - csv
 let g:explSuffixesLast=0		" Don't push specified files to end
 let g:explUseSeparators=1		" Show a separator between dirs/files
+
+"---- a.vim options
+let g:alternateExtensions_html = "js,css,php"	" I like to be able
+let g:alternateExtensions_js   = "html,css,php"	" to quickly toggle
+let g:alternateExtensions_css  = "html,js,php"	" between related
+let g:alternateExtensions_php  = "html,js,css"	" web files.
