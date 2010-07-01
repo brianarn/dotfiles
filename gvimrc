@@ -6,7 +6,7 @@
 "---- Colorization Tweaks
 colorscheme murphy			" I prefer this look in a GUI
 " Alter the colorscheme just a bit
-highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
+"highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
 
 "---- Fonts
 set guifont=Consolas:h14		" I like big fonts and I cannot lie
