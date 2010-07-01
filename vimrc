@@ -118,6 +118,8 @@ set wildmenu					" Show completions in status line
 set shell=$SHELL				" Defines my shell
 set dictionary=/usr/dict/words	" Dictionary
 set history=50					" Moar history
+set number						" Show line numbers
+set numberwidth=5				" with a bit of space
 
 "---- Perl customizations
 let perl_include_pod=1				" Recognize POD, color differently
@@ -163,3 +165,5 @@ let g:alternateExtensions_html = "js,css,php"	" I like to be able
 let g:alternateExtensions_js   = "html,css,php"	" to quickly toggle
 let g:alternateExtensions_css  = "html,js,php"	" between related
 let g:alternateExtensions_php  = "html,js,css"	" web files.
+
+" 

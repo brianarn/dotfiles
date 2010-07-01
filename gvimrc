@@ -6,7 +6,8 @@
 "---- Colorization Tweaks
 colorscheme murphy			" I prefer this look in a GUI
 " Alter the colorscheme just a bit
-"highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
+highlight SpecialKey ctermfg=DarkGray guifg=DarkGray
+highlight LineNr ctermfg=Cyan guifg=Cyan
 
 "---- Fonts
 set guifont=Consolas:h14		" I like big fonts and I cannot lie
@@ -15,4 +16,4 @@ set guifont=Consolas:h14		" I like big fonts and I cannot lie
 " Upper left corner on Windows
 winpos 0 0
 " Make the window a bit larger
-set lines=45 columns=120
+set lines=50 columns=175
