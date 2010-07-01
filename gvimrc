@@ -9,7 +9,7 @@ colorscheme murphy			" I prefer this look in a GUI
 highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
 
 "---- Fonts
-set guifont=Monaco:h14		" I like big fonts and I cannot lie
+set guifont=Consolas:h14		" I like big fonts and I cannot lie
 
 "---- Window size/position
 " Upper left corner on Windows
