@@ -120,6 +120,7 @@ set dictionary=/usr/dict/words	" Dictionary
 set history=50					" Moar history
 set number						" Show line numbers
 set numberwidth=5				" with a bit of space
+set backspace=indent,eol,start	" Backspace over it all"
 
 "---- Perl customizations
 let perl_include_pod=1				" Recognize POD, color differently

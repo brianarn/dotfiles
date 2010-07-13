@@ -6,6 +6,7 @@
 	email = brianarn@gmail.com
 
 [alias]
+	ci = commit
 	st = status
 	dh = push dreamhost
 
