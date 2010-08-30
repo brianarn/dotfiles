@@ -1,18 +1,25 @@
 " Brian Arnold's .vimrc file
-" Last change: 2010-06-29
+" Last change: 2010-08-29
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
 set nocompatible
 
 "---- Mappings
-" Soon to be some! Really!
 let mapleader = ","
 let g:mapleader = ","
 
+" Edit my .vimrc
+noremap <leader>v :e ~/.vimrc<cr>
+" Reload settings
+noremap <leader>r :source ~/.vimrc<cr>:source ~/.gvimrc<cr>
+
 " Someone suggested F2 for NERDTree, so I'll try that
 " See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
-map <F2> :NERDTreeToggle<CR>
+noremap <F2> :NERDTreeToggle<CR>
+
+" Reload my snippets
+noremap <leader>s :call ReloadAllSnippets()<cr>
 
 "---- Colorization
 " If term has color or we're in GUI, colorize!
@@ -83,7 +90,7 @@ else " No autocommands, so just set up some simple formatting
 	set formatoptions=cqrt			" Similar to defaults
 	set autoindent					" Newlines are indented the same as prev
 	set smartindent					" Indents for braces and some keywords
-	"set cindent					" Indents according to a std C style
+	set cindent						" Indents according to a std C style
 endif " has("autocmd")
 
 "---- More Text Formatting
@@ -105,6 +112,10 @@ set showcmd					" Show incomplete command
 set ttyfast					" Smoother TTY experience,
 							" if you have a faster connection
 
+"---- Session options
+set sessionoptions+=slash	" Always use forward slashes
+set sessionoptions+=unix	" Ensure Unix format
+
 "---- Searching options
 set magic						" Magic searching
 set incsearch					" Incremental searching
@@ -121,6 +132,10 @@ set history=50					" Moar history
 set number						" Show line numbers
 set numberwidth=5				" with a bit of space
 set backspace=indent,eol,start	" Backspace over it all"
+
+"---- JS Options
+set cinoptions+=j1					" Indenting Java anonymous classes
+set cinoptions+=J1					" Indenting JS object declarations
 
 "---- Perl customizations
 let perl_include_pod=1				" Recognize POD, color differently
@@ -160,6 +175,9 @@ let g:explHideFiles='^\.,.gz$,.exe$,.zip$,^vssver.scc$'	" Hide files
 														" - csv
 let g:explSuffixesLast=0		" Don't push specified files to end
 let g:explUseSeparators=1		" Show a separator between dirs/files
+
+"---- snipMate options
+let g:snips_author="Brian Arnold"		" It"sa me
 
 "---- a.vim options
 let g:alternateExtensions_html = "js,css,php"	" I like to be able
