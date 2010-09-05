@@ -32,7 +32,7 @@ map <leader>cd :cd %:p:h<cr>
 " Add one in insert mode at the end of the line
 inoremap <c-cr> <esc>A;<cr>
 " When in normal mode, tack one onto the end and move down a line
-nnoremap <c-cr> A;<esc>j
+nnoremap <c-cr> A;<esc>
 
 " Clean up whitespace
 nnoremap <leader>w :%s/\s\+$//<cr>
