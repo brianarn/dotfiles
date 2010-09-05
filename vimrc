@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last change: 2010-08-29
+" Last change: 2010-08-31
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -11,8 +11,12 @@ let g:mapleader = ","
 
 " Edit my .vimrc
 noremap <leader>v :e ~/.vimrc<cr>
+
 " Reload settings
-noremap <leader>r :source ~/.vimrc<cr>:source ~/.gvimrc<cr>
+noremap <leader>r :source ~/.vimrc<cr>
+
+" A shortcut for scaling up when on the iMac
+noremap <leader>g :set lines=75 columns=250<cr>
 
 " Someone suggested F2 for NERDTree, so I'll try that
 " See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
@@ -21,14 +25,54 @@ noremap <F2> :NERDTreeToggle<CR>
 " Reload my snippets
 noremap <leader>s :call ReloadAllSnippets()<cr>
 
-"---- Colorization
-" If term has color or we're in GUI, colorize!
-if &t_Co > 2 || has("gui_running")
-	syntax on					" Turn on Syntax highlighting
-	set background=dark			" Set background to dark,
-								" nicer syntax highlighting
-	colorscheme elflord			" Nice coloring scheme
-	" Alter the colorscheme just a bit
+" When pressing <leader>cd switch to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+" I seem to need a lot of semicolons
+" Add one in insert mode at the end of the line
+inoremap <c-cr> <esc>A;<cr>
+" When in normal mode, tack one onto the end and move down a line
+nnoremap <c-cr> A;<esc>j
+
+" Clean up whitespace
+nnoremap <leader>w :%s/\s\+$//<cr>
+
+"---- Colors and GUI
+" Turn on syntax highlighting
+syntax on
+
+" Dark backgrounds generally preferred
+set background=dark
+
+" GUI customizations
+" I used to keep these in .gvimrc,
+" but like the consistency of having one config now
+
+" With GUI
+if has("gui_running")
+	"---- Colorization Tweaks
+	colorscheme murphy
+	highlight SpecialKey ctermfg=DarkGray guifg=gray32
+	highlight LineNr ctermfg=Cyan guifg=Cyan
+
+	"---- Fonts
+	set guifont=Consolas:h14		" I like big fonts and I cannot lie
+
+	"---- Window size/position
+	" Make the window a bit larger
+	set lines=50 columns=175
+
+	" Save window sizes
+	set sessionoptions+=resize
+
+	"---- Just for Windows
+	if has("win32")
+		" Upper left corner on Windows
+		"winpos 0 0
+	endif
+else
+	" Just some simple color tweaks
+	colorscheme elflord
 	highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
 endif
 
@@ -37,6 +81,7 @@ if has("autocmd") " Autocommands are available
 	"---- Filetype Adjustments
 	" Enable file type detection and indenting, etc
 	filetype plugin indent on
+
 	" If I'm editing asp/asa files, it's probably VB
 	let g:filetype_asa = 'aspvbs'
 	let g:filetype_asp = 'aspvbs'
@@ -48,10 +93,14 @@ if has("autocmd") " Autocommands are available
 	augroup BrianPresets
 	au!
 
+	" Reload my vimrc when it changes
+	autocmd! BufWritePost .vimrc source ~/.vimrc
+
 	" I want my simple text files to wrap at 78 characters
 	autocmd FileType text setlocal textwidth=78
 
 	" Javascript Stuff
+	autocmd BufRead,BufNewFile *.smd	set filetype=javascript
 	autocmd BufRead,BufNewFile *.json	set filetype=javascript
 
 	" No wrapping with aspvbs files
@@ -128,10 +177,11 @@ set wildchar=<TAB>				" Changes wildcard expansion from ^E
 set wildmenu					" Show completions in status line
 set shell=$SHELL				" Defines my shell
 set dictionary=/usr/dict/words	" Dictionary
-set history=50					" Moar history
+set history=500					" Moar history
 set number						" Show line numbers
 set numberwidth=5				" with a bit of space
-set backspace=indent,eol,start	" Backspace over it all"
+set backspace=indent,eol,start	" Backspace over it all
+set fileformats=unix,dos,mac	" Preferred order of file format
 
 "---- JS Options
 set cinoptions+=j1					" Indenting Java anonymous classes
@@ -184,5 +234,3 @@ let g:alternateExtensions_html = "js,css,php"	" I like to be able
 let g:alternateExtensions_js   = "html,css,php"	" to quickly toggle
 let g:alternateExtensions_css  = "html,js,php"	" between related
 let g:alternateExtensions_php  = "html,js,css"	" web files.
-
-" 

@@ -26,6 +26,10 @@ shopt -s checkwinsize
 # Set up editor and other useful environment things
 export EDITOR=vim
 
+# grep options:
+# Always color
+export GREP_OPTIONS="--color=auto"
+
 # Friendlier umask
 umask 022
 
@@ -59,9 +63,6 @@ tortnet() { scp -r $* brianarn@randomthink.net:~/domains/randomthink.net/; }
 
 # One-liners, for convenience
 alias myps='ps aux | grep brian'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
 alias free='free -m'
 
 # Machines
