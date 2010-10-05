@@ -100,8 +100,8 @@ if &background == "light" || has("gui_running")
 else
     hi Normal guibg=Black ctermbg=NONE
 endif
-highlight StatusLine    guifg=Black   guibg=#aabbee gui=bold ctermfg=Black ctermbg=White  cterm=bold
-highlight StatusLineNC  guifg=#444444 guibg=#aaaaaa gui=none ctermfg=Black ctermbg=Grey   cterm=none
+highlight StatusLine    guifg=Black   guibg=#aabbee ctermbg=147 gui=bold ctermfg=Black ctermbg=White  cterm=bold
+highlight StatusLineNC  guifg=#444444 ctermfg=238 guibg=#aaaaaa ctermbg=248 gui=none ctermfg=Black ctermbg=Grey   cterm=none
 "if &t_Co == 256
     "highlight StatusLine ctermbg=117
 "else
@@ -109,20 +109,20 @@ highlight StatusLineNC  guifg=#444444 guibg=#aaaaaa gui=none ctermfg=Black cterm
 "endif
 
 highlight Ignore        ctermfg=Black
-highlight WildMenu      guifg=Black   guibg=#ffff00 gui=bold ctermfg=Black ctermbg=Yellow cterm=bold
+highlight WildMenu      guifg=Black   guibg=#ffff00 ctermbg=11 gui=bold ctermfg=Black ctermbg=Yellow cterm=bold
 highlight Cursor        guifg=Black guibg=White ctermfg=Black ctermbg=White
-highlight CursorLine    guibg=#333333 guifg=NONE
-highlight CursorColumn  guibg=#333333 guifg=NONE
-highlight NonText       guifg=#404040 ctermfg=8
-highlight SpecialKey    guifg=#404040 ctermfg=8
+highlight CursorLine    guibg=#333333 ctermbg=236 guifg=NONE
+highlight CursorColumn  guibg=#333333 ctermbg=236 guifg=NONE
+highlight NonText       guifg=#404040 ctermfg=238 ctermfg=8
+highlight SpecialKey    guifg=#404040 ctermfg=238 ctermfg=8
 highlight Directory     none
 high link Directory     Identifier
 highlight ErrorMsg      guibg=Red ctermbg=DarkRed guifg=NONE ctermfg=NONE
 highlight Search        guifg=NONE ctermfg=NONE gui=none cterm=none
 call s:hibg("Search"    ,"#555555","DarkBlue",81)
 highlight IncSearch     guifg=White guibg=Black ctermfg=White ctermbg=Black
-highlight MoreMsg       guifg=#00AA00 ctermfg=Green
-highlight LineNr        guifg=#DDEEFF ctermfg=White
+highlight MoreMsg       guifg=#00AA00 ctermfg=34 ctermfg=Green
+highlight LineNr        guifg=#DDEEFF ctermfg=195 ctermfg=White
 call s:hibg("LineNr"    ,"#222222","DarkBlue",80)
 highlight Question      none
 high link Question      MoreMsg
@@ -173,7 +173,7 @@ if !has("gui_mac")
 endif
 hi Identifier cterm=none
 " Commented numbers at the end are *old* 256 color values
-"highlight PreProc       guifg=#EDF8F9
+"highlight PreProc       guifg=#EDF8F9 ctermfg=15
 call s:hifg("Comment"        ,"#9933CC","DarkMagenta",34) " 92
 " 26 instead?
 call s:hifg("Constant"       ,"#339999","DarkCyan",21) " 30
@@ -188,4 +188,4 @@ call s:hifg("railsUserClass" ,"#AAAAAA","Grey",7) " 101
 call s:hifg("Special"        ,"#33AA00","DarkGreen",24) " 7
 call s:hifg("Regexp"         ,"#44B4CC","DarkCyan",21) " 74
 call s:hifg("rubyMethod"     ,"#DDE93D","Yellow",77) " 191
-"highlight railsMethod   guifg=#EE1122 ctermfg=1
+"highlight railsMethod   guifg=#EE1122 ctermfg=9 ctermfg=1
