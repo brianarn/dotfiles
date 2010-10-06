@@ -255,6 +255,7 @@ fugitive-:Gblame	fugitive.txt	/*fugitive-:Gblame*
 fugitive-:Gcd	fugitive.txt	/*fugitive-:Gcd*
 fugitive-:Gcommit	fugitive.txt	/*fugitive-:Gcommit*
 fugitive-:Gdiff	fugitive.txt	/*fugitive-:Gdiff*
+fugitive-:Gdiff!	fugitive.txt	/*fugitive-:Gdiff!*
 fugitive-:Ge	fugitive.txt	/*fugitive-:Ge*
 fugitive-:Gedit	fugitive.txt	/*fugitive-:Gedit*
 fugitive-:Ggrep	fugitive.txt	/*fugitive-:Ggrep*

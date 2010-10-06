@@ -45,7 +45,7 @@ hi Number  guifg=#0000cd ctermfg=20 guibg=NONE gui=NONE
 hi Operator  guifg=#0000ff ctermfg=21 guibg=NONE gui=bold
 hi PreProc  guifg=#0000ff ctermfg=21 guibg=NONE gui=bold
 hi Special  guifg=#000000 ctermfg=0 guibg=NONE gui=NONE
-hi SpecialKey  guifg=#bfbfbf ctermfg=250 guibg=#ededed ctermbg=7 gui=NONE
+hi SpecialKey  guifg=#bfbfbf ctermfg=250 guibg=#ffffff ctermbg=0 gui=NONE
 hi Statement  guifg=#0000ff ctermfg=21 guibg=NONE gui=bold
 hi StorageClass  guifg=#0000ff ctermfg=21 guibg=NONE gui=bold
 hi String  guifg=#b830bb ctermfg=133 guibg=NONE gui=NONE

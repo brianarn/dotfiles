@@ -8,7 +8,7 @@ if exists("syntax_on")
   syntax reset
 endif
 
-let g:colors_name = "Twilight Tweaks"
+let g:colors_name = "twilight_tweaks"
 
 hi Cursor  guifg=NONE guibg=#a7a7a7 ctermbg=248 gui=NONE
 hi Visual  guifg=NONE guibg=#3c4043 ctermbg=238 gui=NONE
@@ -24,12 +24,14 @@ hi PmenuSel  guifg=NONE guibg=#3c4043 ctermbg=238 gui=NONE
 hi IncSearch  guifg=NONE guibg=#343a44 ctermbg=237 gui=NONE
 hi Search  guifg=NONE guibg=#343a44 ctermbg=237 gui=NONE
 hi Directory  guifg=#cf6a4c ctermfg=167 guibg=NONE gui=NONE
-hi Folded  guifg=#00981b ctermfg=28 guibg=#141414 ctermbg=233 gui=NONE
+"hi Folded  guifg=#008000 ctermfg=28 guibg=#141414 ctermbg=233 gui=NONE
+hi Folded  guifg=#008000 ctermfg=28 guibg=#141414 ctermbg=233 gui=NONE
 
 hi Normal  guifg=#f8f8f8 ctermfg=15 guibg=#141414 ctermbg=233 gui=NONE
 hi Boolean  guifg=#cf6a4c ctermfg=167 guibg=NONE gui=NONE
 hi Character  guifg=#cf6a4c ctermfg=167 guibg=NONE gui=NONE
-hi Comment  guifg=#00981b ctermfg=28 guibg=NONE gui=italic
+"hi Comment  guifg=#00981b ctermfg=28 guibg=NONE gui=NONE
+hi Comment  guifg=#008000 ctermfg=28 guibg=NONE gui=NONE
 hi Conditional  guifg=#cda869 ctermfg=179 guibg=NONE gui=NONE
 hi Constant  guifg=#cf6a4c ctermfg=167 guibg=NONE gui=NONE
 hi Define  guifg=#cda869 ctermfg=179 guibg=NONE gui=NONE
@@ -51,7 +53,8 @@ hi StorageClass  guifg=#f9ee98 ctermfg=228 guibg=NONE gui=NONE
 hi String  guifg=#8f9d6a ctermfg=107 guibg=NONE gui=NONE
 hi Tag  guifg=#af7e46 ctermfg=137 guibg=NONE gui=NONE
 hi Title  guifg=#f8f8f8 ctermfg=15 guibg=NONE gui=bold
-hi Todo  guifg=#00981b ctermfg=28 guibg=NONE gui=inverse,bold,italic
+"hi Todo  guifg=#00981b ctermfg=28 guibg=NONE gui=inverse,bold
+hi Todo  guifg=#008000 ctermfg=28 guibg=NONE gui=inverse,bold
 hi Type  guifg=#af7e46 ctermfg=137 guibg=NONE gui=NONE
 hi Underlined  guifg=NONE guibg=NONE gui=underline
 hi rubyClass  guifg=#cda869 ctermfg=179 guibg=NONE gui=NONE
@@ -78,7 +81,8 @@ hi rubyRailsARMethod  guifg=#dad085 ctermfg=186 guibg=NONE gui=NONE
 hi rubyRailsRenderMethod  guifg=#dad085 ctermfg=186 guibg=NONE gui=NONE
 hi rubyRailsMethod  guifg=#dad085 ctermfg=186 guibg=NONE gui=NONE
 hi erubyDelimiter  guifg=NONE guibg=NONE gui=NONE
-hi erubyComment  guifg=#00981b ctermfg=28 guibg=NONE gui=italic
+"hi erubyComment  guifg=#00981b ctermfg=28 guibg=NONE gui=NONE
+hi erubyComment  guifg=#008000 ctermfg=28 guibg=NONE gui=NONE
 hi erubyRailsMethod  guifg=#dad085 ctermfg=186 guibg=NONE gui=NONE
 hi htmlTag  guifg=#ac885b ctermfg=137 guibg=NONE gui=NONE
 hi htmlEndTag  guifg=#ac885b ctermfg=137 guibg=NONE gui=NONE

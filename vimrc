@@ -51,9 +51,10 @@ set background=dark
 " With GUI
 if has("gui_running")
 	"---- Colorization Tweaks
-	colorscheme murphy
-	highlight SpecialKey ctermfg=DarkGray guifg=gray32
-	highlight LineNr ctermfg=Cyan guifg=Cyan
+	"colorscheme murphy
+	"highlight SpecialKey ctermfg=DarkGray guifg=gray32
+	"highlight LineNr ctermfg=Cyan guifg=Cyan
+	colorscheme github
 
 	"---- Fonts
 	set guifont=Consolas:h14		" I like big fonts and I cannot lie
@@ -234,3 +235,13 @@ let g:alternateExtensions_html = "js,css,php"	" I like to be able
 let g:alternateExtensions_js   = "html,css,php"	" to quickly toggle
 let g:alternateExtensions_css  = "html,js,php"	" between related
 let g:alternateExtensions_php  = "html,js,css"	" web files.
+
+"---- TESTING
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
