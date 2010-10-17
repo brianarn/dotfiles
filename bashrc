@@ -40,34 +40,24 @@ export PS1='[\u@\h:\w]\$ '
 export XAUTHORITY=$HOME/.Xauthority
 
 ### Aliases
-# System commands
-# The 'ls' aliases respond differently on a Mac
+# System variations
 if [ $OSTYPE == "darwin10.0" ]; then
 	alias ls='ls -FG'
 	alias ll='ls -FlhG'
 	alias la='ls -FlAGh'
+	alias du1='du -hd1'
 else
 	alias ls='ls -F --color'
 	alias ll='ls -Flh --color'
 	alias la='ls -FlAh --color'
+	alias du1='du -h --max-depth=1'
 fi
 
 # Other aliases
 alias more='less'
 alias vi='vim'
-alias du1='du -h --max-depth=1'
 alias wpdb='mysqldump --add-drop-table -c -u rtnet_wp -h db-wp.randomthink.net -p rtnet_wp > wp_db_`date +%Y%m%d_%H%M%S`.sql'
-
-# File copy
-tortnet() { scp -r $* brianarn@randomthink.net:~/domains/randomthink.net/; }
-
-# One-liners, for convenience
-alias myps='ps aux | grep brian'
 alias free='free -m'
-
-# Machines
-alias rtnet='ssh brianarn@randomthink.net'
-alias moons='ssh -X -l brian moons.cs.unm.edu'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
