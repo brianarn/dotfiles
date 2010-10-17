@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last change: 2010-08-31
+" Last change: 2010-10-17
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -36,6 +36,10 @@ nnoremap <c-cr> A;<esc>
 
 " Clean up whitespace
 nnoremap <leader>w :%s/\s\+$//<cr>
+
+"---- Backup/swap handling
+set backupdir=~/.vim/backups
+set directory=~/.vim/swapfiles
 
 "---- Colors and GUI
 " Turn on syntax highlighting
