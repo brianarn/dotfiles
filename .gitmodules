@@ -33,3 +33,6 @@
 [submodule "vim/bundle/nerdcommenter"]
 	path = vim/bundle/nerdcommenter
 	url = http://github.com/scrooloose/nerdcommenter.git
+[submodule "vim/bundle/markdown"]
+	path = vim/bundle/markdown
+	url = http://github.com/tpope/vim-markdown.git
