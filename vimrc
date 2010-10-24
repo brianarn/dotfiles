@@ -163,11 +163,15 @@ set list						" Allows for specials to be shown
 set lcs=tab:>-,trail:_			" Defines specials shown
 set lcs+=extends:>,precedes:<	" when using :list
 
+"---- Status line adjustments
+" Sets what the status line displays as
+" See :help statusline for details
+set statusline=%f\ %y%m%r%=%-20.(%{fugitive#statusline()}%)%-15.(%l,%c%V%)\ %P
+set laststatus=2			" Shows statusline all the time
+
 "---- Window options
 set title					" Sets the title of the window
-set ruler					" Show line/column
 set showmatch				" Show matching () [] {}
-set laststatus=2			" Shows stats all the time
 set scrolloff=3				" Keep 3 lines when scrolling
 set showmode				" Show current mode
 set showcmd					" Show incomplete command
