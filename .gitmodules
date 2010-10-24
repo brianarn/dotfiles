@@ -30,3 +30,6 @@
 	path = vim/bundle/matchit
 	url = http://github.com/vim-scripts/matchit.zip.git
 	ignore = untracked
+[submodule "vim/bundle/nerdcommenter"]
+	path = vim/bundle/nerdcommenter
+	url = http://github.com/scrooloose/nerdcommenter.git
