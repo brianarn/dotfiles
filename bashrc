@@ -26,6 +26,8 @@ shopt -s checkwinsize
 # Set up editor and other useful environment things
 export EDITOR=vim
 
+# Pull in some awesome Git completion
+source ~/.git-completion.bash
 # grep options:
 # Always color
 export GREP_OPTIONS="--color=auto"

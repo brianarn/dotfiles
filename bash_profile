@@ -6,5 +6,5 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
-export PATH=/usr/local/mysql/bin:/usr/local/bin:$PATH
+export PATH=/usr/local/mysql/bin:/usr/local/bin:/usr/local/sbin:$PATH
 unset USERNAME
