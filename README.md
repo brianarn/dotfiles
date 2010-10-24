@@ -9,9 +9,17 @@ trying to clean up and consolidate things.
 If for some reason you want to install this yourself, feel free --
 or I'll likely use this myself at some point.
 
+	# Clone the repo
 	git clone git://github.com/brianarn/dotfiles ~/.dotfiles
 	cd ~/.dotfiles
+
+	# Initialize the Git submodules (namely for Vim bundles)
+	git submodule update --init
+
+	# Set up symlinks
 	./install.sh
+
+	# Go back to where I was
 	if [[ $OLDPWD ]]; then cd $OLDPWD; fi
 
 ## Credits
