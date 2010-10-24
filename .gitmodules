@@ -40,3 +40,6 @@
 	path = vim/bundle/speeddating
 	url = http://github.com/tpope/vim-speeddating.git
 	ignore = untracked
+[submodule "vim/bundle/rails"]
+	path = vim/bundle/rails
+	url = http://github.com/tpope/vim-rails.git
