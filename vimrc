@@ -1,9 +1,17 @@
 " Brian Arnold's .vimrc file
-" Last change: 2010-10-17
+" Last change: 2010-10-24
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
 set nocompatible
+
+"---- Pathogen
+" Make it easy to manage plugins for Vim as bundles
+" There are a couple of calls that need to be ran before
+" filetype detection is enabled, so I'm putting up here
+" near the top of the script.
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 
 "---- Mappings
 let mapleader = ","

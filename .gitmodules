@@ -1,0 +1,15 @@
+[submodule "vim/bundle/fugitive"]
+	path = vim/bundle/fugitive
+	url = http://github.com/tpope/vim-fugitive.git
+[submodule "vim/bundle/ragtag"]
+	path = vim/bundle/ragtag
+	url = http://github.com/tpope/vim-ragtag.git
+[submodule "vim/bundle/surround"]
+	path = vim/bundle/surround
+	url = http://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/unimpaired"]
+	path = vim/bundle/unimpaired
+	url = http://github.com/tpope/vim-unimpaired.git
+[submodule "vim/bundle/repeat"]
+	path = vim/bundle/repeat
+	url = http://github.com/tpope/vim-repeat.git
