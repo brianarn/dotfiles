@@ -242,12 +242,6 @@ let g:explUseSeparators=1		" Show a separator between dirs/files
 "---- snipMate options
 let g:snips_author="Brian Arnold"		" It"sa me
 
-"---- a.vim options
-let g:alternateExtensions_html = "js,css,php"	" I like to be able
-let g:alternateExtensions_js   = "html,css,php"	" to quickly toggle
-let g:alternateExtensions_css  = "html,js,php"	" between related
-let g:alternateExtensions_php  = "html,js,css"	" web files.
-
 "---- TESTING
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
