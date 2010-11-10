@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last change: 2010-10-24
+" Last modified: 2010-11-09
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -106,8 +106,9 @@ if has("autocmd") " Autocommands are available
 	augroup BrianPresets
 	au!
 
-	" Reload my vimrc when it changes
-	autocmd! BufWritePost .vimrc source ~/.vimrc
+	" Update the timestamp and reload my vimrc when it changes
+	autocmd BufWritePre,FileWritePre .vimrc		mark s|call LastMod()|'s
+	autocmd BufWritePost .vimrc					source ~/.vimrc
 
 	" I want my simple text files to wrap at 78 characters
 	autocmd FileType text setlocal textwidth=78
@@ -245,6 +246,21 @@ let g:explUseSeparators=1		" Show a separator between dirs/files
 
 "---- snipMate options
 let g:snips_author="Brian Arnold"		" It"sa me
+
+"---- Functions
+" LastMod said it was already defined, but I wanted to change the format
+" So, I'm just forcing it here to be YYYY-MM-DD
+" Found this through "Learning the Vi and Vim Editors 7e" from O'Reilly
+function! LastMod()
+	" If there are more than 20 lines, set our max to 20,
+	" otherwise, scan entire file.
+	if line("$") > 20
+		let lastModifiedline = 20
+	else
+		let lastModifiedline = line("$")
+	endif
+	exe "1," . lastModifiedline . "g/Last modified: /s/Last modified: .*/Last modified: " . strftime("%Y-%m-%d")
+endfunc
 
 "---- TESTING
 " Show syntax highlighting groups for word under cursor
