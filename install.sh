@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # This install happily taken from
 # http://github.com/jferris/config_files
