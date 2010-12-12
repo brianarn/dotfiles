@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2010-11-09
+" Last modified: 2010-12-11 14:50:39
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -106,9 +106,11 @@ if has("autocmd") " Autocommands are available
 	augroup BrianPresets
 	au!
 
-	" Update the timestamp and reload my vimrc when it changes
-	autocmd BufWritePre,FileWritePre .vimrc		mark s|call LastMod()|'s
-	autocmd BufWritePost .vimrc					source ~/.vimrc
+	" Kick off a LastMod call anytime I save a file
+	autocmd BufWritePre *				mark s|call LastMod()|'s
+
+	" Reload my .vimrc when it changes
+	autocmd BufWritePost .vimrc			source ~/.vimrc
 
 	" I want my simple text files to wrap at 78 characters
 	autocmd FileType text setlocal textwidth=78
@@ -259,7 +261,7 @@ function! LastMod()
 	else
 		let lastModifiedline = line("$")
 	endif
-	exe "1," . lastModifiedline . "g/Last modified: /s/Last modified: .*/Last modified: " . strftime("%Y-%m-%d")
+	exe "1," . lastModifiedline . "g/Last modified: /s/Last modified: .*/Last modified: " . strftime("%Y-%m-%d %H:%M:%S")
 endfunc
 
 "---- TESTING
