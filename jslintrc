@@ -1,4 +1,4 @@
-/*jslint browser: true, devel: true, onevar: true, undef: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true, immed: true */
-/*global jQuery, $, dojo, dijit, dojox */
+/*jslint browser: true, devel: true, onevar: true, undef: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, newcap: true */
+/*global jQuery, $, _, dojo, dijit, dojox */
 
 /* vim: set ft=javascript: */
