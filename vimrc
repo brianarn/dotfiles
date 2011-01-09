@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2010-12-11 14:50:39
+" Last modified: 2011-01-08 17:54:09
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -77,6 +77,29 @@ if has("gui_running")
 
 	" Save window sizes
 	set sessionoptions+=resize
+
+	" Bind up ctrl/cmd+# to go to tabs
+	if has("gui_macvim")
+		noremap <D-1> 1gt<CR>
+		noremap <D-2> 2gt<CR>
+		noremap <D-3> 3gt<CR>
+		noremap <D-4> 4gt<CR>
+		noremap <D-5> 5gt<CR>
+		noremap <D-6> 6gt<CR>
+		noremap <D-7> 7gt<CR>
+		noremap <D-8> 8gt<CR>
+		noremap <D-9> 9gt<CR>
+	else
+		noremap <C-1> 1gt<CR>
+		noremap <C-2> 2gt<CR>
+		noremap <C-3> 3gt<CR>
+		noremap <C-4> 4gt<CR>
+		noremap <C-5> 5gt<CR>
+		noremap <C-6> 6gt<CR>
+		noremap <C-7> 7gt<CR>
+		noremap <C-8> 8gt<CR>
+		noremap <C-9> 9gt<CR>
+	endif
 
 	"---- Just for Windows
 	if has("win32")
