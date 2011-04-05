@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-01-08 17:54:09
+" Last modified: 2011-04-05 16:34:06
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -44,6 +44,10 @@ nnoremap <c-cr> A;<esc>
 
 " Clean up whitespace
 nnoremap <leader>w :%s/\s\+$//<cr>
+
+" Wrap stuff in <code> (useful for now)
+nmap <leader>co ysiw<code>
+vmap <leader>co s<code>
 
 "---- Backup/swap handling
 set backupdir=~/.vim/backups
