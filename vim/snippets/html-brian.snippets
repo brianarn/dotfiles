@@ -2,7 +2,7 @@
 
 # Goog CDN includes
 snippet jqcdn
-	<script ${1:type="text/javascript" }src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+	<script ${1:type="text/javascript" }src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	${2}
 
 snippet jquicdn
@@ -10,5 +10,12 @@ snippet jquicdn
 	${2}
 
 snippet dojocdn
-	<script ${1:type="text/javascript" }src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js"></script>
+	<script ${1:type="text/javascript" }src="http://ajax.googleapis.com/ajax/libs/dojo/1.6/dojo/dojo.xd.js"></script>
 	${2}
+
+snippet myhead HTML5
+	<head>
+		<meta charset="UTF-8">
+		<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+		${2}
+	</head>
