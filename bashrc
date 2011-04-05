@@ -41,6 +41,9 @@ export PS1='[\u@\h:\w]\$ '
 # Fix X thru SSH
 export XAUTHORITY=$HOME/.Xauthority
 
+# Node libraries when using Homebrew
+export NODE_PATH=/usr/local/lib/node
+
 ### Aliases
 # System variations
 if [ $OSTYPE == "darwin10.0" ]; then
