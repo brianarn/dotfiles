@@ -24,7 +24,9 @@ shopt -s histappend
 shopt -s checkwinsize
 
 # Set up editor and other useful environment things
-export EDITOR=vim
+# Without setting long path, some Vim plugins caused an
+# exit status of 1, screwing up git/svn
+export EDITOR=/usr/bin/vim
 
 # Pull in some awesome Git completion
 source ~/.git-completion.bash
