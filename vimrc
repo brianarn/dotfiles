@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-04-05 16:34:06
+" Last modified: 2011-04-21 09:54:55
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -57,9 +57,6 @@ set directory=~/.vim/swapfiles
 " Turn on syntax highlighting
 syntax on
 
-" Dark backgrounds generally preferred
-set background=dark
-
 " GUI customizations
 " I used to keep these in .gvimrc,
 " but like the consistency of having one config now
@@ -67,10 +64,16 @@ set background=dark
 " With GUI
 if has("gui_running")
 	"---- Colorization Tweaks
+	" One older scheme with variations
 	"colorscheme murphy
 	"highlight SpecialKey ctermfg=DarkGray guifg=gray32
 	"highlight LineNr ctermfg=Cyan guifg=Cyan
-	colorscheme github
+	" GitHub's scheme is nice
+	"colorscheme github
+	" Trying out Solairzed for now
+	let g:solarized_visibility = 'low'
+	set background=dark
+	colorscheme solarized
 
 	"---- Fonts
 	set guifont=Consolas:h14		" I like big fonts and I cannot lie
@@ -112,8 +115,12 @@ if has("gui_running")
 	endif
 else
 	" Just some simple color tweaks
-	colorscheme elflord
-	highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
+	" Old scheme with a tweak
+	"colorscheme elflord
+	"highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
+	" Trying out solarized for now
+	set background=dark
+	colorscheme solarized
 endif
 
 "--- Text Formatting
@@ -141,6 +148,9 @@ if has("autocmd") " Autocommands are available
 
 	" I want my simple text files to wrap at 78 characters
 	autocmd FileType text setlocal textwidth=78
+
+	" Same with Markdown
+	autocmd FileType markdown setlocal textwidth=78
 
 	" Javascript Stuff
 	autocmd BufRead,BufNewFile *.smd	set filetype=javascript

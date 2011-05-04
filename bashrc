@@ -64,6 +64,7 @@ alias vi='vim'
 alias wpdb='mysqldump --add-drop-table -c -u rtnet_wp -h db-wp.randomthink.net -p rtnet_wp > wp_db_`date +%Y%m%d_%H%M%S`.sql'
 alias free='free -m'
 alias ss='svn status --ignore-externals'
+alias serve='python -m SimpleHTTPServer 4000 &'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
