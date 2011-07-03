@@ -63,3 +63,4 @@
 [submodule "vim/bundle/jshint"]
 	path = vim/bundle/jshint
 	url = https://github.com/walm/jshint.vim.git
+	ignore = untracked
