@@ -30,6 +30,7 @@ export EDITOR=/usr/bin/vim
 
 # Pull in some awesome Git completion
 source ~/.git-completion.bash
+source ~/.git-flow-completion.bash
 # grep options:
 # Always color
 export GREP_OPTIONS="--color=auto"
