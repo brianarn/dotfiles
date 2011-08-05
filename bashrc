@@ -45,7 +45,7 @@ export PS1='[\u@\h:\w]\$ '
 export XAUTHORITY=$HOME/.Xauthority
 
 # Node libraries when using Homebrew
-export NODE_PATH=/usr/local/lib/node
+export NODE_PATH=/usr/local/lib/node_modules
 
 ### Aliases
 # System variations
