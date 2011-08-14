@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-04-21 09:54:55
+" Last modified: 2011-08-10 20:40:02
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -44,6 +44,10 @@ nnoremap <c-cr> A;<esc>
 
 " Clean up whitespace
 nnoremap <leader>w :%s/\s\+$//<cr>
+
+" Escape HTML
+map <silent> <leader>h :call HtmlEscape()<CR>
+map <silent> <leader>u :call HtmlUnEscape()<CR>
 
 " Wrap stuff in <code> (useful for now)
 nmap <leader>co ysiw<code>
@@ -300,6 +304,19 @@ function! LastMod()
 	endif
 	exe "1," . lastModifiedline . "g/Last modified: /s/Last modified: .*/Last modified: " . strftime("%Y-%m-%d %H:%M:%S")
 endfunc
+
+" HTML escaping/unescaping functions
+function! HtmlEscape()
+  silent s/&/\&amp;/eg
+  silent s/</\&lt;/eg
+  silent s/>/\&gt;/eg
+endfunction
+
+function! HtmlUnEscape()
+  silent s/&lt;/</eg
+  silent s/&gt;/>/eg
+  silent s/&amp;/\&/eg
+endfunction
 
 "---- TESTING
 " Show syntax highlighting groups for word under cursor

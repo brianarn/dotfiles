@@ -55,9 +55,9 @@ if [ $OSTYPE == "darwin10.0" ]; then
 	alias la='ls -FlAGh'
 	alias du1='du -hd1'
 else
-	alias ls='ls -F --color'
-	alias ll='ls -Flh --color'
-	alias la='ls -FlAh --color'
+	alias ls='ls -FG'
+	alias ll='ls -FlhG'
+	alias la='ls -FlAhG'
 	alias du1='du -h --max-depth=1'
 fi
 
