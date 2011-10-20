@@ -70,3 +70,7 @@
 [submodule "vim/bundle/jshint.vim"]
 	path = vim/bundle/jshint.vim
 	url = https://github.com/wookiehangover/jshint.vim.git
+[submodule "vim/bundle/textile"]
+	path = vim/bundle/textile
+	url = git://github.com/timcharper/textile.vim.git
+	ignore = untracked
