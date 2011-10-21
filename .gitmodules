@@ -74,3 +74,6 @@
 	path = vim/bundle/textile
 	url = git://github.com/timcharper/textile.vim.git
 	ignore = untracked
+[submodule "vim/bundle/command-t"]
+	path = vim/bundle/command-t
+	url = git://git.wincent.com/command-t.git
