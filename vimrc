@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-08-10 20:40:02
+" Last modified: 2011-11-03 11:13:16
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -23,17 +23,20 @@ noremap <leader>v :e ~/.vimrc<cr>
 " Reload settings
 noremap <leader>r :source ~/.vimrc<cr>
 
-" A shortcut for scaling up when on the iMac
+" A shortcut for scaling up viewport when on the iMac
 noremap <leader>g :set lines=75 columns=250<cr>
 
-" Someone suggested F2 for NERDTree, so I'll try that
+" Someone suggested F2 for NERDTree, and I've grown used to it
 " See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
 noremap <F2> :NERDTreeToggle<CR>
+
+" For Hammer.vim: Load my preview
+map <leader>p :Hammer<CR>
 
 " Reload my snippets
 noremap <leader>s :call ReloadAllSnippets()<cr>
 
-" When pressing <leader>cd switch to the directory of the open buffer
+" Change directory to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>
 
 " I seem to need a lot of semicolons
@@ -50,6 +53,7 @@ map <silent> <leader>h :call HtmlEscape()<CR>
 map <silent> <leader>u :call HtmlUnEscape()<CR>
 
 " Wrap stuff in <code> (useful for now)
+" Depends on surround.vim
 nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
