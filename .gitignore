@@ -37,3 +37,4 @@ Thumbs.db
 #######################
 *.swp
 .*.swp
+vim/tmp

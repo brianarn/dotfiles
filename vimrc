@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-11-03 11:13:16
+" Last modified: 2011-11-23 11:56:21
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -14,30 +14,11 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 "---- Mappings
-let mapleader = ","
-let g:mapleader = ","
 
-" Edit my .vimrc
-noremap <leader>v :e ~/.vimrc<cr>
-
-" Reload settings
-noremap <leader>r :source ~/.vimrc<cr>
-
-" A shortcut for scaling up viewport when on the iMac
-noremap <leader>g :set lines=75 columns=250<cr>
-
+"-- Full key mappings
 " Someone suggested F2 for NERDTree, and I've grown used to it
 " See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
 noremap <F2> :NERDTreeToggle<CR>
-
-" For Hammer.vim: Load my preview
-map <leader>p :Hammer<CR>
-
-" Reload my snippets
-noremap <leader>s :call ReloadAllSnippets()<cr>
-
-" Change directory to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>
 
 " I seem to need a lot of semicolons
 " Add one in insert mode at the end of the line
@@ -45,21 +26,49 @@ inoremap <c-cr> <esc>A;<cr>
 " When in normal mode, tack one onto the end and move down a line
 nnoremap <c-cr> A;<esc>
 
-" Clean up whitespace
-nnoremap <leader>w :%s/\s\+$//<cr>
 
-" Escape HTML
-map <silent> <leader>h :call HtmlEscape()<CR>
-map <silent> <leader>u :call HtmlUnEscape()<CR>
+"-- Leader mappings
+" Trying to sort these by leader character to make it easier to tell
+" where/what I have, when editing later
 
-" Wrap stuff in <code> (useful for now)
+let mapleader = ","
+let g:mapleader = ","
+
+" Change directory to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>
+
+" Wrap stuff in <code> (useful for blog posts etc)
 " Depends on surround.vim
 nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
+" Edit my .vimrc
+noremap <leader>ev :e ~/.vimrc<cr>
+
+" A shortcut for scaling up viewport when on the iMac
+noremap <leader>g :set lines=75 columns=250<cr>
+
+" Escape/Unescape HTML
+map <silent> <leader>he :call HtmlEscape()<CR>
+map <silent> <leader>hu :call HtmlUnEscape()<CR>
+
+" For Hammer.vim: Load my preview
+map <leader>p :Hammer<CR>
+
+" Reload settings
+noremap <leader>r :source ~/.vimrc<cr>
+
+" Reload my snippets
+noremap <leader>s :call ReloadAllSnippets()<cr>
+
+" Clean up whitespace
+nnoremap <leader>w :%s/\s\+$//<cr>
+
 "---- Backup/swap handling
-set backupdir=~/.vim/backups
-set directory=~/.vim/swapfiles
+set backupdir=~/.vim/tmp/backup
+set directory=~/.vim/tmp/swap
+set undodir=~/.vim/tmp/undo
+set backup
 
 "---- Colors and GUI
 " Turn on syntax highlighting
@@ -145,6 +154,7 @@ if has("autocmd") " Autocommands are available
 
 	"---- Autocommands
 	" Let's use an autocmd group so we can delete easily
+	" This is admittedly somewhat cargo-cult-ish, I don't ever delete
 	augroup BrianPresets
 	au!
 
@@ -178,7 +188,7 @@ if has("autocmd") " Autocommands are available
 
 	" Use a downloaded VB.NET syntax highlighter
 	" See http://www.vim.org/scripts/script.php?script_id=1525
-	autocmd BufRead,BufNewFile *.vb	set filetype=vbnet
+	autocmd BufRead,BufNewFile *.vb		set filetype=vbnet
 
 	" Special tweaks for Windows
 	if has("win32")
@@ -195,21 +205,28 @@ if has("autocmd") " Autocommands are available
 	endif
 
 	augroup END
-else " No autocommands, so just set up some simple formatting
-	set textwidth=78				" Width of window, I like mine small
-	set formatoptions=cqrt			" Similar to defaults
-	set autoindent					" Newlines are indented the same as prev
-	set smartindent					" Indents for braces and some keywords
-	set cindent						" Indents according to a std C style
 endif " has("autocmd")
 
-"---- More Text Formatting
-set noexpandtab					" We like tabs
+"---- Text formatting optionsa
+" Used to keep under an else from autocmd, but it seems potentially better to
+" just have some solid defaults anyways
+set textwidth=78				" Width of window
+set formatoptions=cqrt			" Similar to defaults
+set autoindent					" Newlines are indented the same as prev
+set smartindent					" Indents for braces and some keywords
+set cindent						" Indents according to a std C style
+set colorcolumn=85				" Give me an idea of when I'm hitting width
+
+"---- More text-related options
 set shiftwidth=4				" Auto-indents four spaces
 set tabstop=4					" Tabs at four spaces
+set softtabstop=4				" Soft tabs too
+set noexpandtab					" Tabs > spaces
+set encoding=utf-8				" Yay UTF-8
 set list						" Allows for specials to be shown
 set lcs=tab:>-,trail:_			" Defines specials shown
 set lcs+=extends:>,precedes:<	" when using :list
+set hidden						" Hide, not unload, buffers when abandoned
 
 "---- Status line adjustments
 " Sets what the status line displays as
@@ -247,6 +264,7 @@ set number						" Show line numbers
 set numberwidth=5				" with a bit of space
 set backspace=indent,eol,start	" Backspace over it all
 set fileformats=unix,dos,mac	" Preferred order of file format
+set undofile					" Create undo files to preserve undo history
 
 "---- JS Options
 set cinoptions+=j1					" Indenting Java anonymous classes
