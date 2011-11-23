@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-11-23 12:04:01
+" Last modified: 2011-11-23 12:07:17
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -10,6 +10,8 @@ set nocompatible
 " There are a couple of calls that need to be ran before
 " filetype detection is enabled, so I'm putting up here
 " near the top of the script.
+" Based on the tip in the FAQ, I'm keeping pathogen itself as a bundle!
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 filetype off
 call pathogen#infect()
 call pathogen#helptags()
