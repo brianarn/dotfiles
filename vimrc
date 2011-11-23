@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-11-23 11:56:21
+" Last modified: 2011-11-23 12:04:01
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -10,8 +10,10 @@ set nocompatible
 " There are a couple of calls that need to be ran before
 " filetype detection is enabled, so I'm putting up here
 " near the top of the script.
-call pathogen#runtime_append_all_bundles()
+filetype off
+call pathogen#infect()
 call pathogen#helptags()
+filetype plugin indent on
 
 "---- Mappings
 
@@ -142,10 +144,6 @@ endif
 
 "--- Text Formatting
 if has("autocmd") " Autocommands are available
-	"---- Filetype Adjustments
-	" Enable file type detection and indenting, etc
-	filetype plugin indent on
-
 	" If I'm editing asp/asa files, it's probably VB
 	let g:filetype_asa = 'aspvbs'
 	let g:filetype_asp = 'aspvbs'
