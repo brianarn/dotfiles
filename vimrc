@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-11-23 12:07:17
+" Last modified: 2011-12-01 16:43:08
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -169,6 +169,9 @@ if has("autocmd") " Autocommands are available
 
 	" Same with Markdown
 	autocmd FileType markdown setlocal textwidth=78
+
+	" However, Textile shouldn't wrap
+	autocmd FileType textile setlocal textwidth=0
 
 	" Javascript Stuff
 	autocmd BufRead,BufNewFile *.smd	set filetype=javascript
