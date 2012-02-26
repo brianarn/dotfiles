@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2011-12-01 16:43:08
+" Last modified: 2012-02-26 13:59:16
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -297,6 +297,11 @@ let highlight_function_name=1		" Highlight function names in decls
 let html_number_lines = 0		" Don't number the output
 let html_use_css = 1			" Shorter HTML, but needs better browser
 
+"---- NERDTree Options
+let NERDTreeDirArrows = 0		" Don't use arrows for now, causes odd line
+								" height issues
+let NERDTreeMinimalUI = 1		" Don't show the tips/hints/etc
+
 "---- Explorer options
 let g:explVertical=1			" Split vertically
 let g:explSplitRight=1			" Put new window to the right
@@ -313,7 +318,7 @@ let g:explSuffixesLast=0		" Don't push specified files to end
 let g:explUseSeparators=1		" Show a separator between dirs/files
 
 "---- snipMate options
-let g:snips_author="Brian Arnold"		" It"sa me
+let g:snips_author="Brian Arnold"		" It'sa me
 
 "---- Functions
 " LastMod said it was already defined, but I wanted to change the format
