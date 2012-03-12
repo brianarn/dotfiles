@@ -66,7 +66,6 @@ alias more='less'
 alias vi='vim'
 alias wpdb='mysqldump --add-drop-table -c -u rtnet_wp -h db-wp.randomthink.net -p rtnet_wp > wp_db_`date +%Y%m%d_%H%M%S`.sql'
 alias free='free -m'
-alias ss='svn status --ignore-externals'
 alias serve='python -m SimpleHTTPServer 4000'
 
 # enable programmable completion features (you don't need to enable
@@ -75,3 +74,8 @@ alias serve='python -m SimpleHTTPServer 4000'
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
+
+# Some convenient subversion aliases
+alias ss='svn status --ignore-externals'
+alias sadd='ss | grep ? | awk '\''{print $2}'\'' | xargs svn add'
+alias srm='ss | grep ! | awk '\''{print $2}'\'' | xargs svn rm'
