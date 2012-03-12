@@ -56,33 +56,36 @@
 	ignore = untracked
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
+	url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
-	url = https://github.com/godlygeek/tabular.git
+	url = git://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/jshint"]
 	path = vim/bundle/jshint
-	url = https://github.com/walm/jshint.vim.git
+	url = git://github.com/walm/jshint.vim.git
 	ignore = untracked
 [submodule "vim/bundle/vim-jade"]
 	path = vim/bundle/vim-jade
-	url = https://github.com/digitaltoad/vim-jade.git
+	url = git://github.com/digitaltoad/vim-jade.git
 [submodule "vim/bundle/jshint.vim"]
 	path = vim/bundle/jshint.vim
-	url = https://github.com/wookiehangover/jshint.vim.git
+	url = git://github.com/wookiehangover/jshint.vim.git
 [submodule "vim/bundle/textile"]
 	path = vim/bundle/textile
 	url = git://github.com/timcharper/textile.vim.git
 	ignore = untracked
-[submodule "vim/bundle/command-t"]
-	path = vim/bundle/command-t
-	url = git://git.wincent.com/command-t.git
 [submodule "vim/bundle/ack"]
 	path = vim/bundle/ack
-	url = https://github.com/mileszs/ack.vim
+	url = git://github.com/mileszs/ack.vim
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
-	url = https://github.com/tpope/vim-pathogen.git
+	url = git://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/hammer.vim"]
 	path = vim/bundle/hammer.vim
-	url = git://github.com/robgleeson/hammer.vim.git
+	url = git://github.com/matthias-guenther/hammer.vim.git
+[submodule "vim/bundle/vim-css-color"]
+	path = vim/bundle/vim-css-color
+	url = git://github.com/skammer/vim-css-color.git
+[submodule "vim/bundle/ctrlp.vim"]
+	path = vim/bundle/ctrlp.vim
+	url = git://github.com/kien/ctrlp.vim

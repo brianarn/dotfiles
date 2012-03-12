@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-02-26 13:59:16
+" Last modified: 2012-03-12 10:35:54
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -30,6 +30,9 @@ inoremap <c-cr> <esc>A;<cr>
 " When in normal mode, tack one onto the end and move down a line
 nnoremap <c-cr> A;<esc>
 
+" Reselect visual block after indenting
+vnoremap < <gv
+vnoremap > >gv
 
 "-- Leader mappings
 " Trying to sort these by leader character to make it easier to tell
@@ -259,6 +262,7 @@ set smartcase					" unless case is used
 
 "---- Miscellaneous settings
 set wildchar=<TAB>				" Changes wildcard expansion from ^E
+set wildmode=list:longest,full	" Adjust wildcard completion display
 set wildmenu					" Show completions in status line
 set shell=$SHELL				" Defines my shell
 set dictionary=/usr/dict/words	" Dictionary
