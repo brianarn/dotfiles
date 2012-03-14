@@ -26,5 +26,4 @@
 	// Syntax: array of strings that are valid globals
 	"predef": [
 	]
-	*/
 }
