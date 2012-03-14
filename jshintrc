@@ -1,0 +1,30 @@
+// Some simple configuration for jshint when ran via node
+// For a list of options, see http://www.jshint.com/options/
+// This file is technically JSON and not JS, so these comments are technically
+// invalid, but, it works fine so yay inline doc
+{
+	// # Enforcing options
+	"curly": true,				// Require curly braces
+	"immed": true,				// IIFEs in parens basically
+	"newcap": true,				// Require caps for constructor functions
+	"noarg": true,				// No use of arguments.call(er|ee)
+	"undef": true,				// Prohibits explicitly undeclared variable use
+	"trailing": true,				// UGH TRAILING WHITESPACE NO
+
+	// # Relaxing options
+	// Nothing I want to relax!
+
+	// # Environment
+	"browser": true,				// Most often doing browser work, so hey
+	"devel": true,					// Let through things like console, alert, etc
+	"jquery": true,					// Still write enough of this...
+	"dojo": true/					// dojo/dijit/dojox/define/require
+
+	// # Pre-defined globals
+	// This is apparently something supported, though I don't see much mention
+	// of it anywhere, really. Putting a placeholder for now.
+	// Syntax: array of strings that are valid globals
+	"predef": [
+	]
+	*/
+}
