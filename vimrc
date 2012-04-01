@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-03-12 10:35:54
+" Last modified: 2012-04-01 10:52:35
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -107,7 +107,7 @@ if has("gui_running")
 	set lines=50 columns=175
 
 	" Save window sizes
-	set sessionoptions+=resize
+	"set sessionoptions+=resize
 
 	" Bind up ctrl/cmd+# to go to tabs
 	if has("gui_macvim")
@@ -298,13 +298,16 @@ let html_wrong_comments=1			" Fixes ugly syntax due to
 let highlight_function_name=1		" Highlight function names in decls
 
 "---- HTML generation options
-let html_number_lines = 0		" Don't number the output
-let html_use_css = 1			" Shorter HTML, but needs better browser
+let html_number_lines=0		" Don't number the output
+let html_use_css=1			" Shorter HTML, but needs better browser
 
 "---- NERDTree Options
-let NERDTreeDirArrows = 0		" Don't use arrows for now, causes odd line
+let NERDTreeDirArrows=0		" Don't use arrows for now, causes odd line
 								" height issues
-let NERDTreeMinimalUI = 1		" Don't show the tips/hints/etc
+let NERDTreeMinimalUI=1		" Don't show the tips/hints/etc
+
+"---- Syntastic Options
+let g:syntastic_check_on_open=1	" Check when opening a file
 
 "---- Explorer options
 let g:explVertical=1			" Split vertically
@@ -336,7 +339,7 @@ function! LastMod()
 	else
 		let lastModifiedline = line("$")
 	endif
-	exe "1," . lastModifiedline . "g/Last modified: /s/Last modified: .*/Last modified: " . strftime("%Y-%m-%d %H:%M:%S")
+	exe "1," . lastModifiedline . "g/Last modified: /s/Last modified:.*/Last modified: " . strftime("%Y-%m-%d %H:%M:%S")
 endfunc
 
 " HTML escaping/unescaping functions
@@ -353,11 +356,3 @@ function! HtmlUnEscape()
 endfunction
 
 "---- TESTING
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc

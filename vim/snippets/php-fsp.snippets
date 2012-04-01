@@ -1,4 +1,0 @@
-# FSP-specific snippets
-snippet fspq FSP Query
-	$result = mysql_query(${1:$query});
-	if (!$result) trigger_error("Unable to query ${2:foo!}", E_USER_ERROR);
