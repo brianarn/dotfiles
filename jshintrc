@@ -12,7 +12,7 @@
 	"trailing": true,				// UGH TRAILING WHITESPACE NO
 
 	// # Relaxing options
-	// Nothing I want to relax!
+	"smarttabs": true,			// Don't yell when I'm using spaces for alignment
 
 	// # Environment
 	"browser": true,				// Most often doing browser work, so hey
