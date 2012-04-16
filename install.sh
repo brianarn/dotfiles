@@ -49,3 +49,11 @@ for name in *; do
 		fi
 	fi
 done
+
+# Post-install, create some vim dirs
+echo "Creating Vim directories..."
+mkdir -p ~/.vim/tmp/backup
+mkdir -p ~/.vim/tmp/swap
+mkdir -p ~/.vim/tmp/undo
+
+echo "Done!"
