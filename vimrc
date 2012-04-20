@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-04-01 10:52:35
+" Last modified: 2012-04-18 15:02:41
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -49,8 +49,9 @@ map <leader>cd :cd %:p:h<cr>
 nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
-" Edit my .vimrc
-noremap <leader>ev :e ~/.vimrc<cr>
+" Edit / source my .vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " A shortcut for scaling up viewport when on the iMac
 noremap <leader>g :set lines=75 columns=250<cr>
@@ -62,8 +63,6 @@ map <silent> <leader>hu :call HtmlUnEscape()<CR>
 " For Hammer.vim: Load my preview
 map <leader>p :Hammer<CR>
 
-" Reload settings
-noremap <leader>r :source ~/.vimrc<cr>
 
 " Reload my snippets
 noremap <leader>s :call ReloadAllSnippets()<cr>
@@ -173,8 +172,9 @@ if has("autocmd") " Autocommands are available
 	" Same with Markdown
 	autocmd FileType markdown setlocal textwidth=78
 
-	" However, Textile shouldn't wrap
+	" However, some others shouldn't wrap
 	autocmd FileType textile setlocal textwidth=0
+	autocmd FileType html setlocal textwidth=0
 
 	" Javascript Stuff
 	autocmd BufRead,BufNewFile *.smd	set filetype=javascript

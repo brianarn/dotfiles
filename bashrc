@@ -52,6 +52,9 @@ alias ss='svn status --ignore-externals'
 alias sadd='ss | grep ? | awk '\''{print $2}'\'' | xargs svn add'
 alias srm='ss | grep ! | awk '\''{print $2}'\'' | xargs svn rm'
 
+# OMG SYNTAX HIGHLIGHTED CAT
+alias c='pygmentize -O style=monokai -f console256 -g'
+
 # OS-specific things
 if [ `uname -s` == "Darwin" ]; then
 	# Aliases
