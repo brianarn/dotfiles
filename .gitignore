@@ -38,3 +38,4 @@ Thumbs.db
 *.swp
 .*.swp
 vim/tmp
+vim/.netrwhist

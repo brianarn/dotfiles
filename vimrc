@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-04-18 15:02:41
+" Last modified: 2012-05-14 21:52:12
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -105,8 +105,8 @@ if has("gui_running")
 	" Make the window a bit larger
 	set lines=50 columns=175
 
-	" Save window sizes
-	"set sessionoptions+=resize
+	" Don't save window sizes
+	set sessionoptions-=resize
 
 	" Bind up ctrl/cmd+# to go to tabs
 	if has("gui_macvim")
