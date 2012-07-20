@@ -1,0 +1,18 @@
+# FSP snippets
+
+snippet fspq
+	$result = mysql_query(${1:$query});
+	if (!$result) trigger_error("Unable to query ${2:stuff}!");
+
+snippet fspqh
+	$result = mysql_query(${1:$query});
+	if (!$result) {
+		$return['err'] = "Unable to query ${2:stuff}!";
+		break;
+	}
+
+snippet dtheme
+	<style>
+		@import url(//ajax.googleapis.com/ajax/libs/dojo/${1:1.7}/dojo/resources/dojo.css);
+		@import url(//ajax.googleapis.com/ajax/libs/dojo/$1/dijit/themes/${2:claro}/$2.css);
+	</style>
