@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-05-14 21:52:12
+" Last modified: 2012-09-05 11:56:00
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -53,8 +53,10 @@ vmap <leader>co s<code>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
-" A shortcut for scaling up viewport when on the iMac
-noremap <leader>g :set lines=75 columns=250<cr>
+" A shortcut for adjusting viewport quickly
+noremap <leader>gs :set lines=50 columns=175<cr>
+noremap <leader>gl :set lines=75 columns=250<cr>
+noremap <leader>gt :set lines=75 columns=120<cr>
 
 " Escape/Unescape HTML
 map <silent> <leader>he :call HtmlEscape()<CR>
@@ -62,7 +64,6 @@ map <silent> <leader>hu :call HtmlUnEscape()<CR>
 
 " For Hammer.vim: Load my preview
 map <leader>p :Hammer<CR>
-
 
 " Reload my snippets
 noremap <leader>s :call ReloadAllSnippets()<cr>
@@ -106,7 +107,11 @@ if has("gui_running")
 	set lines=50 columns=175
 
 	" Don't save window sizes
-	set sessionoptions-=resize
+	"set sessionoptions-=resize
+	set sessionoptions-=winsize
+
+	" GUI options
+	set guioptions-=T				" No toolbar needed, never use it
 
 	" Bind up ctrl/cmd+# to go to tabs
 	if has("gui_macvim")
@@ -213,7 +218,7 @@ if has("autocmd") " Autocommands are available
 	augroup END
 endif " has("autocmd")
 
-"---- Text formatting optionsa
+"---- Text formatting options
 " Used to keep under an else from autocmd, but it seems potentially better to
 " just have some solid defaults anyways
 set textwidth=78				" Width of window
@@ -248,6 +253,8 @@ set showmode				" Show current mode
 set showcmd					" Show incomplete command
 set ttyfast					" Smoother TTY experience,
 							" if you have a faster connection
+set splitbelow				" New horz splits at the bottom
+set splitright				" New vert splits to the right
 
 "---- Session options
 set sessionoptions+=slash	" Always use forward slashes
