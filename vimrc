@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-09-05 11:56:00
+" Last modified: 2012-09-19 09:47:40
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -49,10 +49,6 @@ map <leader>cd :cd %:p:h<cr>
 nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
-" Edit / source my .vimrc
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-
 " A shortcut for adjusting viewport quickly
 noremap <leader>gs :set lines=50 columns=175<cr>
 noremap <leader>gl :set lines=75 columns=250<cr>
@@ -67,6 +63,14 @@ map <leader>p :Hammer<CR>
 
 " Reload my snippets
 noremap <leader>s :call ReloadAllSnippets()<cr>
+
+" Create a new tab and set it to Textile
+" as I frequently need to do this for Redmine/ChiliProject posts
+noremap <leader>t :tabnew<cr>:setf textile<cr>
+
+" Edit / source my .vimrc
+nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <leader>vs :source $MYVIMRC<cr>
 
 " Clean up whitespace
 nnoremap <leader>w :%s/\s\+$//<cr>
