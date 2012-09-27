@@ -15,10 +15,19 @@
 	"smarttabs": true,			// Don't yell when I'm using spaces for alignment
 
 	// # Environment
-	"browser": true,				// Most often doing browser work, so hey
-	"devel": true,					// Let through things like console, alert, etc
-	"jquery": true,					// Still write enough of this...
-	"dojo": true,					// dojo/dijit/dojox/define/require
+	"browser": true,			// Most often doing browser work, so hey
+	"devel": true,				// Let through things like console, alert, etc
+	"jquery": true,				// Still write enough of this...
+	"dojo": true,				// dojo/dijit/dojox/define/require
+
+	// # Complexity
+	// http://www.elijahmanor.com/2012/09/control-complexity-of-your-javascript.html
+	// Basically, these allow me to see if I'm writing too complex of code.
+	// Love this idea.
+	//"maxparams": 4,				// Maximum number of function args - seems to break for me right now
+	"maxdepth": 4,				// Past this is INCEPTION or something
+	"maxstatements": 25,		// More statements than this, maybe refactor
+	"maxcomplexity": 6,			// Don't allow too many paths through the code
 
 	// # Pre-defined globals
 	// This is apparently something supported, though I don't see much mention

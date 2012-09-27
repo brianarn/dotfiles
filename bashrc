@@ -31,7 +31,8 @@ export GREP_OPTIONS="--color=auto"
 umask 022
 
 # Change prompt
-export PS1='[\u@\h:\w]\$ '
+# Now done via sourcing, keeping this here for the moment
+#export PS1='[\u@\h: \W$(__git_ps1 " (%s)")]\$ '
 
 # Fix X thru SSH
 export XAUTHORITY=$HOME/.Xauthority
@@ -80,13 +81,30 @@ else
 	export EDITOR=/usr/bin/vim
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+# Was in my .bash_profile, moving over here for more convenient management
+# User specific environment and startup programs
+PATH=/usr/local/share/npm/bin:$PATH
+PATH=/usr/local/bin:/usr/local/sbin:$PATH
+PATH=/usr/local/ant/bin:$PATH
+PATH=/usr/local/android-sdk-mac_x86/tools:$PATH
+PATH=/usr/local/phonegap-android/bin:$PATH
+PATH=/usr/local/mysql/bin:$PATH
+PATH=~/.rbenv/shims:$PATH
+export PATH
 
-# Pull in some awesome Git completion
-source ~/.git-completion.bash
-source ~/.git-flow-completion.bash
+# Not sure why I was doing this, let's turn it off awhile
+#unset USERNAME
+
+# Run rbenv if we have it
+hash rbenv 2> /dev/null && eval "$(rbenv init -)"
+
+# If I have hub installed, alias it over git
+hash hub 2> /dev/null && alias git='hub'
+
+# Set up some completion stuff, woo woo
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    source /etc/bash_completion
+fi
+for f in ~/.dotfiles/source/*; do
+	source $f;
+done

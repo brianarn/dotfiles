@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-09-19 09:47:40
+" Last modified: 2012-09-26 17:18:56
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -66,7 +66,7 @@ noremap <leader>s :call ReloadAllSnippets()<cr>
 
 " Create a new tab and set it to Textile
 " as I frequently need to do this for Redmine/ChiliProject posts
-noremap <leader>t :tabnew<cr>:setf textile<cr>
+noremap <leader>t :set lines=75 columns=120<cr>:setf textile<cr>
 
 " Edit / source my .vimrc
 nnoremap <leader>ve :vsplit $MYVIMRC<cr>
