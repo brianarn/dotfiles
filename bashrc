@@ -48,6 +48,31 @@ alias wpdb='mysqldump --add-drop-table -c -u rtnet_wp -h db-wp.randomthink.net -
 alias free='free -m'
 alias serve='python -m SimpleHTTPServer 4000'
 
+# Set up a fast vhost thanks to my server config
+function host() {
+	if [[ $# -eq 0 ]]; then
+		echo "Usage: host hostname";
+		return;
+	fi;
+	if [[ -e "$HOME/Hosts/$1.dev" ]]; then
+		echo "$1.dev already exists as a host, exiting";
+		return 1;
+	else
+		ln -s `pwd` ~/Hosts/$1.dev
+		echo "$1.dev created, now loading..."
+		open "http://$1.dev/"
+	fi
+}
+
+# Conveniently move around based on regex replacement
+# Example:
+# cwd: ~/Dojo/1.5/dijit/form
+# cdd 1.5 1.8
+# cwd: ~/Dojo/1.8/dijit/form
+function cdd() {
+	cd ${PWD/$1/$2}
+}
+
 # Some convenient subversion aliases
 alias ss='svn status --ignore-externals'
 alias sadd='ss | grep ? | awk '\''{print $2}'\'' | xargs svn add'

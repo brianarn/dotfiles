@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-09-26 17:18:56
+" Last modified: 2012-09-27 22:15:21
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -22,7 +22,7 @@ filetype plugin indent on
 "-- Full key mappings
 " Someone suggested F2 for NERDTree, and I've grown used to it
 " See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
-noremap <F2> :NERDTreeToggle<CR>
+noremap <F2> :NERDTreeToggle<cr>
 
 " I seem to need a lot of semicolons
 " Add one in insert mode at the end of the line
@@ -49,17 +49,17 @@ map <leader>cd :cd %:p:h<cr>
 nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
-" A shortcut for adjusting viewport quickly
-noremap <leader>gs :set lines=50 columns=175<cr>
-noremap <leader>gl :set lines=75 columns=250<cr>
-noremap <leader>gt :set lines=75 columns=120<cr>
+" Fugitive helpers
+nnoremap <leader>gb :Gblame<cr>
+nnoremap <leader>gs :Gstatus<cr>
+nnoremap <leader>gw :Gwrite<cr>
 
 " Escape/Unescape HTML
-map <silent> <leader>he :call HtmlEscape()<CR>
-map <silent> <leader>hu :call HtmlUnEscape()<CR>
+map <silent> <leader>he :call HtmlEscape()<cr>
+map <silent> <leader>hu :call HtmlUnEscape()<cr>
 
 " For Hammer.vim: Load my preview
-map <leader>p :Hammer<CR>
+map <leader>p :Hammer<cr>
 
 " Reload my snippets
 noremap <leader>s :call ReloadAllSnippets()<cr>
@@ -69,11 +69,16 @@ noremap <leader>s :call ReloadAllSnippets()<cr>
 noremap <leader>t :set lines=75 columns=120<cr>:setf textile<cr>
 
 " Edit / source my .vimrc
-nnoremap <leader>ve :vsplit $MYVIMRC<cr>
+nnoremap <leader>ve :tabnew $MYVIMRC<cr>
 nnoremap <leader>vs :source $MYVIMRC<cr>
 
 " Clean up whitespace
 nnoremap <leader>w :%s/\s\+$//<cr>
+
+" A shortcut for adjusting viewport quickly
+noremap <leader>ws :set lines=50 columns=175<cr>
+noremap <leader>wl :set lines=75 columns=250<cr>
+noremap <leader>wt :set lines=75 columns=120<cr>
 
 "---- Backup/swap handling
 set backupdir=~/.vim/tmp/backup
@@ -104,7 +109,8 @@ if has("gui_running")
 	colorscheme solarized
 
 	"---- Fonts
-	set guifont=Consolas:h14		" I like big fonts and I cannot lie
+	"set guifont=Consolas:h14				" I like big fonts and I cannot lie
+	set guifont=Source\ Code\ Pro:h14		" I like big fonts and I cannot lie
 
 	"---- Window size/position
 	" Make the window a bit larger
@@ -119,25 +125,25 @@ if has("gui_running")
 
 	" Bind up ctrl/cmd+# to go to tabs
 	if has("gui_macvim")
-		noremap <D-1> 1gt<CR>
-		noremap <D-2> 2gt<CR>
-		noremap <D-3> 3gt<CR>
-		noremap <D-4> 4gt<CR>
-		noremap <D-5> 5gt<CR>
-		noremap <D-6> 6gt<CR>
-		noremap <D-7> 7gt<CR>
-		noremap <D-8> 8gt<CR>
-		noremap <D-9> 9gt<CR>
+		noremap <D-1> 1gt<cr>
+		noremap <D-2> 2gt<cr>
+		noremap <D-3> 3gt<cr>
+		noremap <D-4> 4gt<cr>
+		noremap <D-5> 5gt<cr>
+		noremap <D-6> 6gt<cr>
+		noremap <D-7> 7gt<cr>
+		noremap <D-8> 8gt<cr>
+		noremap <D-9> 9gt<cr>
 	else
-		noremap <C-1> 1gt<CR>
-		noremap <C-2> 2gt<CR>
-		noremap <C-3> 3gt<CR>
-		noremap <C-4> 4gt<CR>
-		noremap <C-5> 5gt<CR>
-		noremap <C-6> 6gt<CR>
-		noremap <C-7> 7gt<CR>
-		noremap <C-8> 8gt<CR>
-		noremap <C-9> 9gt<CR>
+		noremap <C-1> 1gt<cr>
+		noremap <C-2> 2gt<cr>
+		noremap <C-3> 3gt<cr>
+		noremap <C-4> 4gt<cr>
+		noremap <C-5> 5gt<cr>
+		noremap <C-6> 6gt<cr>
+		noremap <C-7> 7gt<cr>
+		noremap <C-8> 8gt<cr>
+		noremap <C-9> 9gt<cr>
 	endif
 
 	"---- Just for Windows
