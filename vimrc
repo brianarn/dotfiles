@@ -1,5 +1,12 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-10-05 12:46:26
+" Last modified: 2012-10-05 23:47:14
+"
+" This file is the result of over a decade's worth of arcane knowledge scraped
+" from around the net, the manual, and as of recent years, lots and lots of
+" GitHub dotfiles setups. In particular, thanks to:
+" https://github.com/gf3/dotfiles
+" https://github.com/carlhuda/janus/blob/master/janus/vim/core/before/plugin/mappings.vim
+" http://vimcasts.org/
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -18,31 +25,48 @@ call pathogen#helptags()
 filetype plugin indent on
 
 "---- Mappings
+" I'm trying to reserve the Z mark for any/all positional mappings, hence the
+" frequent occurrence of "mZsomething`Z"
 
 "-- Full key mappings
 " Someone suggested F2 for NERDTree, and I've grown used to it
 " See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
-noremap <F2> :NERDTreeToggle<cr>
+noremap <F2> :NERDTreeToggle<CR>
 
-" I seem to need a lot of semicolons
-" Add one in insert mode at the end of the line
-inoremap <c-cr> <esc>A;<cr>
-" When in normal mode, tack one onto the end and move down a line
-nnoremap <c-cr> A;<esc>
+" I seem to need a lot of semicolons, so we'll add one on to the end
+inoremap <C-CR> <Esc>mZA;<Esc>`Zi
+nnoremap <C-CR> mZA;<Esc>`Z
 
 " Reselect visual block after indenting
 vnoremap < <gv
 vnoremap > >gv
 
+" Visually select the text that was last edited or pasted
+nmap gV `[v`]
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+nmap <C-k> [e
+nmap <C-j> ]e
+
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+vmap <C-k> [egv
+vmap <C-j> ]egv
+
+" Join lines and restore cursor location
+nnoremap J mZJ`Z
+
 "-- Leader mappings
 " Trying to sort these by leader character to make it easier to tell
 " where/what I have, when editing later
-
 let mapleader = ","
 let g:mapleader = ","
 
 " Change directory to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>
+map <leader>cd :cd %:p:h<CR>
 
 " Wrap stuff in <code> (useful for blog posts etc)
 " Depends on surround.vim
@@ -50,35 +74,31 @@ nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
 " Fugitive helpers
-nnoremap <leader>gb :Gblame<cr>
-nnoremap <leader>gs :Gstatus<cr>
-nnoremap <leader>gw :Gwrite<cr>
-
-" Escape/Unescape HTML
-map <silent> <leader>he :call HtmlEscape()<cr>
-map <silent> <leader>hu :call HtmlUnEscape()<cr>
+nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gw :Gwrite<CR>
 
 " For Hammer.vim: Load my preview
-map <leader>p :Hammer<cr>
+map <leader>p :Hammer<CR>
 
 " Reload my snippets
-noremap <leader>s :call ReloadAllSnippets()<cr>
+noremap <leader>sr :call ReloadAllSnippets()<CR>
+
+" Strip trailing whitespace
+noremap <leader>ss :call StripWhitespace()<CR>
 
 " Create a new tab and set it to Textile
 " as I frequently need to do this for Redmine/ChiliProject posts
-noremap <leader>t :set lines=75 columns=120<cr>:setf textile<cr>
+noremap <leader>t :set lines=75 columns=120<CR>:setf textile<CR>
 
 " Edit / source my .vimrc
-nnoremap <leader>ve :tabnew $MYVIMRC<cr>
-nnoremap <leader>vs :source $MYVIMRC<cr>
-
-" Clean up whitespace
-nnoremap <leader>w :%s/\s\+$//<cr>
+nnoremap <leader>ve :tabnew $MYVIMRC<CR>
+nnoremap <leader>vs :source $MYVIMRC<CR>
 
 " A shortcut for adjusting viewport quickly
-noremap <leader>ws :set lines=50 columns=175<cr>
-noremap <leader>wl :set lines=75 columns=250<cr>
-noremap <leader>wt :set lines=75 columns=120<cr>
+noremap <leader>ws :set lines=50 columns=175<CR>
+noremap <leader>wl :set lines=75 columns=250<CR>
+noremap <leader>wt :set lines=75 columns=120<CR>
 
 "---- Backup/swap handling
 set backupdir=~/.vim/tmp/backup
@@ -101,21 +121,20 @@ if has("gui_running")
 	"colorscheme murphy
 	"highlight SpecialKey ctermfg=DarkGray guifg=gray32
 	"highlight LineNr ctermfg=Cyan guifg=Cyan
-	" GitHub's scheme is nice
+	" GitHub's scheme is okay
 	"colorscheme github
-	" Trying out Solairzed for now
+	" Solarized Dark is wonderful, though
 	let g:solarized_visibility = 'low'
 	set background=dark
 	colorscheme solarized
 
 	"---- Fonts
-	"set guifont=Consolas:h14				" I like big fonts and I cannot lie
-	set guifont=Source\ Code\ Pro:h14		" I like big fonts and I cannot lie
+	" Consolas is an old standby, trying out SCP for now tho
+	"set guifont=Consolas:h14
+	set guifont=Source\ Code\ Pro:h14
 
 	"---- Window size/position
-	" Used to like a wider window at launch, preferring a taller these days
-	"set lines=50 columns=175
-	set lines=75 columns=120
+	set lines=50 columns=175
 
 	" Don't save window sizes
 	"set sessionoptions-=resize
@@ -124,27 +143,48 @@ if has("gui_running")
 	" GUI options
 	set guioptions-=T				" No toolbar needed, never use it
 
-	" Bind up ctrl/cmd+# to go to tabs
+	" Custom GUI-specific adjustments that may vary from Mac to other environments
 	if has("gui_macvim")
-		noremap <D-1> 1gt<cr>
-		noremap <D-2> 2gt<cr>
-		noremap <D-3> 3gt<cr>
-		noremap <D-4> 4gt<cr>
-		noremap <D-5> 5gt<cr>
-		noremap <D-6> 6gt<cr>
-		noremap <D-7> 7gt<cr>
-		noremap <D-8> 8gt<cr>
-		noremap <D-9> 9gt<cr>
+		" Map cmd+# to switch tabs
+		noremap <D-1> 1gt<CR>
+		inoremap <D-1> <Esc>1gt<CR>
+		noremap <D-2> 2gt<CR>
+		inoremap <D-2> <Esc>2gt<CR>
+		noremap <D-3> 3gt<CR>
+		inoremap <D-3> <Esc>3gt<CR>
+		noremap <D-4> 4gt<CR>
+		inoremap <D-4> <Esc>4gt<CR>
+		noremap <D-5> 5gt<CR>
+		inoremap <D-5> <Esc>5gt<CR>
+		noremap <D-6> 6gt<CR>
+		inoremap <D-6> <Esc>6gt<CR>
+		noremap <D-7> 7gt<CR>
+		inoremap <D-7> <Esc>7gt<CR>
+		noremap <D-8> 8gt<CR>
+		inoremap <D-8> <Esc>8gt<CR>
+		noremap <D-9> 9gt<CR>
+		inoremap <D-9> <Esc>9gt<CR>
+
 	else
-		noremap <C-1> 1gt<cr>
-		noremap <C-2> 2gt<cr>
-		noremap <C-3> 3gt<cr>
-		noremap <C-4> 4gt<cr>
-		noremap <C-5> 5gt<cr>
-		noremap <C-6> 6gt<cr>
-		noremap <C-7> 7gt<cr>
-		noremap <C-8> 8gt<cr>
-		noremap <C-9> 9gt<cr>
+		" Map ctrl+# to switch tabs
+		noremap <C-1> 1gt<CR>
+		inoremap <C-1> <Esc>1gt<CR>
+		noremap <C-2> 2gt<CR>
+		inoremap <C-2> <Esc>2gt<CR>
+		noremap <C-3> 3gt<CR>
+		inoremap <C-3> <Esc>3gt<CR>
+		noremap <C-4> 4gt<CR>
+		inoremap <C-4> <Esc>4gt<CR>
+		noremap <C-5> 5gt<CR>
+		inoremap <C-5> <Esc>5gt<CR>
+		noremap <C-6> 6gt<CR>
+		inoremap <C-6> <Esc>6gt<CR>
+		noremap <C-7> 7gt<CR>
+		inoremap <C-7> <Esc>7gt<CR>
+		noremap <C-8> 8gt<CR>
+		inoremap <C-8> <Esc>8gt<CR>
+		noremap <C-9> 9gt<CR>
+		inoremap <C-9> <Esc>9gt<CR>
 	endif
 
 	"---- Just for Windows
@@ -164,53 +204,37 @@ endif
 
 "--- Text Formatting
 if has("autocmd") " Autocommands are available
-	" If I'm editing asp/asa files, it's probably VB
-	let g:filetype_asa = 'aspvbs'
-	let g:filetype_asp = 'aspvbs'
 	" Don't scan compressed files
 	let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\)$'
 
 	"---- Autocommands
-	" Let's use an autocmd group so we can delete easily
-	" This is admittedly somewhat cargo-cult-ish, I don't ever delete
+	" Wrapped in an autogroup so that re-sourcing the file doesn't rebind the
+	" same autocmmands
 	augroup BrianPresets
 	au!
 
 	" Kick off a LastMod call anytime I save a file
-	autocmd BufWritePre *				mark s|call LastMod()|'s
+	autocmd BufWritePre * mark Z|call LastMod()|'Z
 
 	" Reload my .vimrc when it changes
-	autocmd BufWritePost .vimrc			source ~/.vimrc
+	autocmd BufWritePost .vimrc source ~/.vimrc
 
-	" I want my simple text files to wrap at 78 characters
-	autocmd FileType text setlocal textwidth=78
-
-	" Same with Markdown
-	autocmd FileType markdown setlocal textwidth=78
-
-	" However, some others shouldn't wrap
-	autocmd FileType textile setlocal textwidth=0
-	autocmd FileType html setlocal textwidth=0
-
-	" Javascript Stuff
-	autocmd BufRead,BufNewFile *.smd	set filetype=javascript
-	autocmd BufRead,BufNewFile *.json	set filetype=javascript
-
-	" No wrapping with aspvbs files
-	autocmd FileType aspvbs setlocal textwidth=0
+	" Treat some nonstandard JS files as JS
+	autocmd BufRead,BufNewFile *.smd set filetype=javascript
+	autocmd BufRead,BufNewFile *.json set filetype=javascript
 
 	" Tweak for Ruby on Rails
-	autocmd BufRead,BufNewFile *.rhtml	set filetype=eruby
-	autocmd BufRead,BufNewFile *.erb	set filetype=eruby
-	autocmd BufRead,BufNewFile *.rjs	set filetype=ruby
+	autocmd BufRead,BufNewFile *.rhtml set filetype=eruby
+	autocmd BufRead,BufNewFile *.erb set filetype=eruby
+	autocmd BufRead,BufNewFile *.rjs set filetype=ruby
 
 	" Use a custom CF MX format file for ColdFusion
-	autocmd BufRead,BufNewFile *.cfm	set filetype=cfmx
-	autocmd BufRead,BufNewFile *.cfc	set filetype=cfmx
+	autocmd BufRead,BufNewFile *.cfm set filetype=cfmx
+	autocmd BufRead,BufNewFile *.cfc set filetype=cfmx
 
 	" Use a downloaded VB.NET syntax highlighter
 	" See http://www.vim.org/scripts/script.php?script_id=1525
-	autocmd BufRead,BufNewFile *.vb		set filetype=vbnet
+	autocmd BufRead,BufNewFile *.vb set filetype=vbnet
 
 	" Special tweaks for Windows
 	if has("win32")
@@ -232,7 +256,7 @@ endif " has("autocmd")
 "---- Text formatting options
 " Used to keep under an else from autocmd, but it seems potentially better to
 " just have some solid defaults anyways
-set textwidth=78				" Width of window
+"set textwidth=78				" Trying out no default hard break width
 set formatoptions=cqrt			" Similar to defaults
 set autoindent					" Newlines are indented the same as prev
 set smartindent					" Indents for braces and some keywords
@@ -278,16 +302,26 @@ set nohlsearch					" Don't highlight match for search
 set ignorecase					" Ignore case when searching,
 set smartcase					" unless case is used
 
-"---- Miscellaneous settings
+"---- Wildcard settings
 set wildchar=<TAB>				" Changes wildcard expansion from ^E
 set wildmode=list:longest,full	" Adjust wildcard completion display
 set wildmenu					" Show completions in status line
+" Ignore output, VCS, archives, and tmp files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+" Ignore bundler and sass cache - I don't use them often, but good to avoid
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+
+"---- Miscellaneous settings
 set shell=$SHELL				" Defines my shell
-set dictionary=/usr/dict/words	" Dictionary
+"set dictionary=/usr/dict/words	" Dictionary
 set history=500					" Moar history
 set number						" Show line numbers
 set numberwidth=5				" with a bit of space
-set backspace=indent,eol,start	" Backspace over it all
+set backspace=indent,eol,start	" Backspace over everything
 set fileformats=unix,dos,mac	" Preferred order of file format
 set undofile					" Create undo files to preserve undo history
 
@@ -308,7 +342,7 @@ let php_htmlInStrings=1				" Highlight HTML syntax in strings
 let php_asp_tags=1					" Higlight ASP-style short tags
 
 "---- ColdFusion customizations
-let html_wrong_comments=1			" Fixes ugly syntax due to
+"let html_wrong_comments=1			" Fixes ugly syntax due to
 									" <!--- ---> comments in CF files
 									" NO LONGER NECESSARY WOO
 
@@ -317,11 +351,12 @@ let highlight_function_name=1		" Highlight function names in decls
 
 "---- HTML generation options
 let html_number_lines=0		" Don't number the output
-let html_use_css=1			" Shorter HTML, but needs better browser
+let html_use_css=1			" CSS > inline styles
 
 "---- NERDTree Options
-let NERDTreeDirArrows=0		" Don't use arrows for now, causes odd line
-								" height issues
+" Some fonts cause weird line height issues with arrows, this makes it easy to
+" enable/disable arrows instead of +/-
+let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1		" Don't show the tips/hints/etc
 
 "---- Syntastic Options
@@ -345,6 +380,12 @@ let g:explUseSeparators=1		" Show a separator between dirs/files
 "---- snipMate options
 let g:snips_author="Brian Arnold"		" It'sa me
 
+"---- CtrlP options
+let g:ctrlp_working_path_mode = 2   " Smart path mode
+let g:ctrlp_mru_files = 1           " Enable Most Recently Used files feature
+let g:ctrlp_jump_to_buffer = 2      " Jump to tab AND buffer if already open
+let g:ctrlp_split_window = 1        " <CR> = New Tab
+
 "---- Functions
 " LastMod said it was already defined, but I wanted to change the format
 " So, I'm just forcing it here to be YYYY-MM-DD
@@ -358,19 +399,16 @@ function! LastMod()
 		let lastModifiedline = line("$")
 	endif
 	exe "1," . lastModifiedline . "g/Last modified: /s/Last modified:.*/Last modified: " . strftime("%Y-%m-%d %H:%M:%S")
-endfunc
-
-" HTML escaping/unescaping functions
-function! HtmlEscape()
-  silent s/&/\&amp;/eg
-  silent s/</\&lt;/eg
-  silent s/>/\&gt;/eg
 endfunction
 
-function! HtmlUnEscape()
-  silent s/&lt;/</eg
-  silent s/&gt;/>/eg
-  silent s/&amp;/\&/eg
+" Strip trailing whitespace (,ss)
+function! StripWhitespace ()
+	" Copy our current position / query
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+	" Strip the whitespace, /e suppresses notice of pattern not found
+    :%s/\s\+$//e
+	" Restore our previous position / query
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
 endfunction
-
-"---- TESTING
