@@ -126,6 +126,10 @@ hash rbenv 2> /dev/null && eval "$(rbenv init -)"
 # If I have hub installed, alias it over git
 hash hub 2> /dev/null && alias git='hub'
 
+# todo.txt
+export TODOTXT_DEFAULT_ACTION=ls
+alias t='todo.sh -d ~/.todo.cfg'
+
 # Set up some completion stuff, woo woo
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion

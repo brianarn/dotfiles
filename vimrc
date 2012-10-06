@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-09-27 22:15:21
+" Last modified: 2012-10-05 12:46:26
 "
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
@@ -113,8 +113,9 @@ if has("gui_running")
 	set guifont=Source\ Code\ Pro:h14		" I like big fonts and I cannot lie
 
 	"---- Window size/position
-	" Make the window a bit larger
-	set lines=50 columns=175
+	" Used to like a wider window at launch, preferring a taller these days
+	"set lines=50 columns=175
+	set lines=75 columns=120
 
 	" Don't save window sizes
 	"set sessionoptions-=resize
