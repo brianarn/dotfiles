@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-11-26 15:08:46
+" Last modified: 2012-11-26 15:11:40
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -194,6 +194,9 @@ if has("gui_running")
 		"winpos 0 0
 	endif
 else
+	" Enable mouse support in the terminal
+	" Yeah yeah, purists gonna hate, whatever
+	set mouse=a
 	" Just some simple color tweaks
 	" Force 256 colors
 	set t_Co=256
