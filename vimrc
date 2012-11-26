@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-10-05 23:47:14
+" Last modified: 2012-10-22 23:26:47
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -222,6 +222,9 @@ if has("autocmd") " Autocommands are available
 	" Treat some nonstandard JS files as JS
 	autocmd BufRead,BufNewFile *.smd set filetype=javascript
 	autocmd BufRead,BufNewFile *.json set filetype=javascript
+
+	" Markdown adjustments
+	autocmd FileType markdown setlocal textwidth=0 colorcolumn=81
 
 	" Tweak for Ruby on Rails
 	autocmd BufRead,BufNewFile *.rhtml set filetype=eruby

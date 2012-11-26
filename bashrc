@@ -38,7 +38,7 @@ umask 022
 export XAUTHORITY=$HOME/.Xauthority
 
 # Node libraries when using Homebrew
-export NODE_PATH=/usr/local/lib/node_modules
+export NODE_PATH=/usr/local/share/npm/lib/node_modules
 
 ### Aliases
 # General aliases
