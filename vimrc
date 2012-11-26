@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-10-22 23:26:47
+" Last modified: 2012-11-26 15:08:46
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -75,6 +75,7 @@ vmap <leader>co s<code>
 
 " Fugitive helpers
 nnoremap <leader>gb :Gblame<CR>
+nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 
@@ -194,6 +195,8 @@ if has("gui_running")
 	endif
 else
 	" Just some simple color tweaks
+	" Force 256 colors
+	set t_Co=256
 	" Old scheme with a tweak
 	"colorscheme elflord
 	"highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
