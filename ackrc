@@ -1,0 +1,5 @@
+# Vim-style smart casing
+--smart-case
+
+# Additional file types
+--type-set=md=.md,.mkd,.markdown
