@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-11-26 15:11:40
+" Last modified: 2012-11-27 20:07:52
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -26,7 +26,7 @@ filetype plugin indent on
 
 "---- Mappings
 " I'm trying to reserve the Z mark for any/all positional mappings, hence the
-" frequent occurrence of "mZsomething`Z"
+" frequent occurrence of "mZ<something>`Z"
 
 "-- Full key mappings
 " Someone suggested F2 for NERDTree, and I've grown used to it
@@ -194,9 +194,6 @@ if has("gui_running")
 		"winpos 0 0
 	endif
 else
-	" Enable mouse support in the terminal
-	" Yeah yeah, purists gonna hate, whatever
-	set mouse=a
 	" Just some simple color tweaks
 	" Force 256 colors
 	set t_Co=256
@@ -207,6 +204,25 @@ else
 	set background=dark
 	colorscheme solarized
 endif
+
+"--- Mouse
+if has("mouse")
+	" Yeah yeah, purists gonna hate, whatever
+	" Run my mouse everywhere
+	set mouse=a
+endif
+
+"--- Folding
+" Trying to get into folding. See the following:
+" http://vimcasts.org/episodes/how-to-fold/
+" https://github.com/sjl/dotfiles/blob/eea18b00b8c74943f5094fddf91d3c2a7e0a7242/vim/vimrc#L534
+
+" An option that would let me start fully folded
+"set foldlevelstart=0
+
+" Use <Space> to toggle folds
+nnoremap <Space> za
+vnoremap <Space> za
 
 "--- Text Formatting
 if has("autocmd") " Autocommands are available
