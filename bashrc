@@ -106,6 +106,10 @@ else
 	export EDITOR=/usr/bin/vim
 fi
 
+# Experimental aliases
+# gvd: Run a git diff of sorts in gvim
+alias gvd='gvim -p $(git diff --name-only) -c "tabdo Gdiff"'
+
 # Was in my .bash_profile, moving over here for more convenient management
 # User specific environment and startup programs
 PATH=/usr/local/share/npm/bin:$PATH
