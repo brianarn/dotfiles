@@ -17,6 +17,9 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 
 # check the window size after each command and, if necessary,
@@ -40,13 +43,16 @@ export XAUTHORITY=$HOME/.Xauthority
 # Node libraries when using Homebrew
 export NODE_PATH=/usr/local/share/npm/lib/node_modules
 
+# Don't clear the screen after quitting a manpage
+export MANPAGER="less -X"
+
 ### Aliases
 # General aliases
 alias more='less'
 alias vi='vim'
 alias wpdb='mysqldump --add-drop-table -c -u rtnet_wp -h db-wp.randomthink.net -p rtnet_wp > wp_db_`date +%Y%m%d_%H%M%S`.sql'
 alias free='free -m'
-alias serve='python -m SimpleHTTPServer 4000'
+#alias serve='python -m SimpleHTTPServer 4000'
 
 # Set up a fast vhost thanks to my server config
 function host() {
@@ -64,6 +70,37 @@ function host() {
 	fi
 }
 
+# For when I don't want to use my nginx setup, or perhaps I'm somewhere that it
+# isn't set up:
+# Original source: https://github.com/Wilto/dotfiles/blob/master/bash/functions/pyserver
+function serve() {
+    # Get port (if specified)
+    local port="${1:-8000}"
+
+    # Open in the browser - except not right now
+    #open "http://localhost:${port}/"
+
+    # Redefining the default content-type to text/plain instead of the default
+    # application/octet-stream allows "unknown" files to be viewable in-browser
+    # as text instead of being downloaded.
+    #
+    # Unfortunately, "python -m SimpleHTTPServer" doesn't allow you to redefine
+    # the default content-type, but the SimpleHTTPServer module can be executed
+    # manually with just a few lines of code.
+    python -c $'import SimpleHTTPServer;\nSimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map[""] = "text/plain";\nSimpleHTTPServer.test();' "$port"
+}
+
+# Compare original and gzipped file size
+# Source: https://github.com/Wilto/dotfiles/blob/master/bash/functions/gz
+gz() {
+    local origsize=$(wc -c < "$1")
+    local gzipsize=$(gzip -c "$1" | wc -c)
+    local ratio=$(echo "$gzipsize * 100 / $origsize" | bc -l)
+
+    printf "orig: %d bytes\n" "$origsize"
+    printf "gzip: %d bytes (%2.2f%%)\n" "$gzipsize" "$ratio"
+}
+
 # Conveniently move around based on regex replacement
 # Example:
 # cwd: ~/Dojo/1.5/dijit/form
@@ -71,6 +108,11 @@ function host() {
 # cwd: ~/Dojo/1.8/dijit/form
 function cdd() {
 	cd ${PWD/$1/$2}
+}
+
+# Change a tab's name quickly and easily
+function tabname() {
+	echo -ne "\033]0;"$@"\007"
 }
 
 # Some convenient subversion aliases
@@ -89,9 +131,19 @@ if [ `uname -s` == "Darwin" ]; then
 	alias ll='ls -FlhG'
 	alias la='ls -FlAGh'
 	alias du1='du -hd1'
+
 	# Use MacVim's Vim binary for more powersss
 	alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
 	alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+
+	# Source:
+	# https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
+	# Show/hide hidden files in Finder
+	alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+	alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+	# Hide/show all desktop icons (useful when presenting)
+	alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+	alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
 	# Editor - with full path because git/svn was puking
 	export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
