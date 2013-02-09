@@ -117,6 +117,7 @@ function tabname() {
 
 # Some convenient subversion aliases
 alias ss='svn status --ignore-externals'
+alias sux='svn update --ignore-externals'
 alias sadd='ss | grep ? | awk '\''{print $2}'\'' | xargs svn add'
 alias srm='ss | grep ! | awk '\''{print $2}'\'' | xargs svn rm'
 alias svnks='svn diff --diff-cmd=ksdiff-svnwrapper'
