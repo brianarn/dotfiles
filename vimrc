@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2012-11-27 20:07:52
+" Last modified: 2013-02-26 13:25:11
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -406,10 +406,7 @@ let g:explUseSeparators=1		" Show a separator between dirs/files
 let g:snips_author="Brian Arnold"		" It'sa me
 
 "---- CtrlP options
-let g:ctrlp_working_path_mode = 2   " Smart path mode
-let g:ctrlp_mru_files = 1           " Enable Most Recently Used files feature
-let g:ctrlp_jump_to_buffer = 2      " Jump to tab AND buffer if already open
-let g:ctrlp_split_window = 1        " <CR> = New Tab
+"let g:ctrlp_working_path_mode = 2	" Smart path mode
 
 "---- Functions
 " LastMod said it was already defined, but I wanted to change the format
