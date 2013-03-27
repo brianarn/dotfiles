@@ -2,4 +2,5 @@
 --smart-case
 
 # Additional file types
+--type-add=php=.inc
 --type-set=md=.md,.mkd,.markdown
