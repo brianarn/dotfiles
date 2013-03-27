@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-03-27 07:40:43
+" Last modified: 2013-03-27 09:34:32
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -91,7 +91,8 @@ noremap <leader>ss :call StripWhitespace()<CR>
 
 " Create a new tab and set it to Textile
 " as I frequently need to do this for Redmine/ChiliProject posts
-noremap <leader>t :set lines=75 columns=120<CR>:setf textile<CR>
+"noremap <leader>t :set lines=75 columns=120<CR>:setf textile<CR>
+noremap <leader>t :tabnew<CR>:setf textile<CR>
 
 " Edit / source my .vimrc
 nnoremap <leader>ve :tabnew $MYVIMRC<CR>
