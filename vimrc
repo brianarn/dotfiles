@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-02-26 13:25:11
+" Last modified: 2013-03-27 07:40:43
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -76,6 +76,7 @@ vmap <leader>co s<code>
 " Fugitive helpers
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gc :Gcommit<CR>
+nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 
@@ -104,12 +105,21 @@ noremap <leader>wt :set lines=75 columns=120<CR>
 "---- Backup/swap handling
 set backupdir=~/.vim/tmp/backup
 set directory=~/.vim/tmp/swap
-set undodir=~/.vim/tmp/undo
 set backup
+
+"---- Undo options
+if has("persistent_undo")
+	set undofile					" Create undo files to preserve undo history
+	set undodir=~/.vim/tmp/undo		" Where should those files go?
+endif
 
 "---- Colors and GUI
 " Turn on syntax highlighting
 syntax on
+
+if exists("+colorcolumn")
+	set colorcolumn=85				" Give me an idea of width
+endif
 
 " GUI customizations
 " I used to keep these in .gvimrc,
@@ -246,7 +256,10 @@ if has("autocmd") " Autocommands are available
 	autocmd BufRead,BufNewFile *.json set filetype=javascript
 
 	" Markdown adjustments
-	autocmd FileType markdown setlocal textwidth=0 colorcolumn=81
+	autocmd FileType markdown setlocal textwidth=0
+	if exists("+colorcolumn")
+		autocmd FileType markdown setlocal colorcolumn=81
+	endif
 
 	" Tweak for Ruby on Rails
 	autocmd BufRead,BufNewFile *.rhtml set filetype=eruby
@@ -286,7 +299,8 @@ set formatoptions=cqrt			" Similar to defaults
 set autoindent					" Newlines are indented the same as prev
 set smartindent					" Indents for braces and some keywords
 set cindent						" Indents according to a std C style
-set colorcolumn=85				" Give me an idea of when I'm hitting width
+
+
 
 "---- More text-related options
 set shiftwidth=4				" Auto-indents four spaces
@@ -348,7 +362,6 @@ set number						" Show line numbers
 set numberwidth=5				" with a bit of space
 set backspace=indent,eol,start	" Backspace over everything
 set fileformats=unix,dos,mac	" Preferred order of file format
-set undofile					" Create undo files to preserve undo history
 
 "---- JS Options
 set cinoptions+=j1					" Indenting Java anonymous classes
