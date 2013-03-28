@@ -1,4 +1,4 @@
-# .bashrc
+#!/bin/bash
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -55,7 +55,7 @@ alias free='free -m'
 #alias serve='python -m SimpleHTTPServer 4000'
 
 # Set up a fast vhost thanks to my server config
-function host() {
+host() {
 	if [[ $# -eq 0 ]]; then
 		echo "Usage: host hostname";
 		return;
@@ -73,7 +73,7 @@ function host() {
 # For when I don't want to use my nginx setup, or perhaps I'm somewhere that it
 # isn't set up:
 # Original source: https://github.com/Wilto/dotfiles/blob/master/bash/functions/pyserver
-function serve() {
+serve() {
     # Get port (if specified)
     local port="${1:-8000}"
 
@@ -106,12 +106,12 @@ gz() {
 # cwd: ~/Dojo/1.5/dijit/form
 # cdd 1.5 1.8
 # cwd: ~/Dojo/1.8/dijit/form
-function cdd() {
+cdd() {
 	cd ${PWD/$1/$2}
 }
 
 # Change a tab's name quickly and easily
-function tabname() {
+tabname() {
 	echo -ne "\033]0;"$@"\007"
 }
 
