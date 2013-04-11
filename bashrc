@@ -30,6 +30,11 @@ shopt -s checkwinsize
 # Always color
 export GREP_OPTIONS="--color=auto"
 
+# less options:
+# See http://superuser.com/questions/117841/get-colors-in-less-command for details
+export LESS='-R'
+export LESSOPEN='|~/.dotfiles/bin/lessfilter.sh %s'
+
 # Friendlier umask
 umask 022
 

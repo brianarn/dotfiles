@@ -5,7 +5,7 @@
 # and then tweaked to ignore more than one file
 
 cutstring="DO NOT EDIT BELOW THIS LINE"
-ignorefiles="install.sh LICENSE README.md source update_submodules.sh"
+ignorefiles="install.sh LICENSE README.md source bin update_submodules.sh"
 showignore=true
 
 # Iterate over all the files in the directory
