@@ -120,6 +120,11 @@ tabname() {
 	echo -ne "\033]0;"$@"\007"
 }
 
+# cd into whatever is the forefront Finder window.
+cdf() {  # short for cdfinder
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
+
 # Some convenient subversion aliases
 alias ss='svn status --ignore-externals'
 alias sux='svn update --ignore-externals'
