@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-03-27 09:34:32
+" Last modified: 2013-04-20 15:16:19
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -102,6 +102,10 @@ nnoremap <leader>vs :source $MYVIMRC<CR>
 noremap <leader>ws :set lines=50 columns=175<CR>
 noremap <leader>wl :set lines=75 columns=250<CR>
 noremap <leader>wt :set lines=75 columns=120<CR>
+
+" Simplify clipboard yanking
+noremap <leader>y "+y
+vnoremap <leader>y "+y
 
 "---- Backup/swap handling
 set backupdir=~/.vim/tmp/backup
