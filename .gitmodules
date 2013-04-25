@@ -75,3 +75,6 @@
 [submodule "vim/bundle/vim-markdown-folding"]
 	path = vim/bundle/vim-markdown-folding
 	url = git://github.com/nelstrom/vim-markdown-folding.git
+[submodule "vim/bundle/vitality"]
+	path = vim/bundle/vitality
+	url = git://github.com/sjl/vitality.vim.git

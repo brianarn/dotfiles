@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-04-20 15:16:19
+" Last modified: 2013-04-24 22:04:06
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -209,15 +209,29 @@ if has("gui_running")
 		"winpos 0 0
 	endif
 else
-	" Just some simple color tweaks
 	" Force 256 colors
 	set t_Co=256
+
 	" Old scheme with a tweak
 	"colorscheme elflord
 	"highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
 	" Trying out solarized for now
 	set background=dark
 	colorscheme solarized
+
+"	" Change the cursor display when editing
+"	if &term =~ "xterm"
+"		" From https://gist.github.com/andyfowler/1195581 :
+"		" tmux will only forward escape sequences to the terminal if surrounded by a DCS sequence
+"		" http://sourceforge.net/mailarchive/forum.php?thread_name=AANLkTinkbdoZ8eNR1X2UobLTeww1jFrvfJxTMfKSq-L%2B%40mail.gmail.com&forum_name=tmux-users
+"		if exists('$TMUX')
+"			let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"			let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+"		else
+"			let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"			let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"		endif
+"	endif
 endif
 
 "--- Mouse
@@ -444,11 +458,11 @@ endfunction
 " Strip trailing whitespace (,ss)
 function! StripWhitespace ()
 	" Copy our current position / query
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
+	let save_cursor = getpos(".")
+	let old_query = getreg('/')
 	" Strip the whitespace, /e suppresses notice of pattern not found
-    :%s/\s\+$//e
+	:%s/\s\+$//e
 	" Restore our previous position / query
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
+	call setpos('.', save_cursor)
+	call setreg('/', old_query)
 endfunction
