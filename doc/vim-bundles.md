@@ -33,3 +33,9 @@ Reason I no longer use: I don't use jade, and honestly never really did.
 URL: https://github.com/nathanaelkane/vim-indent-guides.git
 
 Reason I no longer use: I wasn't a big fan of the visual and wound up almost never using it anyways.
+
+### vim-css-color
+
+URL: https://github.com/skammer/vim-css-color.git
+
+Reason I no longer use: It was seriously adding like 3.5 seconds to start time
