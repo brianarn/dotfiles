@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-04-24 22:04:06
+" Last modified: 2013-05-10 09:44:54
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -59,11 +59,17 @@ vmap <C-j> ]egv
 " Join lines and restore cursor location
 nnoremap J mZJ`Z
 
+" Toggle pasting
+set pastetoggle=<F3>
+
 "-- Leader mappings
 " Trying to sort these by leader character to make it easier to tell
 " where/what I have, when editing later
 let mapleader = ","
 let g:mapleader = ","
+
+" Wrap stuff in at-signs (useful in Textile, which I write a lot of)
+nmap <leader>@ ysiw@
 
 " Change directory to the directory of the open buffer
 map <leader>cd :cd %:p:h<CR>
@@ -81,7 +87,7 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
 
 " For Hammer.vim: Load my preview
-map <leader>p :Hammer<CR>
+map <leader>h :Hammer<CR>
 
 " Reload my snippets
 noremap <leader>sr :call ReloadAllSnippets()<CR>
@@ -104,7 +110,7 @@ noremap <leader>wl :set lines=75 columns=250<CR>
 noremap <leader>wt :set lines=75 columns=120<CR>
 
 " Simplify clipboard yanking
-noremap <leader>y "+y
+nnoremap <leader>y mZggVG"+y`Z
 vnoremap <leader>y "+y
 
 "---- Backup/swap handling
@@ -318,8 +324,6 @@ set formatoptions=cqrt			" Similar to defaults
 set autoindent					" Newlines are indented the same as prev
 set smartindent					" Indents for braces and some keywords
 set cindent						" Indents according to a std C style
-
-
 
 "---- More text-related options
 set shiftwidth=4				" Auto-indents four spaces
