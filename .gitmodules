@@ -78,3 +78,4 @@
 [submodule "vim/bundle/vitality"]
 	path = vim/bundle/vitality
 	url = git://github.com/sjl/vitality.vim.git
+	ignore = untracked
