@@ -4,3 +4,4 @@
 # Additional file types
 --type-add=php=.inc
 --type-set=md=.md,.mkd,.markdown
+--type-set=json=.json
