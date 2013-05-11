@@ -21,7 +21,7 @@
 	url = git://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/snipmate"]
 	path = vim/bundle/snipmate
-	url = git@github.com:brianarn/snipmate.vim.git
+	url = git://github.com/brianarn/snipmate.vim.git
 	ignore = untracked
 [submodule "vim/bundle/delimitMate"]
 	path = vim/bundle/delimitMate
