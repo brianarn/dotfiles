@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-05-17 15:10:56
+" Last modified: 2013-05-17 15:24:24
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -387,6 +387,8 @@ set backspace=indent,eol,start	" Backspace over everything
 set fileformats=unix,dos,mac	" Preferred order of file format
 
 "---- HTML indentation options
+"---- Related to HTML indent script #2075,
+"---- automatically included via javascript bundle
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
