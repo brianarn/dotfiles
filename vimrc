@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-05-10 09:44:54
+" Last modified: 2013-05-17 15:03:24
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -259,7 +259,7 @@ endif
 nnoremap <Space> za
 vnoremap <Space> za
 
-"--- Text Formatting
+"--- Autocommands!
 if has("autocmd") " Autocommands are available
 	" Don't scan compressed files
 	let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\)$'
@@ -323,7 +323,7 @@ endif " has("autocmd")
 set formatoptions=cqrt			" Similar to defaults
 set autoindent					" Newlines are indented the same as prev
 set smartindent					" Indents for braces and some keywords
-set cindent						" Indents according to a std C style
+"set cindent					" Indents according to a std C style
 
 "---- More text-related options
 set shiftwidth=4				" Auto-indents four spaces
