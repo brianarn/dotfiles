@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-05-17 15:03:24
+" Last modified: 2013-05-17 15:10:56
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -385,6 +385,11 @@ set number						" Show line numbers
 set numberwidth=5				" with a bit of space
 set backspace=indent,eol,start	" Backspace over everything
 set fileformats=unix,dos,mac	" Preferred order of file format
+
+"---- HTML indentation options
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
 
 "---- JS Options
 set cinoptions+=j1					" Indenting Java anonymous classes
