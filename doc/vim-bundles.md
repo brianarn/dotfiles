@@ -26,7 +26,7 @@ Reason I no longer use: I never bothered to learn it and almost never use pastie
 
 URL: https://github.com/digitaltoad/vim-jade.git
 
-Reason I no longer use: I don't use jade, and honestly never really did.
+Reason I no longer use: I don't use Jade, and honestly never really did.
 
 ### indent-guides
 
@@ -38,4 +38,4 @@ Reason I no longer use: I wasn't a big fan of the visual and wound up almost nev
 
 URL: https://github.com/skammer/vim-css-color.git
 
-Reason I no longer use: It was seriously adding like 3.5 seconds to start time
+Reason I no longer use: It was seriously adding like 3.5 seconds to start time just opening a file
