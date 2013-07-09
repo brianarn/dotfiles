@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-05-17 15:24:24
+" Last modified: 2013-07-08 21:25:15
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -339,7 +339,27 @@ set hidden						" Hide, not unload, buffers when abandoned
 "---- Status line adjustments
 " Sets what the status line displays as
 " See :help statusline for details
-set statusline=%f\ %y%m%r%=%-20.(%{fugitive#statusline()}%)%-15.(%l,%c%V%)\ %P
+" Split per inspiration from:
+" http://learnvimscriptthehardway.stevelosh.com/chapters/17.html
+" Original statusline, pre-split:
+"set statusline=%f\ %y%m%r%=%-20.(%{fugitive#statusline()}%)%-15.(%l,%c%V%)\ %P
+" Path to file (relative to cwd)
+set statusline=%f
+" Flags: filetype, modified, readonly
+set statusline+=\ %y%m%r
+" Quickfix list or Location list
+set statusline+=%q
+" Left/right separator
+set statusline+=%=
+" Left-justified, 30 char min, Syntastic status
+set statusline+=%-30.(%#warningmsg#%{SyntasticStatuslineFlag()}%*%)
+" Left-justified, 20 char min, Git status from Fugitive
+set statusline+=%-20.(%{fugitive#statusline()}%)
+" Left-justified, 15 char min, current line/total lines, current char/column
+set statusline+=%-15.(%l/%L,%c%V%)
+" Three-character file progress
+set statusline+=\ %P
+
 set laststatus=2			" Shows statusline all the time
 
 "---- Window options
@@ -428,7 +448,10 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1		" Don't show the tips/hints/etc
 
 "---- Syntastic Options
-let g:syntastic_check_on_open=1	" Check when opening a file
+let g:syntastic_check_on_open=1				" Check when opening a file
+let g:syntastic_always_populate_loc_list=1	" Always push errors into Location list
+" Format for statusline display
+let g:syntastic_stl_format='[%E{Err: %fe (%e)}%B{, }%W{Warn: %fw (%w)}]'
 
 "---- Explorer options
 let g:explVertical=1			" Split vertically
