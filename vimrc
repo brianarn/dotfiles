@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-07-11 10:54:37
+" Last modified: 2013-07-16 20:28:56
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -353,11 +353,11 @@ set statusline+=%q
 " Left/right separator
 set statusline+=%=
 " Left-justified, 30 char min, Syntastic status
-set statusline+=%-30.(%#warningmsg#%{SyntasticStatuslineFlag()}%*%)
+"set statusline+=%-30.(%#warningmsg#%{SyntasticStatuslineFlag()}%*%)
 " Left-justified, 20 char min, Git status from Fugitive
 set statusline+=%-20.(%{fugitive#statusline()}%)
-" Left-justified, 15 char min, current line/total lines, current char/column
-set statusline+=%-15.(%l/%L,%c%V%)
+" Left-justified, 12 char min, current line/total lines, current char/column
+set statusline+=%-12.(%l/%L,%c%V%)
 " Three-character file progress
 set statusline+=\ %P
 
