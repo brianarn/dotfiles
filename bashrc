@@ -46,7 +46,7 @@ umask 022
 export XAUTHORITY=$HOME/.Xauthority
 
 # Node libraries when using Homebrew
-export NODE_PATH=/usr/local/share/npm/lib/node_modules
+#export NODE_PATH=/usr/local/share/npm/lib/node_modules
 
 # Don't clear the screen after quitting a manpage
 export MANPAGER="less -X"
@@ -144,8 +144,8 @@ if [ `uname -s` == "Darwin" ]; then
 	alias du1='du -hd1'
 
 	# Use MacVim's Vim binary for more powersss
-	alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
-	alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+	#alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+	#alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 	# Source:
 	# https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
@@ -157,7 +157,8 @@ if [ `uname -s` == "Darwin" ]; then
 	alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
 	# Editor - with full path because git/svn was puking
-	export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+	#export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+	export EDITOR=/usr/local/bin/vim
 else
 	# Aliases
 	alias ls='ls -FG'
@@ -176,10 +177,11 @@ alias gvd='gvim -p $(git diff --name-only) -c "tabdo Gdiff"'
 # Was in my .bash_profile, moving over here for more convenient management
 # User specific environment and startup programs
 PATH=/usr/local/share/npm/bin:$PATH
+PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH=/usr/local/ant/bin:$PATH
-PATH=/usr/local/android-sdk-mac_x86/tools:$PATH
-PATH=/usr/local/phonegap-android/bin:$PATH
+#PATH=/usr/local/ant/bin:$PATH
+#PATH=/usr/local/android-sdk-mac_x86/tools:$PATH
+#PATH=/usr/local/phonegap-android/bin:$PATH
 PATH=/usr/local/mysql/bin:$PATH
 PATH=~/.rbenv/shims:$PATH
 export PATH
@@ -199,7 +201,7 @@ alias t='todo.sh -d ~/.todo.cfg'
 
 # Set up some completion stuff, woo woo
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    source /etc/bash_completion
+	source /etc/bash_completion
 fi
 for f in ~/.dotfiles/source/*; do
 	source $f;
