@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-07-16 20:28:56
+" Last modified: 2013-08-02 08:41:42
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -246,6 +246,11 @@ if has("mouse")
 	" Yeah yeah, purists gonna hate, whatever
 	" Run my mouse everywhere
 	set mouse=a
+
+	" Make it work right in Mac / iTerm2
+	" Not sure why this works, but it does:
+	" http://stackoverflow.com/questions/9116225/how-to-enable-mouse-support-in-tmux-vim-so-it-continues-to-work-even-after-a-ssh
+	set ttymouse=xterm2
 endif
 
 "--- Folding
