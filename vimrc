@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-08-02 08:41:42
+" Last modified: 2013-08-05 09:31:26
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -479,6 +479,9 @@ let g:snips_author="Brian Arnold"		" It'sa me
 
 "---- CtrlP options
 "let g:ctrlp_working_path_mode = 2	" Smart path mode
+
+"---- Vitality options
+let g:vitality_fix_focus=0		" I don't care about focus fixes, just bar change
 
 "---- Functions
 " LastMod said it was already defined, but I wanted to change the format
