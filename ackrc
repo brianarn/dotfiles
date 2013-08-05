@@ -5,3 +5,4 @@
 --type-add=php=.inc
 --type-set=md=.md,.mkd,.markdown
 --type-set=json=.json
+--type-set=hbs=.hbs
