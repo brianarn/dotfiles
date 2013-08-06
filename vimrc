@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-08-05 09:31:26
+" Last modified: 2013-08-06 09:20:48
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -458,6 +458,8 @@ let g:syntastic_check_on_open=1				" Check when opening a file
 let g:syntastic_always_populate_loc_list=1	" Always push errors into Location list
 " Format for statusline display
 let g:syntastic_stl_format='[%E{Err: %fe (%e)}%B{, }%W{Warn: %fw (%w)}]'
+" Ignore some file types
+let g:syntastic_ignore_files=['\.hbs$']
 
 "---- Explorer options
 let g:explVertical=1			" Split vertically
