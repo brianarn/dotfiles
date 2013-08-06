@@ -86,3 +86,9 @@
 	path = vim/bundle/editorconfig-vim
 	url = git://github.com/editorconfig/editorconfig-vim.git
 	ignore = untracked
+[submodule "vim/bundle/handlebars"]
+	path = vim/bundle/handlebars
+	url = git://github.com/nono/vim-handlebars.git
+[submodule "vim/bundle/stylus"]
+	path = vim/bundle/stylus
+	url = git://github.com/wavded/vim-stylus.git
