@@ -152,9 +152,13 @@ if [ `uname -s` == "Darwin" ]; then
 	# Show/hide hidden files in Finder
 	alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 	alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
 	# Hide/show all desktop icons (useful when presenting)
 	alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 	alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+	# Add gaps to the Dock
+	alias addgaptodock="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}'"
 
 	# Editor - with full path because git/svn was puking
 	#export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
