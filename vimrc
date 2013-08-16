@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-08-06 09:20:48
+" Last modified: 2013-08-08 11:32:58
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -402,6 +402,8 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
+" Skip node_modules and dist dirs
+set wildignore+=*/node_modules/*,*/dist/*
 
 "---- Miscellaneous settings
 set shell=$SHELL				" Defines my shell
