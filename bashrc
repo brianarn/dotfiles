@@ -20,6 +20,10 @@ shopt -s histappend
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
+# Enable recursing of directories when using **
+# http://www.linuxjournal.com/content/globstar-new-bash-globbing-option
+shopt -s globstar
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 
 # check the window size after each command and, if necessary,

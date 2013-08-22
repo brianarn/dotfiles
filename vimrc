@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-08-08 11:32:58
+" Last modified: 2013-08-16 09:47:03
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -513,3 +513,12 @@ function! StripWhitespace ()
 	call setpos('.', save_cursor)
 	call setreg('/', old_query)
 endfunction
+
+" Show syntax highlighting groups for word under cursor
+nmap <leader>sy :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
