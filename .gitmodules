@@ -92,3 +92,6 @@
 [submodule "vim/bundle/stylus"]
 	path = vim/bundle/stylus
 	url = git://github.com/wavded/vim-stylus.git
+[submodule "oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/brianarn/oh-my-zsh.git
