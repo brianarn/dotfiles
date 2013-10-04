@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-08-16 09:47:03
+" Last modified: 2013-10-03 16:37:02
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -95,11 +95,13 @@ noremap <leader>sr :call ReloadAllSnippets()<CR>
 " Strip trailing whitespace
 noremap <leader>ss :call StripWhitespace()<CR>
 
+" Not doing this much anymore, hijacking for simple 'New tab'
 " Create a new tab and set it to Textile
 " as I frequently need to do this for Redmine/ChiliProject posts
 "noremap <leader>t :set lines=75 columns=120<CR>:setf textile<CR>
-noremap <leader>t :vnew<CR>:setf textile<CR>
-noremap <leader>T :tabnew<CR>:setf textile<CR>
+"noremap <leader>t :vnew<CR>:setf textile<CR>
+"noremap <leader>T :tabnew<CR>:setf textile<CR>
+noremap <leader>t :tabnew<CR>
 
 " Edit / source my .vimrc
 nnoremap <leader>ve :tabnew $MYVIMRC<CR>
@@ -284,7 +286,7 @@ if has("autocmd") " Autocommands are available
 
 	" Treat some nonstandard JS files as JS
 	autocmd BufRead,BufNewFile *.smd set filetype=javascript
-	autocmd BufRead,BufNewFile *.json set filetype=javascript
+	"autocmd BufRead,BufNewFile *.json set filetype=javascript
 
 	" Markdown adjustments
 	autocmd FileType markdown setlocal textwidth=0
