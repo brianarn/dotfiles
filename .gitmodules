@@ -86,9 +86,6 @@
 	path = vim/bundle/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
 	ignore = untracked
-[submodule "vim/bundle/handlebars"]
-	path = vim/bundle/handlebars
-	url = https://github.com/nono/vim-handlebars.git
 [submodule "vim/bundle/stylus"]
 	path = vim/bundle/stylus
 	url = https://github.com/wavded/vim-stylus.git
@@ -98,3 +95,6 @@
 [submodule "vim/bundle/vim-json"]
 	path = vim/bundle/vim-json
 	url = https://github.com/elzr/vim-json
+[submodule "vim/bundle/mustache"]
+	path = vim/bundle/mustache
+	url = https://github.com/mustache/vim-mode.git
