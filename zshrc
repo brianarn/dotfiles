@@ -47,14 +47,12 @@ source $ZSH/oh-my-zsh.sh
 alias git='nocorrect git'
 
 # Path customizations
-PATH=/usr/local/share/npm/bin:$PATH
-PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
+#PATH=/usr/local/share/npm/bin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
+PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
 #PATH=/usr/local/ant/bin:$PATH
 #PATH=/usr/local/android-sdk-mac_x86/tools:$PATH
 #PATH=/usr/local/phonegap-android/bin:$PATH
-PATH=$HOME/local/depot-tools:$PATH
-PATH=/usr/local/mysql/bin:$PATH
 #PATH=~/.rbenv/shims:$PATH
 export PATH
 
