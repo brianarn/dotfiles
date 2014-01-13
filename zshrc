@@ -37,7 +37,7 @@ ZSH_THEME="brianarn"
 # Which plugins would you like to load? (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git node npm osx)
+plugins=(brew git node npm osx vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,6 +55,10 @@ PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
 #PATH=/usr/local/phonegap-android/bin:$PATH
 #PATH=~/.rbenv/shims:$PATH
 export PATH
+
+# For vi mode: Reduce the lag when changing modes
+# See http://dougblack.io/words/zsh-vi-mode.html for a bit more detail
+export KEYTIMEOUT=1
 
 # Setting up z
 source $(brew --prefix)/etc/profile.d/z.sh
