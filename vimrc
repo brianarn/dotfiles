@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2013-10-03 16:37:02
+" Last modified: 2014-01-22 14:23:44
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -151,7 +151,8 @@ if has("gui_running")
 	" Solarized Dark is wonderful, though
 	let g:solarized_visibility = 'low'
 	set background=dark
-	colorscheme solarized
+	"colorscheme solarized
+	colorscheme molokai
 
 	"---- Fonts
 	" Consolas is an old standby, trying out SCP for now tho
@@ -224,9 +225,9 @@ else
 	" Old scheme with a tweak
 	"colorscheme elflord
 	"highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
-	" Trying out solarized for now
 	set background=dark
-	colorscheme solarized
+	"colorscheme solarized
+	colorscheme molokai
 
 "	" Change the cursor display when editing
 "	if &term =~ "xterm"
