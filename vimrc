@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-01-22 14:23:44
+" Last modified: 2014-01-23 00:04:33
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -108,9 +108,11 @@ nnoremap <leader>ve :tabnew $MYVIMRC<CR>
 nnoremap <leader>vs :source $MYVIMRC<CR>
 
 " A shortcut for adjusting viewport quickly
-noremap <leader>ws :set lines=50 columns=175<CR>
-noremap <leader>wl :set lines=75 columns=250<CR>
-noremap <leader>wt :set lines=75 columns=120<CR>
+" I rarely if ever use these anymore, and they were MacVim-specific,
+" and I'm dabbling with vimwiki, so... goodbye for now
+"noremap <leader>ws :set lines=50 columns=175<CR>
+"noremap <leader>wl :set lines=75 columns=250<CR>
+"noremap <leader>wt :set lines=75 columns=120<CR>
 
 " Simplify clipboard yanking
 nnoremap <leader>y mZggVG"+y`Z
@@ -489,6 +491,22 @@ let g:snips_author="Brian Arnold"		" It'sa me
 
 "---- Vitality options
 let g:vitality_fix_focus=0		" I don't care about focus fixes, just bar change
+
+"---- VimWiki
+" Let's see what we can do here
+" Set up a customized wiki, fairly straightforward
+let wiki = {}
+let wiki.path = '~/Dropbox/vimwiki'
+let wiki.diary_rel_path = 'journal'
+let wiki.diary_index = 'index'
+let wiki.syntax = 'markdown'
+let wiki.ext = '.md'
+let wiki.nested_syntaxes = {'javascript': 'javascript', 'js': 'javascript'}
+let g:vimwiki_list = [wiki]
+" Let me use the mouse in some way
+let g:vimwiki_use_mouse=1
+" I use Markdown, don't just assume temporary wikis everywhere I open markdown
+let g:vimwiki_global_ext=0
 
 "---- Functions
 " LastMod said it was already defined, but I wanted to change the format
