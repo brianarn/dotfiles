@@ -336,11 +336,19 @@ set autoindent					" Newlines are indented the same as prev
 set smartindent					" Indents for braces and some keywords
 "set cindent					" Indents according to a std C style
 
+"---- Text indentation, the great holy war
+" The way I used to feel:
+"set shiftwidth=4				" Auto-indents four spaces
+"set tabstop=4					" Tabs at four spaces
+"set softtabstop=4				" Soft tabs too
+"set noexpandtab					" Tabs > spaces
+" The way I feel now
+set shiftwidth=2				" Auto-indents two spaces
+set tabstop=2					" Tabs at two spaces
+set softtabstop=2				" Soft tabs too
+set expandtab					" Spaces > Tabs
+
 "---- More text-related options
-set shiftwidth=4				" Auto-indents four spaces
-set tabstop=4					" Tabs at four spaces
-set softtabstop=4				" Soft tabs too
-set noexpandtab					" Tabs > spaces
 set encoding=utf-8				" Yay UTF-8
 set list						" Allows for specials to be shown
 set lcs=tab:>-,trail:_			" Defines specials shown
