@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-01-28 08:56:37
+" Last modified: 2014-02-07 13:18:03
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -133,10 +133,6 @@ endif
 " Turn on syntax highlighting
 syntax on
 
-if exists("+colorcolumn")
-  set colorcolumn=85        " Give me an idea of width
-endif
-
 " GUI customizations
 " I used to keep these in .gvimrc,
 " but like the consistency of having one config now
@@ -144,16 +140,19 @@ endif
 " With GUI
 if has("gui_running")
   "---- Colorization Tweaks
+  set background=dark
+
   " One older scheme with variations
   "colorscheme murphy
   "highlight SpecialKey ctermfg=DarkGray guifg=gray32
   "highlight LineNr ctermfg=Cyan guifg=Cyan
   " GitHub's scheme is okay
   "colorscheme github
-  " Solarized Dark is wonderful, though
-  let g:solarized_visibility = 'low'
-  set background=dark
+  " Solarized Dark was wonderful until it was abandoned
+  "let g:solarized_visibility = 'low'
   "colorscheme solarized
+  " Trying out molokai, including tweaks from
+  " https://github.com/justinforce/dotfiles/blob/master/files/vim/vimrc
   colorscheme molokai
 
   "---- Fonts
@@ -230,6 +229,7 @@ else
   set background=dark
   "colorscheme solarized
   colorscheme molokai
+  highlight ColorColumn  ctermbg=235 guibg=#2c2d27
 
 " " Change the cursor display when editing
 " if &term =~ "xterm"
@@ -245,6 +245,12 @@ else
 "   endif
 " endif
 endif
+
+" Color column display (Vim 7.3+)
+if exists("+colorcolumn")
+  let &colorcolumn="81,".join(range(121,320),",")        " Give me an idea of width
+endif
+
 
 "--- Mouse
 if has("mouse")
@@ -291,11 +297,19 @@ if has("autocmd") " Autocommands are available
   autocmd BufRead,BufNewFile *.smd set filetype=javascript
   "autocmd BufRead,BufNewFile *.json set filetype=javascript
 
+  " JavaScript adjustments
+  if exists("+colorcolumn")
+    autocmd FileType javascript let &l:colorcolumn=join(range(121,320),",")        " Give me an idea of width
+  endif
+
   " Markdown adjustments
   autocmd FileType markdown setlocal textwidth=0
   if exists("+colorcolumn")
-    autocmd FileType markdown setlocal colorcolumn=81
+    autocmd FileType markdown let &l:colorcolumn=join(range(81,320),",")        " Give me an idea of width
   endif
+
+  " Vimwiki adjustments
+  autocmd FileType vimwiki setlocal textwidth=80
 
   " Tweak for Ruby on Rails
   autocmd BufRead,BufNewFile *.rhtml set filetype=eruby

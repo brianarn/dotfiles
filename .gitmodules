@@ -105,3 +105,6 @@
   path = vim/bundle/vimwiki
   url = https://github.com/vimwiki/vimwiki.git
   ignore = untracked
+[submodule "vim/bundle/colorscheme-molokai"]
+	path = vim/bundle/colorscheme-molokai
+	url = https://github.com/tomasr/molokai.git

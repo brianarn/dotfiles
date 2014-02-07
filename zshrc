@@ -45,6 +45,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 alias git='nocorrect git'
+alias gch="git log --oneline -1 | awk '{print \$1}' | pbcopy && echo 'Copied'"
 
 # Path customizations
 #PATH=/usr/local/share/npm/bin:$PATH
