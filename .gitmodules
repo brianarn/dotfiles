@@ -108,3 +108,6 @@
 [submodule "vim/bundle/colorscheme-molokai"]
 	path = vim/bundle/colorscheme-molokai
 	url = https://github.com/tomasr/molokai.git
+[submodule "external/n"]
+	path = external/n
+	url = https://github.com/visionmedia/n.git

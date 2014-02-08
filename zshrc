@@ -50,7 +50,8 @@ alias gch="git log --oneline -1 | awk '{print \$1}' | pbcopy && echo 'Copied'"
 # Path customizations
 #PATH=/usr/local/share/npm/bin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
+PATH=$HOME/.dotfiles/bin:$PATH
+#PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
 #PATH=/usr/local/ant/bin:$PATH
 #PATH=/usr/local/android-sdk-mac_x86/tools:$PATH
 #PATH=/usr/local/phonegap-android/bin:$PATH
