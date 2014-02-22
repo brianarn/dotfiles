@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-02-07 13:18:03
+" Last modified: 2014-02-21 20:57:06
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -310,6 +310,9 @@ if has("autocmd") " Autocommands are available
 
   " Vimwiki adjustments
   autocmd FileType vimwiki setlocal textwidth=80
+
+  " Vagrant
+  autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
   " Tweak for Ruby on Rails
   autocmd BufRead,BufNewFile *.rhtml set filetype=eruby
