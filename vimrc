@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-02-21 20:57:06
+" Last modified: 2014-02-22 21:33:04
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -293,8 +293,9 @@ if has("autocmd") " Autocommands are available
   " Reload my .vimrc when it changes
   autocmd BufWritePost .vimrc source ~/.vimrc
 
-  " Treat some nonstandard JS files as JS
-  autocmd BufRead,BufNewFile *.smd set filetype=javascript
+  " Change some file extension mappings
+  autocmd BufRead,BufNewFile *.conf set filetype=conf " Useful for tmux
+  autocmd BufRead,BufNewFile *.smd set filetype=javascript " Dojo thing
   "autocmd BufRead,BufNewFile *.json set filetype=javascript
 
   " JavaScript adjustments
@@ -314,7 +315,7 @@ if has("autocmd") " Autocommands are available
   " Vagrant
   autocmd BufRead,BufNewFile Vagrantfile set filetype=ruby
 
-  " Tweak for Ruby on Rails
+  " Ruby on Rails
   autocmd BufRead,BufNewFile *.rhtml set filetype=eruby
   autocmd BufRead,BufNewFile *.erb set filetype=eruby
   autocmd BufRead,BufNewFile *.rjs set filetype=ruby
