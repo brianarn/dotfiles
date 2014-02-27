@@ -111,3 +111,6 @@
 [submodule "external/n"]
 	path = external/n
 	url = https://github.com/visionmedia/n.git
+[submodule "vim/bundle/vim-twig"]
+	path = vim/bundle/vim-twig
+	url = https://github.com/evidens/vim-twig.git
