@@ -12,7 +12,7 @@ ZSH_THEME="brianarn-oldbash"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -34,18 +34,40 @@ ZSH_THEME="brianarn-oldbash"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+# Personalizations before oh-my-zsh is loaded:
+# Speed up the transition to vi mode
+export KEYTIMEOUT=1
+
 # Which plugins would you like to load? (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew git node npm osx)
+if [[ $(uname -s) == "Darwin" ]]; then
+  plugins=(git node npm vi-mode brew osx)
+else
+  plugins=(git node npm vi-mode)
+fi
 
 source $ZSH/oh-my-zsh.sh
 
 ### Customizations:
 
+# I don't like an rprompt
+export RPS1=''
+
 # Aliases
 alias git='nocorrect git'
-alias gch="git log --oneline -1 | awk '{print \$1}' | pbcopy && echo 'Copied'"
+alias gch="git log --oneline -1 | awk '{print \$1}' | pbcopy && echo 'Copied latest commit hash to buffer'"
+
+# Keybindings to restore some Emacs-mode stuff while in vi-mode
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
 
 # Path customizations
 #PATH=/usr/local/share/npm/bin:$PATH
