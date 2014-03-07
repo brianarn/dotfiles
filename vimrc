@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-02-22 21:33:04
+" Last modified: 2014-03-06 21:32:29
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -81,10 +81,11 @@ vmap <leader>co s<code>
 
 " Fugitive helpers
 nnoremap <leader>gb :Gblame<CR>
-nnoremap <leader>gc :Gcommit<CR>
 nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gw :Gwrite<CR>
+" I like these two windows to be a bit larger
+nnoremap <silent> <leader>gs :Gstatus<CR>:resize +20<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>:resize +20<CR>
 
 " For Hammer.vim: Load my preview
 map <leader>h :Hammer<CR>

@@ -56,7 +56,7 @@ export RPS1=''
 
 # Aliases
 alias git='nocorrect git'
-alias gch="git log --oneline -1 | awk '{print \$1}' | pbcopy && echo 'Copied latest commit hash to buffer'"
+alias gch="sha=\$(git log --oneline -1 | awk {'print \$1'}); echo \$sha | tr -d '\n' | pbcopy; echo SHA \$sha copied to clipboard";
 
 # Keybindings to restore some Emacs-mode stuff while in vi-mode
 bindkey '^A' beginning-of-line
