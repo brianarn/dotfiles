@@ -81,7 +81,9 @@ PATH=$HOME/.dotfiles/bin:$PATH
 export PATH
 
 # Setting up z
-source $(brew --prefix)/etc/profile.d/z.sh
+if [[ $(uname -s) == "Darwin" ]]; then
+  source $(brew --prefix)/etc/profile.d/z.sh
+fi
 
 # rbenv
 export RBENV_ROOT=/usr/local/var/rbenv
