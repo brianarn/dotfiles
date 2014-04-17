@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-03-06 21:32:29
+" Last modified: 2014-04-16 09:45:58
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -480,6 +480,10 @@ let highlight_function_name=1   " Highlight function names in decls
 "---- HTML generation options
 let html_number_lines=0   " Don't number the output
 let html_use_css=1      " CSS > inline styles
+
+"---- Airline
+let g:airline_powerline_fonts = 1 " Use Powerline fonts
+set ttimeoutlen=50
 
 "---- NERDTree Options
 " Some fonts cause weird line height issues with arrows, this makes it easy to
