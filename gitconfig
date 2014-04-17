@@ -12,6 +12,7 @@
 	last = log -1 HEAD
 	st = status
 	pg = log --pretty=oneline --graph
+	stash-unapply = !git stash show -p | git apply -R
 
 [color]
 	diff = auto
