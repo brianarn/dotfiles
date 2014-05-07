@@ -2,8 +2,9 @@
 --smart-case
 
 # Additional file types
---type-add=php=.inc
---type-set=md=.md,.mkd,.markdown
---type-set=json=.json
 --type-set=hbs=.hbs
+--type-set=json=.json
+--type-set=md=.md,.mkd,.markdown
+--type-add=php=.inc
 --type-set=styl=.styl
+--type-set=twig=.twig
