@@ -120,3 +120,8 @@ gifify() {
     echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
   fi
 }
+
+# Load anything local (intentionally last)
+if [[ -f ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi
