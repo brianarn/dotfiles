@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-04-16 09:45:58
+" Last modified: 2014-10-29 11:23:10
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -40,6 +40,10 @@ nnoremap <C-CR> mZA;<Esc>`Z
 " Reselect visual block after indenting
 vnoremap < <gv
 vnoremap > >gv
+
+" Navigate buffers much like tabs
+nmap gb :bnext<CR>
+nmap gB :bprev<CR>
 
 " Visually select the text that was last edited or pasted
 nmap gV `[v`]
@@ -141,7 +145,7 @@ syntax on
 " With GUI
 if has("gui_running")
   "---- Colorization Tweaks
-  set background=dark
+  "set background=dark
 
   " One older scheme with variations
   "colorscheme murphy
@@ -154,7 +158,9 @@ if has("gui_running")
   "colorscheme solarized
   " Trying out molokai, including tweaks from
   " https://github.com/justinforce/dotfiles/blob/master/files/vim/vimrc
-  colorscheme molokai
+  "colorscheme molokai
+  " Now using gf'3 molotov
+  colorscheme molotov
 
   "---- Fonts
   " Consolas is an old standby, trying out SCP for now tho
@@ -229,8 +235,9 @@ else
   "highlight SpecialKey ctermfg=DarkBlue guifg=DarkBlue
   set background=dark
   "colorscheme solarized
-  colorscheme molokai
-  highlight ColorColumn  ctermbg=235 guibg=#2c2d27
+  "colorscheme molokai
+  "highlight ColorColumn  ctermbg=235 guibg=#2c2d27
+  colorscheme molotov
 
 " " Change the cursor display when editing
 " if &term =~ "xterm"
@@ -404,12 +411,13 @@ set laststatus=2      " Shows statusline all the time
 set title         " Sets the title of the window
 set showmatch       " Show matching () [] {}
 set scrolloff=3       " Keep 3 lines when scrolling
-set showmode        " Show current mode
+set noshowmode      " No need to show, Airline handles it
 set showcmd         " Show incomplete command
 set ttyfast         " Smoother TTY experience,
               " if you have a faster connection
 set splitbelow        " New horz splits at the bottom
 set splitright        " New vert splits to the right
+set showtabline=2     " Always show tab line
 
 "---- Session options
 set sessionoptions+=slash " Always use forward slashes
@@ -482,7 +490,12 @@ let html_number_lines=0   " Don't number the output
 let html_use_css=1      " CSS > inline styles
 
 "---- Airline
-let g:airline_powerline_fonts = 1 " Use Powerline fonts
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#show_close_button = 0
 set ttimeoutlen=50
 
 "---- NERDTree Options
