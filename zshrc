@@ -58,6 +58,19 @@ export RPS1=''
 alias git='nocorrect git'
 alias gch="sha=\$(git log --oneline -1 | awk {'print \$1'}); echo \$sha | tr -d '\n' | pbcopy; echo SHA \$sha copied to clipboard";
 
+# Apple jiggery pokery
+# From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
+alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+
+# Hide/show all desktop icons (useful when presenting)
+alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+
+# Add gaps to the Dock
+alias addgaptodock="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}'"
+
+
 # Keybindings to restore some Emacs-mode stuff while in vi-mode
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
