@@ -42,7 +42,7 @@ export KEYTIMEOUT=1
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 if [[ $(uname -s) == "Darwin" ]]; then
-  plugins=(git node npm vi-mode brew osx)
+  plugins=(git node npm vi-mode brew osx rbenv)
 else
   plugins=(git node npm vi-mode)
 fi
@@ -99,8 +99,8 @@ if [[ $(uname -s) == "Darwin" ]]; then
 fi
 
 # rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+#export RBENV_ROOT=/usr/local/var/rbenv
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Really should put this elsewhere but this works for now
 serve() {
