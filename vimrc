@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2016-01-12 13:55:28
+" Last modified: 2016-01-12 14:28:58
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -301,6 +301,9 @@ if has("autocmd") " Autocommands are available
   " Reload my .vimrc when it changes
   autocmd BufWritePost .vimrc source ~/.vimrc
 
+  " For Startify, go away when using CtrlP/NERDTree to open a file
+  autocmd User Startified setlocal buftype=
+
   " Change some file extension mappings
   autocmd BufRead,BufNewFile *.conf set filetype=conf " Useful for tmux
   autocmd BufRead,BufNewFile *.smd set filetype=javascript " Dojo thing
@@ -503,6 +506,7 @@ set ttimeoutlen=50
 " enable/disable arrows instead of +/-
 let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1   " Don't show the tips/hints/etc
+let NERDTreeHijacNetrw=0 " Play better with Startify
 
 "---- Syntastic Options
 let g:syntastic_check_on_open=1       " Check when opening a file
