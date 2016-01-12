@@ -1,5 +1,5 @@
 " Brian Arnold's .vimrc file
-" Last modified: 2014-12-20 14:44:05
+" Last modified: 2016-01-12 13:55:28
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -308,13 +308,13 @@ if has("autocmd") " Autocommands are available
 
   " JavaScript adjustments
   if exists("+colorcolumn")
-    autocmd FileType javascript let &l:colorcolumn=join(range(121,320),",")        " Give me an idea of width
+    autocmd FileType javascript let &l:colorcolumn=join(range(121,320),",") " Give me an idea of width
   endif
 
   " Markdown adjustments
-  autocmd FileType markdown setlocal textwidth=0
+  autocmd FileType markdown setlocal textwidth=80
   if exists("+colorcolumn")
-    autocmd FileType markdown let &l:colorcolumn=join(range(81,320),",")        " Give me an idea of width
+    autocmd FileType markdown let &l:colorcolumn=join(range(81,320),",") " Give me an idea of width
   endif
 
   " Vimwiki adjustments
@@ -546,6 +546,7 @@ let wiki.diary_index = 'index'
 let wiki.syntax = 'markdown'
 let wiki.ext = '.md'
 let wiki.nested_syntaxes = {'javascript': 'javascript', 'js': 'javascript'}
+let wiki.auto_tags = 1
 let g:vimwiki_list = [wiki]
 " Let me use the mouse in some way
 let g:vimwiki_use_mouse=1
