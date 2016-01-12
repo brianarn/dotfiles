@@ -6,5 +6,6 @@
 --type-set=json=.json
 --type-set=md=.md,.mkd,.markdown
 --type-add=php=.inc
+--type-add=css=.scss,.sass
 --type-set=styl=.styl
 --type-set=twig=.twig
