@@ -1,5 +1,5 @@
-" Brian Arnold's .vimrc file
-" Last modified: 2016-01-12 16:10:23
+" Brian Sinclair's .vimrc file
+" Last modified: 2016-01-14 21:31:17
 "
 " This file is the result of over a decade's worth of arcane knowledge scraped
 " from around the net, the manual, and as of recent years, lots and lots of
@@ -11,18 +11,6 @@
 " We're using Vim, not Vi, so let's use Vim settings
 " Needs to be set first, as there are side effects
 set nocompatible
-
-"---- Pathogen
-" Make it easy to manage plugins for Vim as bundles
-" There are a couple of calls that need to be ran before
-" filetype detection is enabled, so I'm putting up here
-" near the top of the script.
-" Based on the tip in the FAQ, I'm keeping pathogen itself as a bundle!
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
-filetype plugin indent on
 
 "---- Mappings
 " I'm trying to reserve the Z mark for any/all positional mappings, hence the
