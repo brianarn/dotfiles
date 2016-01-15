@@ -33,9 +33,11 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-# Vim generated files #
-#######################
+# Various Vim files #
+#####################
 *.swp
 .*.swp
+vim/autoload/plug.vim
+vim/plugged
 vim/tmp
 vim/.netrwhist
