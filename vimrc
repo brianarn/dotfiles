@@ -280,6 +280,13 @@ if has("autocmd") " Autocommands are available
   autocmd BufRead,BufNewFile *.rjs set filetype=ruby
 
   augroup END
+
+  " Per suggestion on their repo, using an autocmd group for Pencil settings
+  augroup pencil
+    au!
+    autocmd FileType markdown,mkd,md call pencil#init()
+		autocmd FileType textile,text    call pencil#init()
+  augroup END
 endif " has("autocmd")
 
 "---- Text formatting options

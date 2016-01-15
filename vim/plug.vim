@@ -68,6 +68,9 @@ Plug 'pangloss/vim-javascript'
 " Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
+" Pencil, as I write a lot of prose in Vim and this seem handy
+Plug 'reedes/vim-pencil'
+
 " SCSS
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 
