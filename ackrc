@@ -9,3 +9,8 @@
 --type-add=css=.scss,.sass
 --type-set=styl=.styl
 --type-set=twig=.twig
+--type-set=erb=.erb
+
+# Places I tend to not care
+--ignore-dir=tmp
+--ignore-dir=node_modules

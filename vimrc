@@ -12,6 +12,10 @@
 " Needs to be set first, as there are side effects
 set nocompatible
 
+" Additionally, this setting seems to impact a lot of other plugins/settings
+" up front, so let's set it right away.
+filetype plugin indent on
+
 "---- Plugins
 source $HOME/.vim/plug.vim
 
@@ -74,6 +78,10 @@ map <leader>cd :cd %:p:h<CR>
 nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
+" Edit various files
+nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <leader>ep :tabnew ~/.vim/plug.vim<CR>
+
 " Fugitive mappings
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gd :Gdiff<CR>
@@ -90,10 +98,6 @@ noremap <leader>ss :call StripWhitespace()<CR>
 
 " Make a new tab
 noremap <leader>t :tabnew<CR>
-
-" Edit / source my .vimrc
-nnoremap <leader>ve :tabnew $MYVIMRC<CR>
-nnoremap <leader>vs :source $MYVIMRC<CR>
 
 " Simplify clipboard yanking
 nnoremap <leader>y mZggVG"+y`Z
@@ -121,14 +125,15 @@ syntax on
 " With GUI
 if has("gui_running")
   "---- Colorization Tweaks
-  "set background=dark
-
   " One older scheme with variations
   "colorscheme murphy
   "highlight SpecialKey ctermfg=DarkGray guifg=gray32
   "highlight LineNr ctermfg=Cyan guifg=Cyan
   " Now using gf'3 molotov
-  colorscheme molotov
+  "colorscheme molotov
+  " Now trying out a base16 theme
+  set background=dark
+  colorscheme base16-monokai
 
   "---- Fonts
   " Consolas is an old standby, trying out SCP for now tho
@@ -200,7 +205,8 @@ else
 
   " Old scheme with a tweak
   set background=dark
-  colorscheme molotov
+  let base16colorspace=256
+  colorscheme base16-monokai
 endif
 
 " Color column display (Vim 7.3+)
@@ -230,8 +236,8 @@ endif
 "set foldlevelstart=0
 
 " Use <Space> to toggle folds
-nnoremap <Space> za
-vnoremap <Space> za
+"nnoremap <Space> za
+"vnoremap <Space> za
 
 "--- Autocommands
 if has("autocmd") " Autocommands are available
@@ -246,20 +252,18 @@ if has("autocmd") " Autocommands are available
   " Kick off a LastMod call anytime I save a file
   autocmd BufWritePre * mark Z|call LastMod()|'Z
 
-  " Reload my .vimrc when it changes
-  autocmd BufWritePost .vimrc source ~/.vimrc
-
   " For Startify, go away when using CtrlP/NERDTree to open a file
   autocmd User Startified setlocal buftype=
 
   " Change some file extension mappings
   autocmd BufRead,BufNewFile *.conf set filetype=conf " Useful for tmux
-  "autocmd BufRead,BufNewFile *.json set filetype=javascript
 
   " JavaScript adjustments
   if exists("+colorcolumn")
     autocmd FileType javascript let &l:colorcolumn=join(range(121,320),",") " Give me an idea of width
   endif
+
+  autocmd FileType json setlocal foldmethod=syntax
 
   " Markdown adjustments
   autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -267,6 +271,8 @@ if has("autocmd") " Autocommands are available
   if exists("+colorcolumn")
     autocmd FileType markdown let &l:colorcolumn=join(range(81,320),",") " Give me an idea of width
   endif
+
+  autocmd BufRead,BufNewFile *.twig set filetype=twig
 
   " Vimwiki adjustments
   autocmd FileType vimwiki setlocal textwidth=80
@@ -282,11 +288,11 @@ if has("autocmd") " Autocommands are available
   augroup END
 
   " Per suggestion on their repo, using an autocmd group for Pencil settings
-  augroup pencil
-    au!
-    autocmd FileType markdown,mkd,md call pencil#init()
-		autocmd FileType textile,text    call pencil#init()
-  augroup END
+  " augroup pencil
+  "   au!
+  "   autocmd FileType markdown,mkd,md call pencil#init()
+  "   autocmd FileType textile,text    call pencil#init()
+  " augroup END
 endif " has("autocmd")
 
 "---- Text formatting options
@@ -309,7 +315,6 @@ set expandtab           " Spaces > Tabs
 set shiftround            " Round the indent to multiples of shiftwidth
 set autoindent            " Newlines are indented the same as prev
 set smartindent           " Indents for braces and some keywords
-filetype plugin indent on " Let file plugins handle indenting
 
 "---- More text-related options
 set encoding=utf-8            " Yay UTF-8
@@ -377,7 +382,7 @@ set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
 " Ignore bundler and sass cache - I don't use them often, but good to avoid
 set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Disable temp and backup files
-set wildignore+=*.swp,*~,._*
+set wildignore+=*/tmp/*,*.swp,*~,._*
 " Skip node_modules and dist dirs
 set wildignore+=*/node_modules/*,*/dist/*
 
@@ -401,6 +406,14 @@ let g:html_indent_style1 = "inc"
 "set cinoptions+=j1 " Indenting Java anonymous classes
 "set cinoptions+=J1 " Indenting JS object declarations
 
+"---- JSON options
+let g:vim_json_syntax_conceal = 0 " I like to see quotes etc
+
+"---- Markdown options (specific to plasticboy's vim-markdown)
+let g:vim_markdown_folding_disabled = 1 " Don't automatically fold
+let g:vim_markdown_toc_autofit = 1      " Let the TOC autoshrink
+let g:vim_markdown_frontmatter = 1      " I occasionally work with Jekyll-ish content
+
 "---- Perl customizations
 let perl_include_pod=1             " Recognize POD, color differently
 let perl_want_scope_in_variables=1 " Gives package names another color
@@ -422,11 +435,14 @@ let html_use_css=1      " CSS > inline styles
 
 "---- Airline
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'base16'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_type = 0
 let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 1
 set ttimeoutlen=50
 
 "---- NERDTree Options
@@ -436,6 +452,10 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1  " Don't show the tips/hints/etc
 let NERDTreeHijacNetrw=0 " Play better with Startify
 
+"---- Startify  options
+let g:startify_change_to_vcs_root = 1 " Changing to root of the repo is great!
+let g:startify_change_to_dir = 0      " Changing to the root of the file is not.
+
 "---- Syntastic Options
 let g:syntastic_check_on_open=1            " Check when opening a file
 let g:syntastic_always_populate_loc_list=1 " Always push errors into Location list
@@ -443,6 +463,12 @@ let g:syntastic_always_populate_loc_list=1 " Always push errors into Location li
 let g:syntastic_stl_format='[%E{Err: %fe (%e)}%B{, }%W{Warn: %fw (%w)}]'
 " Ignore some file types that don't have clean linting
 let g:syntastic_ignore_files=['\.hbs$', '\.twig$']
+
+"---- Vdebug Options
+" Map directories for proper source display
+" let g:vdebug_options['path_maps'] = {'/home/vagrant/code': '/Users/bsinclair/code'}
+" " Don't auto-break
+" let g:vdebug_options['break_on_open'] = 0
 
 "---- Explorer options
 let g:explVertical=1   " Split vertically

@@ -33,8 +33,12 @@ Plug 'airblade/vim-gitgutter'
 " Ack, as it's better than Grep
 Plug 'mileszs/ack.vim'
 
+" Base16 for tons of color options
+Plug 'chriskempson/base16-vim'
+
 " Airline, a phenomenal status/tabline
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " EditorConfig, since it suppresses several holy wars
 Plug 'editorconfig/editorconfig-vim'
@@ -54,10 +58,13 @@ Plug 'mhinz/vim-startify'
 " Syntastic, one of the best syntax checkers ever
 Plug 'scrooloose/syntastic'
 
+" Trying out this Xdebug addon, which is pretty sweet so far
+"Plug 'joonty/vdebug' ", { 'on': 'VdebugStart' }
+
 "---- Language Syntaxes / Utilities
 
 " CSV, because I do a lot more than I'd like to admit with CSVs via Vim
-Plug 'chrisbra/csv.vim'
+"Plug 'chrisbra/csv.vim'
 
 " Emmet, because I tell myself I'll use it someday
 Plug 'mattn/emmet-vim', { 'for': ['html', 'php'] }
@@ -65,11 +72,21 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'php'] }
 " JavaScript
 Plug 'pangloss/vim-javascript'
 
-" Markdown
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+" JSON
+Plug 'elzr/vim-json', { 'for': 'json' }
 
-" Pencil, as I write a lot of prose in Vim and this seem handy
-Plug 'reedes/vim-pencil'
+" Handlebars (and Mustache too I guess
+Plug 'mustache/vim-mustache-handlebars'
+
+" Markdown
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+
+" Pencil, as I write a lot of prose in Vim and this seems handy
+"Plug 'reedes/vim-pencil'
+
+" Rails, because people say it's useful for Rails
+" Maybe I'll learn how to work it someday
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
 " SCSS
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -81,8 +98,8 @@ Plug 'wavded/vim-stylus', { 'for': ['styl'] }
 Plug 'amiorin/vim-textile', { 'for': 'textile' }
 
 " Twig, for use with some Slim PHP code I maintain
-" Technically abandoned and may not even need, keeping just in case
-"Plug 'evidens/vim-twig', { 'for': 'twig' }
+" Technically abandoned, but still functional
+Plug 'evidens/vim-twig'
 
 "---- Text Manipulation
 

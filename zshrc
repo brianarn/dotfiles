@@ -1,3 +1,6 @@
+#### Base16 Color setup
+BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/base16-monokai.dark.sh"
+[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 ### From oh-my-zsh:
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.dotfiles/oh-my-zsh
@@ -41,12 +44,17 @@ export KEYTIMEOUT=1
 # Which plugins would you like to load? (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(cp docker docker-compose git gitfast node npm vi-mode)
 if [[ $(uname -s) == "Darwin" ]]; then
-  plugins=(git node npm vi-mode brew osx rbenv)
-else
-  plugins=(git node npm vi-mode)
+  plugins=($plugins brew httpie osx)
 fi
 
+### Load any local configuration before OMZ is loaded
+if [[ -f ~/.zshrc.local.before ]]; then
+  source ~/.zshrc.local.before
+fi
+
+### Load up OMZ!
 source $ZSH/oh-my-zsh.sh
 
 ### Customizations:
@@ -58,18 +66,15 @@ export RPS1=''
 alias git='nocorrect git'
 alias gch="sha=\$(git log --oneline -1 | awk {'print \$1'}); echo \$sha | tr -d '\n' | pbcopy; echo SHA \$sha copied to clipboard";
 
-# Apple jiggery pokery
+### Apple jiggery pokery
 # From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
 alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-
 # Hide/show all desktop icons (useful when presenting)
 alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-
 # Add gaps to the Dock
 alias addgaptodock="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}'"
-
 
 # Keybindings to restore some Emacs-mode stuff while in vi-mode
 bindkey '^A' beginning-of-line
@@ -134,7 +139,7 @@ gifify() {
   fi
 }
 
-# Load anything local (intentionally last)
+# Load anything else local (intentionally last)
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
