@@ -93,6 +93,13 @@ nnoremap <silent> <leader>gc :Gcommit --verbose<CR>:resize +20<CR>
 " Reload my snippets
 "noremap <leader>sr :call ReloadAllSnippets()<CR>
 
+" vim-rspec convenience
+noremap <leader>rt :call RunCurrentSpecFile()<CR>
+noremap <leader>rs :call RunNearestSpec()<CR>
+noremap <leader>rl :call RunLastSpec()<CR>
+noremap <leader>ra :call RunAllSpecs()<CR>
+
+
 " Strip trailing whitespace
 noremap <leader>ss :call StripWhitespace()<CR>
 
@@ -469,6 +476,9 @@ let g:syntastic_ignore_files=['\.hbs$', '\.twig$']
 " let g:vdebug_options['path_maps'] = {'/home/vagrant/code': '/Users/bsinclair/code'}
 " " Don't auto-break
 " let g:vdebug_options['break_on_open'] = 0
+
+"---- vim-rspec
+let g:rspec_command = "Dispatch rspec {spec}"
 
 "---- Explorer options
 let g:explVertical=1   " Split vertically

@@ -30,6 +30,12 @@ Plug 'airblade/vim-gitgutter'
 
 "---- Miscellaneous Utilities
 
+" matchit, which technically ships with Vim but this version may be newer?
+" I know this ships with Vim, and in theory, I can `packadd! matchit`, but
+" in practice that resulted in a pile of errors that I didn't want to bother
+" fixing. Also, maybe newer fixes here. Maybe.
+Plug 'tmhedberg/matchit'
+
 " Ack, as it's better than Grep
 Plug 'mileszs/ack.vim'
 
@@ -52,11 +58,17 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Repeat, which allows me to ... repeat more things
 Plug 'tpope/vim-repeat'
 
+" Endwise, since I seem to often forget endings now
+Plug 'tpope/vim-endwise'
+
 " Startify, because it's the best Quality of Life thing ever
 Plug 'mhinz/vim-startify'
 
 " Syntastic, one of the best syntax checkers ever
 Plug 'scrooloose/syntastic'
+
+" Dispatch, mostly for experimenting with RSpec stuff for now
+Plug 'tpope/vim-dispatch'
 
 " Trying out this Xdebug addon, which is pretty sweet so far
 "Plug 'joonty/vdebug' ", { 'on': 'VdebugStart' }
@@ -71,6 +83,9 @@ Plug 'mattn/emmet-vim', { 'for': ['html', 'php'] }
 
 " JavaScript
 Plug 'pangloss/vim-javascript'
+
+" JSDoc for JS
+Plug 'heavenshell/vim-jsdoc'
 
 " JSON
 Plug 'elzr/vim-json', { 'for': 'json' }
@@ -87,6 +102,9 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 " Rails, because people say it's useful for Rails
 " Maybe I'll learn how to work it someday
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
+
+" RSpec because rails
+Plug 'thoughtbot/vim-rspec'
 
 " SCSS
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
