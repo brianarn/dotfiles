@@ -81,6 +81,9 @@ Plug 'tpope/vim-dispatch'
 " Emmet, because I tell myself I'll use it someday
 Plug 'mattn/emmet-vim', { 'for': ['html', 'php'] }
 
+" Go!
+Plug 'fatih/vim-go', { 'for': 'go' }
+
 " JavaScript
 Plug 'pangloss/vim-javascript'
 
@@ -89,6 +92,9 @@ Plug 'heavenshell/vim-jsdoc'
 
 " JSON
 Plug 'elzr/vim-json', { 'for': 'json' }
+
+" Pug (was Jade)
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 
 " Handlebars (and Mustache too I guess
 Plug 'mustache/vim-mustache-handlebars'
@@ -114,6 +120,9 @@ Plug 'wavded/vim-stylus', { 'for': ['styl'] }
 
 " Textile, because Jira comments are in Textile and yeah :/
 Plug 'amiorin/vim-textile', { 'for': 'textile' }
+
+" Tmux is kinda like a language, right?
+Plug 'keith/tmux.vim', { 'for': 'tmux'}
 
 " Twig, for use with some Slim PHP code I maintain
 " Technically abandoned, but still functional
