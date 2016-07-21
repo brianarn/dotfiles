@@ -1,6 +1,7 @@
 #### Base16 Color setup
 BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/base16-monokai.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+
 ### From oh-my-zsh:
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.dotfiles/oh-my-zsh
@@ -66,16 +67,6 @@ export RPS1=''
 alias git='nocorrect git'
 alias gch="sha=\$(git log --oneline -1 | awk {'print \$1'}); echo \$sha | tr -d '\n' | pbcopy; echo SHA \$sha copied to clipboard";
 
-### Apple jiggery pokery
-# From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
-alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-# Hide/show all desktop icons (useful when presenting)
-alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-# Add gaps to the Dock
-alias addgaptodock="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}'"
-
 # Keybindings to restore some Emacs-mode stuff while in vi-mode
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
@@ -98,9 +89,22 @@ PATH=$HOME/.dotfiles/bin:$PATH
 #PATH=~/.rbenv/shims:$PATH
 export PATH
 
-# Setting up z
+# Mac-specific content
 if [[ $(uname -s) == "Darwin" ]]; then
+  # Setting up z
   source $(brew --prefix)/etc/profile.d/z.sh
+
+  # Homebrew updates in a way that makes it easy to see what's outdated
+  alias bup="brew update && printf '=======\n' && brew outdated"
+
+  # From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
+  alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+  alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+  # Hide/show all desktop icons (useful when presenting)
+  alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+  alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+  # Add gaps to the Dock
+  alias addgaptodock="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}'"
 fi
 
 # rbenv
@@ -122,7 +126,10 @@ serve() {
     # Unfortunately, "python -m SimpleHTTPServer" doesn't allow you to redefine
     # the default content-type, but the SimpleHTTPServer module can be executed
     # manually with just a few lines of code.
-    python -c $'import SimpleHTTPServer;\nSimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map[""] = "text/plain";\nSimpleHTTPServer.test();' "$port"
+    #python -c $'import SimpleHTTPServer;\nSimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map[""] = "text/plain";\nSimpleHTTPServer.test();' "$port"
+
+    # PHP has a service now, which seems to work a little better for my needs
+    php -S localhost:$port
 }
 
 gifify() {
