@@ -78,6 +78,9 @@ Plug 'tpope/vim-dispatch'
 " CSV, because I do a lot more than I'd like to admit with CSVs via Vim
 "Plug 'chrisbra/csv.vim'
 
+" Dockerfiles are fun
+Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
+
 " Emmet, because I tell myself I'll use it someday
 Plug 'mattn/emmet-vim', { 'for': ['html', 'php'] }
 

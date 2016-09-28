@@ -1,6 +1,9 @@
 #### Base16 Color setup
-BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/base16-monokai.dark.sh"
-[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+# Old config, seems gone?
+#BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/base16-monokai.dark.sh"
+#[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
+BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/"
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
 ### From oh-my-zsh:
 # Path to your oh-my-zsh configuration.
