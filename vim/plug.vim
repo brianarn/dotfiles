@@ -110,16 +110,16 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 
 " Rails, because people say it's useful for Rails
 " Maybe I'll learn how to work it someday
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
+"Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
 " RSpec because rails
-Plug 'thoughtbot/vim-rspec'
+"Plug 'thoughtbot/vim-rspec'
 
 " SCSS
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 
 " Stylus
-Plug 'wavded/vim-stylus', { 'for': ['styl'] }
+Plug 'wavded/vim-stylus', { 'for': 'styl' }
 
 " Textile, because Jira comments are in Textile and yeah :/
 Plug 'amiorin/vim-textile', { 'for': 'textile' }

@@ -37,3 +37,8 @@ Thumbs.db
 #######################
 *.swp
 .*.swp
+
+# Project-related things #
+.editorconfig
+.envrc
+.env

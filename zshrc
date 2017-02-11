@@ -112,7 +112,7 @@ fi
 
 # rbenv
 #export RBENV_ROOT=/usr/local/var/rbenv
-#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Really should put this elsewhere but this works for now
 serve() {

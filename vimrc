@@ -211,9 +211,13 @@ else
   set t_Co=256
 
   " Old scheme with a tweak
-  set background=dark
+  "set background=dark
   let base16colorspace=256
-  colorscheme base16-monokai
+  if filereadable(expand("~/.vimrc_background"))
+    source ~/.vimrc_background
+  else
+    colorscheme base16-monokai
+  endif
 endif
 
 " Color column display (Vim 7.3+)
