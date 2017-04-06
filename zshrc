@@ -69,6 +69,7 @@ export RPS1=''
 # Aliases
 alias git='nocorrect git'
 alias gch="sha=\$(git log --oneline -1 | awk {'print \$1'}); echo \$sha | tr -d '\n' | pbcopy; echo SHA \$sha copied to clipboard";
+alias dm='docker-machine'
 
 # Keybindings to restore some Emacs-mode stuff while in vi-mode
 bindkey '^A' beginning-of-line
@@ -84,6 +85,7 @@ bindkey '^[[B' down-line-or-search
 # Path customizations
 #PATH=/usr/local/share/npm/bin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
+PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 PATH=$HOME/.dotfiles/bin:$PATH
 #PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
 #PATH=/usr/local/ant/bin:$PATH
@@ -98,7 +100,7 @@ if [[ $(uname -s) == "Darwin" ]]; then
   source $(brew --prefix)/etc/profile.d/z.sh
 
   # Homebrew updates in a way that makes it easy to see what's outdated
-  alias bup="brew update && printf '=======\n' && brew outdated"
+  alias bup="brew update; printf '=======\n'; brew outdated"
 
   # From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
   alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"

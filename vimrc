@@ -468,12 +468,16 @@ let g:startify_change_to_vcs_root = 1 " Changing to root of the repo is great!
 let g:startify_change_to_dir = 0      " Changing to the root of the file is not.
 
 "---- Syntastic Options
+let g:syntastic_always_auto_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1            " Check when opening a file
 let g:syntastic_always_populate_loc_list=1 " Always push errors into Location list
 " Format for statusline display
 let g:syntastic_stl_format='[%E{Err: %fe (%e)}%B{, }%W{Warn: %fw (%w)}]'
 " Ignore some file types that don't have clean linting
 let g:syntastic_ignore_files=['\.hbs$', '\.twig$']
+" Enable eslint for JS
+let g:syntastic_javascript_checkers=['eslint']
 
 "---- Vdebug Options
 " Map directories for proper source display

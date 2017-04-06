@@ -65,7 +65,7 @@ Plug 'tpope/vim-endwise'
 Plug 'mhinz/vim-startify'
 
 " Syntastic, one of the best syntax checkers ever
-Plug 'scrooloose/syntastic'
+Plug 'vim-syntastic/syntastic'
 
 " Dispatch, mostly for experimenting with RSpec stuff for now
 Plug 'tpope/vim-dispatch'
@@ -95,6 +95,9 @@ Plug 'heavenshell/vim-jsdoc'
 
 " JSON
 Plug 'elzr/vim-json', { 'for': 'json' }
+
+" TypeScript
+Plug 'leafgarland/typescript-vim'
 
 " Pug (was Jade)
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
@@ -129,7 +132,7 @@ Plug 'keith/tmux.vim', { 'for': 'tmux'}
 
 " Twig, for use with some Slim PHP code I maintain
 " Technically abandoned, but still functional
-Plug 'evidens/vim-twig'
+Plug 'lumiliet/vim-twig'
 
 "---- Text Manipulation
 
