@@ -90,6 +90,9 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 " JavaScript
 Plug 'pangloss/vim-javascript'
 
+" JSX
+Plug 'mxw/vim-jsx'
+
 " JSDoc for JS
 Plug 'heavenshell/vim-jsdoc'
 

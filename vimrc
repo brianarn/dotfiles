@@ -417,6 +417,9 @@ let g:html_indent_style1 = "inc"
 "set cinoptions+=j1 " Indenting Java anonymous classes
 "set cinoptions+=J1 " Indenting JS object declarations
 
+"---- JSX options
+let g:jsx_ext_required = 0 " Highlight JSX in files that are suffix'd .js
+
 "---- JSON options
 let g:vim_json_syntax_conceal = 0 " I like to see quotes etc
 
