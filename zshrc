@@ -101,6 +101,7 @@ if [[ $(uname -s) == "Darwin" ]]; then
 
   # Homebrew updates in a way that makes it easy to see what's outdated
   alias bup="brew update; printf '=======\n'; brew outdated"
+  alias bupvim="brew upgrade --with-override-system-vim macvim"
 
   # From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
   alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
