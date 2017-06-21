@@ -140,11 +140,11 @@ if has("gui_running")
   "colorscheme murphy
   "highlight SpecialKey ctermfg=DarkGray guifg=gray32
   "highlight LineNr ctermfg=Cyan guifg=Cyan
-  " Now using gf'3 molotov
-  "colorscheme molotov
   " Now trying out a base16 theme
   set background=dark
-  colorscheme base16-monokai
+  colorscheme base16-unikitty-dark
+  highlight SpecialKey ctermfg=19
+  highlight LineNr ctermfg=DarkGray
 
   "---- Fonts
   " Consolas is an old standby, trying out SCP for now tho
@@ -215,13 +215,14 @@ else
   set t_Co=256
 
   " Old scheme with a tweak
-  "set background=dark
   let base16colorspace=256
   if filereadable(expand("~/.vimrc_background"))
     source ~/.vimrc_background
   else
-    colorscheme base16-monokai
+    colorscheme base16-unikitty-dark
   endif
+  highlight SpecialKey ctermfg=19
+  highlight LineNr ctermfg=DarkGray
 endif
 
 " Color column display (Vim 7.3+)
