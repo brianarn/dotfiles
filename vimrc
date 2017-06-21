@@ -32,6 +32,10 @@ noremap <F2> :NERDTreeToggle<CR>
 inoremap <C-CR> <Esc>mZA;<Esc>`Zi
 nnoremap <C-CR> mZA;<Esc>`Z
 
+" Emmet is annoying to use the default approach with <C-y>, so here
+imap <C-e> <plug>(emmet-expand-abbr)
+vmap <C-e> <plug>(emmet-expand-abbr)
+
 " Reselect visual block after indenting
 vnoremap < <gv
 vnoremap > >gv
