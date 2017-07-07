@@ -65,13 +65,18 @@ Plug 'tpope/vim-endwise'
 Plug 'mhinz/vim-startify'
 
 " Syntastic, one of the best syntax checkers ever
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
+" Trying out Ale for syntax checking
+Plug 'w0rp/ale'
 
 " Dispatch, mostly for experimenting with RSpec stuff for now
 Plug 'tpope/vim-dispatch'
 
-" Trying out this Xdebug addon, which is pretty sweet so far
-"Plug 'joonty/vdebug' ", { 'on': 'VdebugStart' }
+" Is org-mode all it's really cracked up to be? Let's find out.
+Plug 'jceb/vim-orgmode'
+
+" Installing speeddating because orgmode wants it, also seems neat
+Plug 'tpope/vim-speeddating'
 
 "---- Language Syntaxes / Utilities
 

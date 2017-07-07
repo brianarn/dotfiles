@@ -471,7 +471,7 @@ let NERDTreeDirArrows=1
 let NERDTreeMinimalUI=1  " Don't show the tips/hints/etc
 let NERDTreeHijacNetrw=0 " Play better with Startify
 
-"---- Startify  options
+"---- Startify options
 let g:startify_change_to_vcs_root = 1 " Changing to root of the repo is great!
 let g:startify_change_to_dir = 0      " Changing to the root of the file is not.
 
@@ -486,6 +486,10 @@ let g:syntastic_stl_format='[%E{Err: %fe (%e)}%B{, }%W{Warn: %fw (%w)}]'
 let g:syntastic_ignore_files=['\.hbs$', '\.twig$']
 " Enable eslint for JS
 let g:syntastic_javascript_checkers=['eslint']
+
+"---- Ale options
+let g:ale_lint_on_text_changed = 'never' " Don't continuously lint
+let g:ale_lint_on_insert_leave = 1 " but lint as soon as I'm done typing
 
 "---- Vdebug Options
 " Map directories for proper source display
