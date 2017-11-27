@@ -230,6 +230,11 @@ if exists("+colorcolumn")
 endif
 
 
+"--- NeoVim settings
+if has("nvim")
+  set inccommand=split " Interactive commands, showing preview in a split
+endif
+
 "--- Mouse
 if has("mouse")
   " Yeah yeah, purists gonna hate, whatever
