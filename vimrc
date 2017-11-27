@@ -103,7 +103,6 @@ noremap <leader>rs :call RunNearestSpec()<CR>
 noremap <leader>rl :call RunLastSpec()<CR>
 noremap <leader>ra :call RunAllSpecs()<CR>
 
-
 " Strip trailing whitespace
 noremap <leader>ss :call StripWhitespace()<CR>
 
@@ -240,7 +239,9 @@ if has("mouse")
   " Make it work right in Mac / iTerm2
   " Not sure why this works, but it does:
   " http://stackoverflow.com/questions/9116225/how-to-enable-mouse-support-in-tmux-vim-so-it-continues-to-work-even-after-a-ssh
-  set ttymouse=xterm2
+  if !has('nvim')
+    set ttymouse=xterm2
+  endif
 endif
 
 "--- Folding
@@ -279,7 +280,7 @@ if has("autocmd") " Autocommands are available
     autocmd FileType javascript let &l:colorcolumn=join(range(121,320),",") " Give me an idea of width
   endif
 
-  autocmd FileType json setlocal foldmethod=syntax
+  "autocmd FileType json setlocal foldmethod=syntax
 
   " Markdown adjustments
   autocmd BufRead,BufNewFile *.md set filetype=markdown
@@ -383,7 +384,7 @@ set sessionoptions+=unix  " Ensure Unix format
 "---- Searching options
 set magic      " Magic searching
 set incsearch  " Incremental searching
-set nohlsearch " Don't highlight match for search
+"set nohlsearch " Don't highlight match for search
 set ignorecase " Ignore case when searching,
 set smartcase  " unless case is used
 
