@@ -205,10 +205,10 @@ if has("gui_running")
   endif
 
   "---- Just for Windows
-  if has("win32")
-    " Upper left corner on Windows
-    "winpos 0 0
-  endif
+  "if has("win32")
+  "  " Upper left corner on Windows
+  "  winpos 0 0
+  "endif
 else
   " Force 256 colors
   set t_Co=256
@@ -220,15 +220,14 @@ else
   else
     colorscheme base16-unikitty-dark
   endif
-  highlight SpecialKey ctermfg=19
-  highlight LineNr ctermfg=DarkGray
+  " highlight SpecialKey ctermfg=19
+  " highlight LineNr ctermfg=DarkGray
 endif
 
 " Color column display (Vim 7.3+)
 if exists("+colorcolumn")
   let &colorcolumn="81,".join(range(121,320),",")        " Give me an idea of width
 endif
-
 
 "--- NeoVim settings
 if has("nvim")
@@ -244,6 +243,7 @@ if has("mouse")
   " Make it work right in Mac / iTerm2
   " Not sure why this works, but it does:
   " http://stackoverflow.com/questions/9116225/how-to-enable-mouse-support-in-tmux-vim-so-it-continues-to-work-even-after-a-ssh
+  " Doesn't work in Neovim, so only run if we're not there
   if !has('nvim')
     set ttymouse=xterm2
   endif
@@ -334,9 +334,9 @@ set tabstop=2           " Tabs at two spaces
 set softtabstop=2       " Soft tabs too
 set expandtab           " Spaces > Tabs
 " Less holy-war fighting
-set shiftround            " Round the indent to multiples of shiftwidth
-set autoindent            " Newlines are indented the same as prev
-set smartindent           " Indents for braces and some keywords
+set shiftround          " Round the indent to multiples of shiftwidth
+set autoindent          " Newlines are indented the same as prev
+set smartindent         " Indents for braces and some keywords
 
 "---- More text-related options
 set encoding=utf-8            " Yay UTF-8
@@ -389,7 +389,7 @@ set sessionoptions+=unix  " Ensure Unix format
 "---- Searching options
 set magic      " Magic searching
 set incsearch  " Incremental searching
-"set nohlsearch " Don't highlight match for search
+set nohlsearch " Don't highlight match for search
 set ignorecase " Ignore case when searching,
 set smartcase  " unless case is used
 

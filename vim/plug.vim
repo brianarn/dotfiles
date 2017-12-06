@@ -64,19 +64,24 @@ Plug 'tpope/vim-endwise'
 " Startify, because it's the best Quality of Life thing ever
 Plug 'mhinz/vim-startify'
 
-" Syntastic, one of the best syntax checkers ever
-"Plug 'vim-syntastic/syntastic'
-" Trying out Ale for syntax checking
+" Used to use: Syntastic, one of the best syntax checkers ever
+" Plug 'vim-syntastic/syntastic'
+" Trying out Ale for syntax checking, pretty great so far
 Plug 'w0rp/ale'
 
 " Dispatch, mostly for experimenting with RSpec stuff for now
 Plug 'tpope/vim-dispatch'
 
+" Checking out Goyo to hopefully make note taking maybe better?
+Plug 'junegunn/goyo.vim'
+
 " Is org-mode all it's really cracked up to be? Let's find out.
-Plug 'jceb/vim-orgmode'
+" 2017-12-06: Disabling because, well, I just didn't get into it here.
+"Plug 'jceb/vim-orgmode'
 
 " Installing speeddating because orgmode wants it, also seems neat
-Plug 'tpope/vim-speeddating'
+" 2017-12-06: I'm not using any of the features, soooooo
+"Plug 'tpope/vim-speeddating'
 
 "---- Language Syntaxes / Utilities
 
@@ -110,7 +115,7 @@ Plug 'leafgarland/typescript-vim'
 " Pug (was Jade)
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 
-" Handlebars (and Mustache too I guess
+" Handlebars (and Mustache too I guess)
 Plug 'mustache/vim-mustache-handlebars'
 
 " Markdown
@@ -140,7 +145,7 @@ Plug 'keith/tmux.vim', { 'for': 'tmux'}
 
 " Twig, for use with some Slim PHP code I maintain
 " Technically abandoned, but still functional
-Plug 'lumiliet/vim-twig'
+Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 
 "---- Text Manipulation
 
