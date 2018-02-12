@@ -27,6 +27,7 @@ source $HOME/.vim/plug.vim
 " Someone suggested F2 for NERDTree, and I've grown used to it
 " See http://www.catonmat.net/blog/vim-plugins-nerdtree-vim/
 noremap <F2> :NERDTreeToggle<CR>
+set pastetoggle=<F3> " Toggle pasting
 
 " I seem to need a lot of semicolons, so we'll add one on to the end
 inoremap <C-CR> <Esc>mZA;<Esc>`Zi
@@ -61,9 +62,6 @@ vmap <C-j> ]egv
 
 " Join lines and restore cursor location
 nnoremap J mZJ`Z
-
-" Toggle pasting
-set pastetoggle=<F3>
 
 "-- Leader mappings
 " Trying to sort these by leader character to make it easier to tell
