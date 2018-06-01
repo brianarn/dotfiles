@@ -147,6 +147,9 @@ Plug 'keith/tmux.vim', { 'for': 'tmux'}
 " Technically abandoned, but still functional
 Plug 'lumiliet/vim-twig', { 'for': 'twig' }
 
+" Vue!
+Plug 'posva/vim-vue', { 'for': 'vue' }
+
 "---- Text Manipulation
 
 " Abolish, primarily for Subvert which is so amazing
