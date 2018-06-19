@@ -10,6 +10,7 @@
 --type-set=styl=.styl
 --type-set=twig=.twig
 --type-set=erb=.erb
+--type-set=svg=.svg
 
 # Places I tend to not care
 --ignore-dir=tmp
