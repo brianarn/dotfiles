@@ -117,6 +117,9 @@ fi
 #export RBENV_ROOT=/usr/local/var/rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# fzf support
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Really should put this elsewhere but this works for now
 serve() {
     # Get port (if specified)

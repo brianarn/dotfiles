@@ -200,6 +200,9 @@ export PATH
 # Run rbenv if we have it
 hash rbenv 2> /dev/null && eval "$(rbenv init -)"
 
+# fzf support
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # If I have hub installed, alias it over git
 hash hub 2> /dev/null && alias git='hub'
 
