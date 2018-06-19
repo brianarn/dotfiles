@@ -37,7 +37,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tmhedberg/matchit'
 
 " Ack, as it's better than Grep
-Plug 'mileszs/ack.vim'
+" Disabling for now so I lean more on ripgrep
+"Plug 'mileszs/ack.vim'
+
+" Trying out ripgrep
+Plug 'jremmen/vim-ripgrep'
 
 " Base16 for tons of color options
 Plug 'chriskempson/base16-vim'
