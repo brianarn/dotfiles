@@ -549,6 +549,23 @@ let g:snips_author="Brian Sinclair"
 " " I use Markdown, don't just assume temporary wikis everywhere I open markdown
 " let g:vimwiki_global_ext=0
 
+"---- Commands
+" Trying some commands from
+" https://github.com/junegunn/fzf.vim
+" but slightly renamed so as not to conflict with vim-ripgrep
+" Command for git grep
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 0,
+  \   { 'dir': systemlist('git rev-parse --show-toplevel')[0] }, <bang>0)
+" Like fzf.vim's Ag but using Ripgrep
+command! -bang -nargs=* RGrep
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
 "---- Functions
 " LastMod said it was already defined, but I wanted to change the format
 " So, I'm just forcing it here to be YYYY-MM-DD

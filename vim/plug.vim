@@ -37,11 +37,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tmhedberg/matchit'
 
 " Ack, as it's better than Grep
-" Disabling for now so I lean more on ripgrep
+" Disabling for now so I lean more on fzf/ripgrep
 "Plug 'mileszs/ack.vim'
-
-" Trying out ripgrep
-Plug 'jremmen/vim-ripgrep'
 
 " Base16 for tons of color options
 Plug 'chriskempson/base16-vim'
@@ -57,10 +54,12 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " CtrlP, because it's a pretty snazzy and solid fuzzy file finder
+" Keeping in case I need non-binary whatever but omg fzf is so much nicer
 "Plug 'ctrlpvim/ctrlp.vim'
 
-" Trying out fzf
+" fzf is amazing omg
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 " Repeat, which allows me to ... repeat more things
 Plug 'tpope/vim-repeat'
