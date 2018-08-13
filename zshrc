@@ -125,8 +125,7 @@ serve() {
     # Get port (if specified)
     local port="${1:-8000}"
 
-    # Open in the browser - except not right now
-    #open "http://localhost:${port}/"
+    echo "Starting at http://localhost:${port}"
 
     # Redefining the default content-type to text/plain instead of the default
     # application/octet-stream allows "unknown" files to be viewable in-browser
