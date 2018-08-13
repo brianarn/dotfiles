@@ -48,7 +48,16 @@ export KEYTIMEOUT=1
 # Which plugins would you like to load? (plugins can be found in $ZSH/plugins/*)
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cp docker docker-compose git gitfast node npm vi-mode)
+plugins=(
+  cp
+  docker
+  docker-compose
+  git
+  gitfast
+  node
+  npm
+  vi-mode
+)
 if [[ $(uname -s) == "Darwin" ]]; then
   plugins=($plugins brew httpie osx)
 fi
