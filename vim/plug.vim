@@ -57,7 +57,10 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " CtrlP, because it's a pretty snazzy and solid fuzzy file finder
-Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
+
+" Trying out fzf
+Plug '/usr/local/opt/fzf'
 
 " Repeat, which allows me to ... repeat more things
 Plug 'tpope/vim-repeat'

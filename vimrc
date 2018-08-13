@@ -48,6 +48,9 @@ nmap gB :bprev<CR>
 " Visually select the text that was last edited or pasted
 nmap gV `[v`]
 
+" I got so used to CtrlP but I want it to be FZF now
+nmap <C-p> :FZF<cr>
+
 " Bubble single lines
 nmap <C-Up> [e
 nmap <C-Down> ]e
