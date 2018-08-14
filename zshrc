@@ -49,6 +49,7 @@ export KEYTIMEOUT=1
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
+  colored-man-pages
   cp
   docker
   docker-compose
@@ -59,7 +60,12 @@ plugins=(
   vi-mode
 )
 if [[ $(uname -s) == "Darwin" ]]; then
-  plugins=($plugins brew httpie osx)
+  plugins=(
+    $plugins
+    brew
+    httpie
+    osx
+  )
 fi
 
 ### Load any local configuration before OMZ is loaded
