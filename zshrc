@@ -130,7 +130,11 @@ fi
 
 # rbenv
 #export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# trying out asdf instead
+[ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh
+[ -f /usr/local/opt/asdf/completions/asdf.bash ] && source /usr/local/opt/asdf/completions/asdf.bash
 
 # fzf support
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
