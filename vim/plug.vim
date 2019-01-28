@@ -39,6 +39,7 @@ Plug 'tmhedberg/matchit'
 " Ack, as it's better than Grep
 " Disabling for now so I lean more on fzf/ripgrep
 "Plug 'mileszs/ack.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " Base16 for tons of color options
 Plug 'chriskempson/base16-vim'
@@ -98,7 +99,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
 
 " Emmet, because I tell myself I'll use it someday
-Plug 'mattn/emmet-vim', { 'for': ['html', 'php'] }
+Plug 'mattn/emmet-vim'
 
 " Go!
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -130,12 +131,17 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 " Pencil, as I write a lot of prose in Vim and this seems handy
 "Plug 'reedes/vim-pencil'
 
+" PHP, because I write a lot more of this stuff than I'd like
+" and I don't know why I haven't tried to make this better already
+Plug '2072/PHP-Indenting-for-VIm', { 'for': 'php' }
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+
 " Rails, because people say it's useful for Rails
 " Maybe I'll learn how to work it someday
-"Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 
 " RSpec because rails
-"Plug 'thoughtbot/vim-rspec'
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
 " SCSS
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }

@@ -510,6 +510,14 @@ let g:ale_fixers = {
 "---- vim-rspec
 let g:rspec_command = "Dispatch rspec {spec}"
 
+"---- emmet-vim
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
+
 "---- Explorer options
 let g:explVertical=1   " Split vertically
 let g:explSplitRight=1 " Put new window to the right
