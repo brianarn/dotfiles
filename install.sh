@@ -5,7 +5,7 @@
 # and then tweaked to ignore more than one file
 
 cutstring="DO NOT EDIT BELOW THIS LINE"
-ignorefiles="doc source bin external LICENSE README.md install.sh update_submodules.sh oh-my-zsh"
+ignorefiles="doc source bin external LICENSE README.md install.sh update_submodules.sh Brewfile oh-my-zsh"
 showignore=true
 
 # Iterate over all the files in the directory
