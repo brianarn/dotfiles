@@ -498,8 +498,10 @@ let g:syntastic_javascript_checkers=['eslint']
 let g:ale_lint_on_text_changed = 'never' " Don't continuously lint
 let g:ale_lint_on_insert_leave = 1 " but lint as soon as I'm done typing
 let g:ale_fixers = {
-\ 'javascript': ['eslint','prettier'],
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'javascript': ['prettier', 'eslint'],
 \ 'css': ['prettier'],
+\ 'scss': ['prettier'],
 \}
 
 "---- Vdebug Options
