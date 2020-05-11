@@ -49,7 +49,9 @@ export KEYTIMEOUT=1
 # Custom plugins may be added to $ZSH/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(
+  asdf
   colored-man-pages
+  command-not-found
   cp
   docker
   docker-compose
@@ -57,7 +59,9 @@ plugins=(
   gitfast
   node
   npm
+  ripgrep
   vi-mode
+  z
 )
 if [[ $(uname -s) == "Darwin" ]]; then
   plugins=(
@@ -112,7 +116,8 @@ export PATH
 # Mac-specific content
 if [[ $(uname -s) == "Darwin" ]]; then
   # Setting up z
-  source $(brew --prefix)/etc/profile.d/z.sh
+  # Commenting out in favor of using z via OMZ
+  #source $(brew --prefix)/etc/profile.d/z.sh
 
   # Homebrew updates in a way that makes it easy to see what's outdated
   alias bup="brew update; printf '=======\n'; brew outdated"
@@ -133,10 +138,11 @@ fi
 #if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # trying out asdf instead
-[ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh
-[ -f /usr/local/opt/asdf/completions/asdf.bash ] && source /usr/local/opt/asdf/completions/asdf.bash
+# Commenting out in lieu of asdf OMZ plugin
+#[ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh
+#[ -f /usr/local/opt/asdf/completions/asdf.bash ] && source /usr/local/opt/asdf/completions/asdf.bash
 
-# fzf support
+# fzf support (worked better than using OMZ for some reason)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Really should put this elsewhere but this works for now

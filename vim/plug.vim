@@ -90,6 +90,9 @@ Plug 'junegunn/goyo.vim'
 " 2017-12-06: I'm not using any of the features, soooooo
 "Plug 'tpope/vim-speeddating'
 
+" Trying to get used to diffing in Vim, and I need to do directory-based stuff
+Plug 'will133/vim-dirdiff'
+
 "---- Language Syntaxes / Utilities
 
 " CSV, because I do a lot more than I'd like to admit with CSVs via Vim
