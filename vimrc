@@ -268,7 +268,7 @@ if has("autocmd") " Autocommands are available
   let g:ft_ignore_pat = '\.\(Z\|gz\|bz2\|zip\|tgz\)$'
 
   " Wrapped in an autogroup so that re-sourcing the file doesn't rebind the
-  " same autocmmands
+  " same autocommands
   augroup BrianPresets
   au!
 
