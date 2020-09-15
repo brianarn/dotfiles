@@ -15,6 +15,11 @@ ZSH=$HOME/.dotfiles/oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="brianarn-oldbash"
 
+# Trying out spaceship
+ZSH_THEME="spaceship"
+SPACESHIP_TIME_SHOW="true"
+SPACESHIP_EXIT_CODE_SHOW="true"
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
