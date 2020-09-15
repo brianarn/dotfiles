@@ -87,6 +87,9 @@ vmap <leader>co s<code>
 nnoremap <leader>ev :tabnew $MYVIMRC<CR>
 nnoremap <leader>ep :tabnew ~/.vim/plug.vim<CR>
 
+" Run fixup
+nnoremap <leader>f :ALEFix<CR>
+
 " Fugitive mappings
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gd :Gdiff<CR>
