@@ -37,8 +37,8 @@ Thumbs.db
 #####################
 *.swp
 .*.swp
-vim/autoload/plug.vim
-vim/autoload/plug.vim.old
-vim/plugged
-vim/tmp
-vim/.netrwhist
+vim/.vim/autoload/plug.vim
+vim/.vim/autoload/plug.vim.old
+vim/.vim/plugged
+vim/.vim/tmp
+vim/.vim/.netrwhist
