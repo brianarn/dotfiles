@@ -42,3 +42,4 @@ vim/.vim/autoload/plug.vim.old
 vim/.vim/plugged
 vim/.vim/tmp
 vim/.vim/.netrwhist
+vim/.config/nvim/.netrwhist
