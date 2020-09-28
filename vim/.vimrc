@@ -290,6 +290,7 @@ if has("autocmd") " Autocommands are available
   endif
 
   "autocmd FileType json setlocal foldmethod=syntax
+  autocmd BufRead,BufNewFile *.tsx set filetype=typescript.tsx
 
   " Markdown adjustments
   autocmd BufRead,BufNewFile *.md set filetype=markdown
