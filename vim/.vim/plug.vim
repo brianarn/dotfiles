@@ -59,7 +59,8 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'ctrlpvim/ctrlp.vim'
 
 " fzf is amazing omg
-Plug '/usr/local/opt/fzf'
+"Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Repeat, which allows me to ... repeat more things
@@ -93,6 +94,11 @@ Plug 'junegunn/goyo.vim'
 " Trying to get used to diffing in Vim, and I need to do directory-based stuff
 Plug 'will133/vim-dirdiff'
 
+" Trying out CoC since I'm gonna be doing typescript more
+" Initially found at:
+" https://medium.com/swlh/ultimate-vim-typescript-setup-35b5ac5c8c4e
+Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
+
 "---- Language Syntaxes / Utilities
 
 " CSV, because I do a lot more than I'd like to admit with CSVs via Vim
@@ -110,9 +116,6 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 " JavaScript
 Plug 'pangloss/vim-javascript'
 
-" JSX
-Plug 'mxw/vim-jsx'
-
 " JSDoc for JS
 Plug 'heavenshell/vim-jsdoc'
 
@@ -121,6 +124,10 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 
 " TypeScript
 Plug 'leafgarland/typescript-vim'
+
+" JSX
+"Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Pug (was Jade)
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
