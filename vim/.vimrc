@@ -276,7 +276,8 @@ if has("autocmd") " Autocommands are available
   au!
 
   " Kick off a LastMod call anytime I save a file
-  autocmd BufWritePre * mark Z|call LastMod()|'Z
+  " Not really necessary anymore but preserving for now
+  "autocmd BufWritePre * mark Z|call LastMod()|'Z
 
   " For Startify, go away when using CtrlP/NERDTree to open a file
   autocmd User Startified setlocal buftype=
@@ -371,21 +372,23 @@ set statusline+=%-20.(%{fugitive#statusline()}%)
 set statusline+=%-12.(%l/%L,%c%V%)
 " Three-character file progress
 set statusline+=\ %P
-
 " Show the statusline all the time
 set laststatus=2
 
 "---- Window options
-set title         " Sets the title of the window
-set showmatch     " Show matching () [] {}
-set scrolloff=3   " Keep 3 lines when scrolling
-set noshowmode    " No need to show, Airline handles it
-set showcmd       " Show incomplete command
-set ttyfast       " Smoother TTY experience,
-                  " if you have a faster connection
-set splitbelow    " New horz splits at the bottom
-set splitright    " New vert splits to the right
-set showtabline=2 " Always show tab line
+set title             " Sets the title of the window
+set showmatch         " Show matching () [] {}
+set scrolloff=3       " Keep 3 lines when scrolling
+set noshowmode        " No need to show, Airline handles it
+set showcmd           " Show incomplete command
+set ttyfast           " Smoother TTY experience,
+                      " if you have a faster connection
+set splitbelow        " New horz splits at the bottom
+set splitright        " New vert splits to the right
+set showtabline=2     " Always show tab line
+set cmdheight=2       " More room for messages
+set updatetime=300    " Faster updates
+set signcolumn=yes    " Always show the sign column
 
 "---- Session options
 set sessionoptions+=slash " Always use forward slashes
