@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+#
+# Ticket-finding prepare-commit-msg hook
+# Author: Brian Sinclair <brianarn@gmail.com>
+#
+# Heavily inspired by the following article:
+# https://medium.com/@nicklee1/prepending-your-git-commit-messages-with-user-story-ids-3bfea00eab5a
+
+set -e
+
+COMMIT_MSG_FILE=$1
+
+# Include any branches for which you wish to disable this script
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+  BRANCHES_TO_SKIP=(master develop staging test)
+fi
+
+# Get and verify existence of the current branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+if [[ -z $BRANCH_NAME ]]; then
+  printf "No branch name to derive a commit message from\n"
+  exit
+fi
+
+# Check for exclusion
+printf "Checking to see if ${BRANCH_NAME} is excluded\n"
+# The exclusion check will intentionally have non-zero exits, so we
+# temporarily disable stopping on error
+set +e
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
+set -e
+if [[ $BRANCH_EXCLUDED -eq 1 ]]; then
+  printf "$BRANCH_NAME is excluded, not modifying commit message\n"
+  exit
+fi
+
+JIRA_TICKET=$(echo "$BRANCH_NAME" | perl -pe "s/.*?(\w+-\d+).*/\U\1/")
+sed -i -e "1s/^/$JIRA_TICKET: /" "$COMMIT_MSG_FILE"
