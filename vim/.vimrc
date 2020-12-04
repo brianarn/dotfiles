@@ -511,6 +511,10 @@ let g:ale_fixers = {
 \ 'scss': ['prettier'],
 \}
 
+"---- coc.nvim options and things
+" Add a command to run Prettier easily
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 "---- Vdebug Options
 " Map directories for proper source display
 " let g:vdebug_options['path_maps'] = {'/home/vagrant/code': '/Users/bsinclair/code'}
