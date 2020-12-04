@@ -502,6 +502,7 @@ let g:syntastic_ignore_files=['\.hbs$', '\.twig$']
 let g:syntastic_javascript_checkers=['eslint']
 
 "---- Ale options
+let g:ale_fix_on_save = 1 " Run fixes on save
 let g:ale_lint_on_text_changed = 'never' " Don't continuously lint
 let g:ale_lint_on_insert_leave = 1 " but lint as soon as I'm done typing
 let g:ale_fixers = {
