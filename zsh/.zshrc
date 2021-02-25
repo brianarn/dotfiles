@@ -170,6 +170,14 @@ serve() {
     php -S localhost:$port
 }
 
+stashbase() {
+  git stash \
+    && mv .git/hooks/prepare-commit-msg .git/hooks/prepare-commit-msg.disable \
+    && git rebase -i origin/master \
+    && mv .git/hooks/prepare-commit-msg.disable .git/hooks/prepare-commit-msg \
+    && git stash pop
+}
+
 gifify() {
   if [[ -n "$1" ]]; then
     if [[ $2 == '--good' ]]; then
