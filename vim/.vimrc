@@ -49,7 +49,8 @@ nmap gB :bprev<CR>
 nmap gV `[v`]
 
 " I got so used to CtrlP but I want it to be FZF now
-nmap <C-p> :FZF<cr>
+" now with buffers
+nmap <C-p> :Files<cr>
 
 " Bubble single lines
 nmap <C-Up> [e

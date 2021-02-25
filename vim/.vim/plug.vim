@@ -39,7 +39,7 @@ Plug 'tmhedberg/matchit'
 " Ack, as it's better than Grep
 " Disabling for now so I lean more on fzf/ripgrep
 "Plug 'mileszs/ack.vim'
-Plug 'jremmen/vim-ripgrep'
+"Plug 'jremmen/vim-ripgrep'
 
 " Base16 for tons of color options
 Plug 'chriskempson/base16-vim'
@@ -104,14 +104,14 @@ Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
 " CSV, because I do a lot more than I'd like to admit with CSVs via Vim
 "Plug 'chrisbra/csv.vim'
 
-" Dockerfiles are fun
-Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
+" Dockerfiles are fun, but I don't need _all the source_ for now
+"Plug 'docker/docker' , { 'rtp': '/contrib/syntax/vim/' }
 
 " Emmet, because I tell myself I'll use it someday
 Plug 'mattn/emmet-vim'
 
-" Go!
-Plug 'fatih/vim-go', { 'for': 'go' }
+" Go! Which I don't need anymore and also I think it's not on Fatih now
+"Plug 'fatih/vim-go', { 'for': 'go' }
 
 " JavaScript
 Plug 'pangloss/vim-javascript'
@@ -139,6 +139,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 
 " Pencil, as I write a lot of prose in Vim and this seems handy
+" except it's also kinda broken in one rough way and remains so, sooooo
 "Plug 'reedes/vim-pencil'
 
 " PHP, because I write a lot more of this stuff than I'd like
@@ -148,10 +149,9 @@ Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 
 " Rails, because people say it's useful for Rails
 " Maybe I'll learn how to work it someday
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-
-" RSpec because rails
-Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+" Except I don't do much with it now soooooo
+"Plug 'tpope/vim-rails', { 'for': 'ruby' }
+"Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
 " SCSS
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
@@ -163,7 +163,7 @@ Plug 'wavded/vim-stylus', { 'for': 'styl' }
 Plug 'amiorin/vim-textile', { 'for': 'textile' }
 
 " Tmux is kinda like a language, right?
-Plug 'keith/tmux.vim', { 'for': 'tmux'}
+Plug 'keith/tmux.vim', { 'for': 'tmux' }
 
 " Twig, for use with some Slim PHP code I maintain
 " Technically abandoned, but still functional
