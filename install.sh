@@ -46,7 +46,7 @@ stow --stow --dotfiles --verbose stow
 #done
 for file in $COPYFILES; do
 	target="$HOME/.$file"
-	if [[ -e "$target" ]]; then
+	if [ -f "$target" ]; then
 		printf ".$file exists, skipping...\n"
 	else
 		cp "$PWD/$file" "$target"
@@ -60,8 +60,8 @@ git submodule update --init
 # Post-install, create some vim dirs
 printf "Creating Vim directories...\n"
 for dir in backup swap undo; do
-	VIMDIR="~/.vim/tmp/$dir"
-	if [[ -e "$VIMDIR" ]]; then
+	VIMDIR="$HOME/.vim/tmp/$dir"
+	if [ -d "$VIMDIR" ]; then
 		printf "$VIMDIR exists, skipping\n"
 	else
 		printf "Creating $VIMDIR\n"
