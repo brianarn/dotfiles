@@ -1,59 +1,72 @@
 #!/bin/bash
 
-# This install happily taken from
+# This install script inspired by
 # http://github.com/jferris/config_files
-# and then tweaked to ignore more than one file
 
-cutstring="DO NOT EDIT BELOW THIS LINE"
-ignorefiles="doc source bin external LICENSE README.md install.sh update_submodules.sh Brewfile oh-my-zsh"
-showignore=true
+CUTSTRING="DO NOT EDIT BELOW THIS LINE"
+STOWFILES="bash fzf misc tmux vim zsh"
+COPYFILES="gitconfig"
 
-# Iterate over all the files in the directory
-for name in *; do
-	# If it's not in our ignorefiles list, process it
-	if [[ ! $ignorefiles =~ $name ]]; then
-		target="$HOME/.$name"
+# Do the stow thing
+stow --stow --dotfiles --verbose stow
 
-		if [ -e $target ]; then
-			if [ ! -L $target ]; then
-				cutline=`grep -n -m1 "$cutstring" "$target" | sed "s/:.*//"`
-				if [[ -n $cutline ]]; then
-					let "cutline = $cutline - 1"
-					echo "Updating $target"
-					head -n $cutline "$target" > update_tmp
-					startline=`tail -r "$name" | grep -n -m1 "$cutstring" | sed "s/:.*//"`
-					if [[ -n $startline ]]; then
-						tail -n $startline "$name" >> update_tmp
-					else
-						cat "$name" >> update_tmp
-					fi
-					mv update_tmp "$target"
-				else
-					echo "WARNING: $target exists but is not a symlink."
-				fi
-			fi
-
-		else
-			echo "Creating $target"
-			if [[ -n `grep "$cutstring" "$name"` ]]; then
-				cp "$PWD/$name" "$target"
-			else
-				ln -s "$PWD/$name" "$target"
-			fi
-		fi
-
+# TODO This isn't working because of tail -r and also the awk command not working
+# Need to pursue better option
+#for file in $COPYFILES; do
+#  target="$HOME/.$file"
+#  printf "Processing $file...\n"
+#
+#  if [ -e $target ]; then
+#    if [ ! -L $target ]; then
+#      cutline=`grep -n -m1 "$CUTSTRING" "$target" | sed "s/:.*//"`
+#      if [[ -n $cutline ]]; then
+#        let "cutline = $cutline - 1"
+#        printf "Updating $target\n"
+#        head -n $cutline "$target" > update_tmp
+#        startline=`awk '{a[i++]=$0} END {for (j=i-1; j>=0;) print a[j--] }' "$name" | grep -n -m1 "$CUTSTRING" | sed "s/:.*//"`
+#        if [[ -n $startline ]]; then
+#          tail -n $startline "$file" >> update_tmp
+#        else
+#          cat "$file" >> update_tmp
+#        fi
+#        mv update_tmp "$target"
+#      else
+#        printf "WARNING: $target exists but is not a symlink.\n"
+#      fi
+#    fi
+#
+#  else
+#    printf "Creating $target\n"
+#    if [[ -n `grep "$CUTSTRING" "$file"` ]]; then
+#      cp "$PWD/$file" "$target"
+#    else
+#      ln -s "$PWD/$file" "$target"
+#    fi
+#  fi
+#done
+for file in $COPYFILES; do
+	target="$HOME/.$file"
+	if [[ -e "$target" ]]; then
+		printf ".$file exists, skipping...\n"
 	else
-		# This file is in our ignore list
-		if $showignore; then
-			echo "Ignoring $name"
-		fi
+		cp "$PWD/$file" "$target"
 	fi
 done
 
-# Post-install, create some vim dirs
-echo "Creating Vim directories..."
-mkdir -p ~/.vim/tmp/backup
-mkdir -p ~/.vim/tmp/swap
-mkdir -p ~/.vim/tmp/undo
+# Set up submodules
+printf "Initializing git submodules...\n"
+git submodule update --init
 
-echo "Done!"
+# Post-install, create some vim dirs
+printf "Creating Vim directories...\n"
+for dir in backup swap undo; do
+	VIMDIR="~/.vim/tmp/$dir"
+	if [[ -e "$VIMDIR" ]]; then
+		printf "$VIMDIR exists, skipping\n"
+	else
+		printf "Creating $VIMDIR\n"
+		mkdir -p "$VIMDIR"
+	fi
+done
+
+printf "Done!\n"
