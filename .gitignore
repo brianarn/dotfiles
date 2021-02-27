@@ -37,6 +37,7 @@ Thumbs.db
 #####################################################
 stow/dot-config/coc
 stow/dot-config/code-server
+stow/dot-config/configstore
 stow/dot-config/gh
 stow/dot-config/htop
 stow/dot-config/nvim/coc-settings.json
