@@ -33,13 +33,17 @@ ehthumbs.db
 Icon?
 Thumbs.db
 
-# Various Vim files #
-#####################
-*.swp
-.*.swp
+# Stow-specific files that should _not_ be retained #
+#####################################################
+stow/dot-config/coc
 stow/dot-vim/autoload/plug.vim
 stow/dot-vim/autoload/plug.vim.old
 stow/dot-vim/plugged
 stow/dot-vim/tmp
 stow/dot-vim/.netrwhist
 stow/dot-vim/config/nvim/.netrwhist
+
+# Various Vim files #
+#####################
+*.swp
+.*.swp

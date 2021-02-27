@@ -1,9 +1,9 @@
-[submodule "oh-my-zsh"]
+[submodule "external/oh-my-zsh"]
 	path = external/oh-my-zsh
-  url = https://github.com/brianarn/oh-my-zsh.git
-[submodule "external/n"]
-	path = external/n
-	url = https://github.com/visionmedia/n.git
+	url = https://github.com/brianarn/oh-my-zsh.git
 [submodule "external/base16-shell"]
 	path = external/base16-shell
 	url = git@github.com:chriskempson/base16-shell.git
+[submodule "external/fzf"]
+	path = external/fzf
+	url = git@github.com:junegunn/fzf.git

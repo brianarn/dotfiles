@@ -1,4 +1,8 @@
 #!/bin/sh
-echo 'Updating all submodules to master branch...'
+printf "Updating all submodules to master branch...\n"
 git submodule foreach 'git checkout master && git pull origin master'
-echo 'Done!'
+
+printf "\nInstalling fzf ...\n"
+external/fzf/install --all
+
+printf "\nDone!\n"
