@@ -7,3 +7,6 @@
 [submodule "external/fzf"]
 	path = external/fzf
 	url = git@github.com:junegunn/fzf.git
+[submodule "external/spaceship-prompt"]
+	path = external/spaceship-prompt
+	url = git@github.com:denysdovhan/spaceship-prompt.git
