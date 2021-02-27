@@ -30,4 +30,4 @@
 	autosquash = true
 
 [init]
-	templatedir = ~/.dotfiles/git_template
+	templatedir = ~/.dotfiles/misc/git_template
