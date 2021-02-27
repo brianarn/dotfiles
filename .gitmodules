@@ -1,5 +1,5 @@
 [submodule "oh-my-zsh"]
-  path = oh-my-zsh
+	path = external/oh-my-zsh
   url = https://github.com/brianarn/oh-my-zsh.git
 [submodule "external/n"]
 	path = external/n

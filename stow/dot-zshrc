@@ -7,13 +7,13 @@ BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/"
 
 ### From oh-my-zsh:
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.dotfiles/oh-my-zsh
+ZSH=$HOME/.dotfiles/external/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in $ZSH/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="brianarn-oldbash"
+#ZSH_THEME="brianarn-oldbash"
 
 # Trying out spaceship
 ZSH_THEME="spaceship"
