@@ -36,6 +36,7 @@ Thumbs.db
 # Stow-specific files that should _not_ be retained #
 #####################################################
 stow/dot-config/coc
+stow/dot-config/gh
 stow/dot-vim/autoload/plug.vim
 stow/dot-vim/autoload/plug.vim.old
 stow/dot-vim/plugged
