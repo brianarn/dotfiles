@@ -107,15 +107,8 @@ bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
 # Path customizations
-#PATH=/usr/local/share/npm/bin:$PATH
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
 PATH=$HOME/.dotfiles/bin:$PATH
-#PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
-#PATH=/usr/local/ant/bin:$PATH
-#PATH=/usr/local/android-sdk-mac_x86/tools:$PATH
-#PATH=/usr/local/phonegap-android/bin:$PATH
-#PATH=~/.rbenv/shims:$PATH
 export PATH
 
 # Mac-specific content
@@ -126,7 +119,6 @@ if [[ $(uname -s) == "Darwin" ]]; then
 
   # Homebrew updates in a way that makes it easy to see what's outdated
   alias bup="brew update; printf '=======\n'; brew outdated"
-  alias bupvim="brew upgrade --with-override-system-vim macvim"
 
   # From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
   alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
@@ -137,10 +129,6 @@ if [[ $(uname -s) == "Darwin" ]]; then
   # Add gaps to the Dock
   alias addgaptodock="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}'"
 fi
-
-# rbenv
-#export RBENV_ROOT=/usr/local/var/rbenv
-#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # trying out asdf instead
 # Commenting out in lieu of asdf OMZ plugin
