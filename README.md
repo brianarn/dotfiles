@@ -10,7 +10,7 @@ If for some reason you want to install this yourself, feel free --
 or I'll likely use this myself at some point.
 
 	# Clone the repo
-	git clone git://github.com/brianarn/dotfiles ~/.dotfiles
+	git clone git@github.com:brianarn/dotfiles.git ~/.dotfiles
 	cd ~/.dotfiles
 
 	# Initialize the Git submodules (namely for Vim bundles)
