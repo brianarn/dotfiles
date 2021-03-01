@@ -487,6 +487,60 @@
       "nvm": {
         "version": "0.37.2",
         "bottle": false
+      },
+      "docker": {
+        "version": "20.10.4",
+        "bottle": {
+          "rebuild": 0,
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "root_url": "https://homebrew.bintray.com/bottles",
+          "files": {
+            "arm64_big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/docker-20.10.4.arm64_big_sur.bottle.tar.gz",
+              "sha256": "6c6caf22198400823aa6cd3b8f445e9db040cfeb9972777f6f098c13d64b360f"
+            },
+            "big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/docker-20.10.4.big_sur.bottle.tar.gz",
+              "sha256": "a6f617417365aa73f3f47714e0ae97e2ac3f095c9aa72eda7cc48d7c63d1be5e"
+            },
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/docker-20.10.4.catalina.bottle.tar.gz",
+              "sha256": "8800f8263992fa688c7e781234d06e6fb3c5609ca34a73a3ca8319411a58f565"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/docker-20.10.4.mojave.bottle.tar.gz",
+              "sha256": "60d84c48b535e3cef613b2f81b2e0ef4e892de962217cd88b5d75bd315b2c73c"
+            }
+          }
+        }
+      },
+      "mosh": {
+        "version": "1.3.2_14",
+        "bottle": {
+          "rebuild": 0,
+          "cellar": ":any",
+          "prefix": "/usr/local",
+          "root_url": "https://homebrew.bintray.com/bottles",
+          "files": {
+            "arm64_big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/mosh-1.3.2_14.arm64_big_sur.bottle.tar.gz",
+              "sha256": "f57678679b33783bc9eb6e163f1bdd52d3507610a95ab2adf3130b49b037da93"
+            },
+            "big_sur": {
+              "url": "https://homebrew.bintray.com/bottles/mosh-1.3.2_14.big_sur.bottle.tar.gz",
+              "sha256": "1bf08f5d050d35a8b8e12d8767e6cbd7cf8e42902773a07f0d77c33cdec80ecc"
+            },
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/mosh-1.3.2_14.catalina.bottle.tar.gz",
+              "sha256": "bcd06e5e53910cdbe91f303791762bb48acf09a0b34e30510fd332a03d4170fe"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/mosh-1.3.2_14.mojave.bottle.tar.gz",
+              "sha256": "e4686d0217150775f8d3f45707dc1a660714432b11b284a45946960fa34f2d6d"
+            }
+          }
+        }
       }
     },
     "cask": {
@@ -585,6 +639,12 @@
         "options": {
           "full_name": "visual-studio-code"
         }
+      },
+      "docker": {
+        "version": "3.1.0,51484",
+        "options": {
+          "full_name": "docker"
+        }
       }
     }
   },
@@ -593,7 +653,7 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.0.2",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "81c64f29d6371340885e5f0d0c39cd307f97e568",
+        "Homebrew/homebrew-core": "69ebe47f3d582909e01cd343a87ed4671621a6c6",
         "CLT": "12.4.0.0.1.1610135815",
         "Xcode": "12.0",
         "macOS": "11.2.2"
