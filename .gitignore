@@ -40,6 +40,7 @@ stow/dot-config/code-server
 stow/dot-config/configstore
 stow/dot-config/gh
 stow/dot-config/htop
+stow/dot-config/iterm2
 stow/dot-config/nvim/coc-settings.json
 stow/dot-vim/autoload/plug.vim
 stow/dot-vim/autoload/plug.vim.old

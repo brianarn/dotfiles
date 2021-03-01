@@ -13,6 +13,10 @@ function log {
 
 log '=== dotfiles install ==='
 
+# Set up submodules
+log "--- Initializing git submodules..."
+git submodule update --init
+
 # Do the stow thing
 log '--- Stowing files...'
 stow --stow --dotfiles --verbose stow
@@ -59,13 +63,9 @@ for file in $COPYFILES; do
     log ".$file exists, skipping..."
   else
     log "Copying $file to $target"
-    cp "$PWD/$file" "$target"
+    cp "$PWD/copy_src/$file" "$target"
   fi
 done
-
-# Set up submodules
-log "--- Initializing git submodules..."
-git submodule update --init
 
 # Post-install, create some vim dirs
 log "--- Creating Vim directories..."
