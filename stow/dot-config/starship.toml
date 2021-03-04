@@ -1,2 +1,17 @@
 [hostname]
 ssh_only = false
+
+[username]
+show_always = true
+format = '[$user]($style)@'
+
+[directory]
+#format = ": [$path]($style)[$read_only]($read_only_style) "
+truncation_length = 5
+
+[git_status]
+#style = "bold #ff9f00"
+style = "bold blue"
+ahead = "⇡${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+behind = "⇣${count}"

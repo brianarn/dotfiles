@@ -42,6 +42,7 @@ stow/dot-config/gh
 stow/dot-config/htop
 stow/dot-config/iterm2
 stow/dot-config/jgit
+stow/dot-config/nvim/.netrwhist
 stow/dot-config/nvim/coc-settings.json
 stow/dot-vim/autoload/plug.vim
 stow/dot-vim/autoload/plug.vim.old
