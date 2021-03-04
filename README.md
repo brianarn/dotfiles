@@ -1,26 +1,30 @@
-# Brian Arnold's dotfiles
+# Brian Sinclair's dotfiles
 
-This is my set of dotfiles. It's nothing terribly special, really.
-Honestly, it could use some cleaning, even. That being said, I'm just
-trying to clean up and consolidate things.
+This is my set of dotfiles. It's nothing terribly special, really. Kind of a
+mess, even.
+
+Apparently I started saving these in here in 2010 and now I feel really old.
+
+## Requirements
+
+- Stow 2.3+ (for `--dotfiles` flag)
 
 ## Installation
 
-If for some reason you want to install this yourself, feel free --
-or I'll likely use this myself at some point.
+    git clone git@github.com:brianarn/dotfiles.git $HOME/.dotfiles
+    make
 
-	# Clone the repo
-	git clone git@github.com:brianarn/dotfiles.git ~/.dotfiles
-	cd ~/.dotfiles
+### Mac-specific
 
-	# Initialize the Git submodules (namely for Vim bundles)
-	git submodule update --init
+There's a `Brewfile` in the `misc` directory.
 
-	# Set up symlinks
-	./install.sh
+    brew bundle --file $HOME/.dotfiles/misc/Brewfile
 
-	# Go back to where I was
-	if [[ $OLDPWD ]]; then cd $OLDPWD; fi
+## Updating submodules
+
+It's a good idea to update those once in awhile.
+
+    make update
 
 ## Credits
 

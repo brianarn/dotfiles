@@ -3,15 +3,33 @@
 # This install script inspired by
 # http://github.com/jferris/config_files
 
-CUTSTRING="DO NOT EDIT BELOW THIS LINE"
-STOWFILES="bash fzf misc tmux vim zsh"
-COPYFILES="gitconfig"
+set -e
+
+get_path() {
+  printf "$( cd "$1" >/dev/null 2>&1 && pwd )"
+}
 
 function log {
   printf -- "\n$1\n"
 }
 
+function pushd () {
+    command pushd "$@" >/dev/null 2>&1
+}
+
+function popd () {
+    command popd "$@" >/dev/null 2>&1
+}
+
+BIN_DIR=$( get_path $( dirname "${BASH_SOURCE[0]}" ) )
+ROOT_DIR=$( get_path "$BIN_DIR/.." )
+CUTSTRING="DO NOT EDIT BELOW THIS LINE"
+STOWFILES="bash fzf misc tmux vim zsh"
+COPYFILES="gitconfig vimrc.local"
+
 log '=== dotfiles install ==='
+
+pushd "$ROOT_DIR"
 
 # Set up submodules
 log "--- Initializing git submodules..."
@@ -56,6 +74,7 @@ stow --stow --dotfiles --verbose stow
 #    fi
 #  fi
 #done
+
 log '--- Copying files...'
 for file in $COPYFILES; do
   target="$HOME/.$file"
@@ -71,12 +90,14 @@ done
 log "--- Creating Vim directories..."
 for dir in backup swap undo; do
   VIMDIR="$HOME/.vim/tmp/$dir"
-  if [ -d "$VIMDIR" ]; then
-    log "$VIMDIR exists, skipping"
-  else
+  if [ ! -d "$VIMDIR" ]; then
     log "Creating $VIMDIR"
     mkdir -p "$VIMDIR"
+  else
+    log "$VIMDIR exists, skipping"
   fi
 done
+
+popd
 
 log "=== Done!"

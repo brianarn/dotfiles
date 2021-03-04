@@ -1,0 +1,3 @@
+" Local vim settings
+" For CoC: we often need to specify a Node path
+"let g:coc_node_path = '/usr/local/bin/node'
