@@ -107,9 +107,11 @@ bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 
 # Path customizations
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH=$HOME/.dotfiles/bin:$PATH
-export PATH
+if [[ ! "$PATH" == *.dotfiles/bin* ]]; then
+  PATH="/usr/local/bin:/usr/local/sbin${PATH:+:$PATH}"
+  PATH="${PATH:+${PATH}:}$HOME/.dotfiles/bin"
+  export PATH
+fi
 
 # Mac-specific content
 if [[ $(uname -s) == "Darwin" ]]; then

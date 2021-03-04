@@ -184,15 +184,11 @@ alias gvd='gvim -p $(git diff --name-only) -c "tabdo Gdiff"'
 
 # Was in my .bash_profile, moving over here for more convenient management
 # User specific environment and startup programs
-PATH=/usr/local/share/npm/bin:$PATH
-PATH=$HOME/.nave/installed/0.8.22/bin:$PATH
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
-#PATH=/usr/local/ant/bin:$PATH
-#PATH=/usr/local/android-sdk-mac_x86/tools:$PATH
-#PATH=/usr/local/phonegap-android/bin:$PATH
-PATH=/usr/local/mysql/bin:$PATH
-PATH=~/.rbenv/shims:$PATH
-export PATH
+if [[ ! "$PATH" == */Users/briansinclair/.dotfiles/external/fzf/bin* ]]; then
+  PATH="/usr/local/bin:/usr/local/sbin${PATH:+:$PATH}"
+  PATH="${PATH:+${PATH}:}$HOME/.dotfiles/bin"
+  export PATH
+fi
 
 # Not sure why I was doing this, let's turn it off awhile
 #unset USERNAME
