@@ -85,7 +85,7 @@ nmap <leader>co ysiw<code>
 vmap <leader>co s<code>
 
 " Edit various files
-nnoremap <leader>ev :tabnew $MYVIMRC<CR>
+nnoremap <leader>ev :tabnew ~/.vimrc<CR>
 nnoremap <leader>ep :tabnew ~/.vim/plug.vim<CR>
 
 " Run fixup
@@ -99,14 +99,17 @@ nnoremap <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gs :Gstatus<CR>:resize +20<CR>
 nnoremap <silent> <leader>gc :Gcommit --verbose<CR>:resize +20<CR>
 
+" Quick and easy Prettier
+nnoremap <leader>p :Prettier<cr>
+
 " Reload my snippets
 "noremap <leader>sr :call ReloadAllSnippets()<CR>
 
 " vim-rspec convenience
-noremap <leader>rt :call RunCurrentSpecFile()<CR>
-noremap <leader>rs :call RunNearestSpec()<CR>
-noremap <leader>rl :call RunLastSpec()<CR>
-noremap <leader>ra :call RunAllSpecs()<CR>
+"noremap <leader>rt :call RunCurrentSpecFile()<CR>
+"noremap <leader>rs :call RunNearestSpec()<CR>
+"noremap <leader>rl :call RunLastSpec()<CR>
+"noremap <leader>ra :call RunAllSpecs()<CR>
 
 " Strip trailing whitespace
 noremap <leader>ss :call StripWhitespace()<CR>
@@ -503,7 +506,7 @@ let g:syntastic_ignore_files=['\.hbs$', '\.twig$']
 let g:syntastic_javascript_checkers=['eslint']
 
 "---- Ale options
-let g:ale_fix_on_save = 1 " Run fixes on save
+let g:ale_fix_on_save = 0 " Run fixes on save
 let g:ale_lint_on_text_changed = 'never' " Don't continuously lint
 let g:ale_lint_on_insert_leave = 1 " but lint as soon as I'm done typing
 let g:ale_fixers = {
@@ -511,6 +514,7 @@ let g:ale_fixers = {
 \ 'javascript': ['prettier', 'eslint'],
 \ 'css': ['prettier'],
 \ 'scss': ['prettier'],
+\ 'typescript.tsx': ['prettier', 'eslint', 'tslint'],
 \}
 
 "---- coc.nvim options and things
