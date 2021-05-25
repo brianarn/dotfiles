@@ -76,6 +76,10 @@ let g:mapleader = ","
 " Wrap stuff in at-signs (useful in Textile)
 nmap <leader>@ ysiw@
 
+" ALE convenience mappings
+nnoremap <leader>af :ALEFix<CR>
+nnoremap <leader>at :ALEToggle<CR>
+
 " Change directory to the directory of the open buffer
 map <leader>cd :cd %:p:h<CR>
 
@@ -87,9 +91,6 @@ vmap <leader>co s<code>
 " Edit various files
 nnoremap <leader>ev :tabnew ~/.vimrc<CR>
 nnoremap <leader>ep :tabnew ~/.vim/plug.vim<CR>
-
-" Run fixup
-nnoremap <leader>f :ALEFix<CR>
 
 " Fugitive mappings
 nnoremap <leader>gb :Gblame<CR>
