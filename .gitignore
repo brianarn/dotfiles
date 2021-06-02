@@ -38,18 +38,19 @@ Thumbs.db
 stow/dot-config/coc
 stow/dot-config/code-server
 stow/dot-config/configstore
+stow/dot-config/direnv/allow
 stow/dot-config/gh
 stow/dot-config/htop
 stow/dot-config/iterm2
 stow/dot-config/jgit
 stow/dot-config/nvim/.netrwhist
 stow/dot-config/nvim/coc-settings.json
+stow/dot-vim/.netrwhist
 stow/dot-vim/autoload/plug.vim
 stow/dot-vim/autoload/plug.vim.old
+stow/dot-vim/config/nvim/.netrwhist
 stow/dot-vim/plugged
 stow/dot-vim/tmp
-stow/dot-vim/.netrwhist
-stow/dot-vim/config/nvim/.netrwhist
 
 # Various Vim files #
 #####################
