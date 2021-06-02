@@ -1,3 +1,6 @@
+# Mmm, giant zshrc
+echo "zsh: loading ~/.zshrc"
+
 #### Base16 Color setup
 # Old config, seems gone?
 #BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/base16-monokai.dark.sh"
@@ -24,7 +27,7 @@ SPACESHIP_EXIT_CODE_SHOW="true"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable bi-weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+#DISABLE_AUTO_UPDATE="true"
 
 # Uncomment to change how often before auto-updates occur? (in days)
 # export UPDATE_ZSH_DAYS=13
@@ -64,6 +67,7 @@ plugins=(
   gitfast
   node
   npm
+  nvm
   ripgrep
   vi-mode
   z
@@ -76,6 +80,11 @@ if [[ $(uname -s) == "Darwin" ]]; then
     osx
   )
 fi
+
+
+### Pre-OMZ configuration
+# The nvm plugin wants these options defined first
+NVM_AUTOLOAD=1
 
 ### Load any local configuration before OMZ is loaded
 if [[ -f ~/.zshrc.local.before ]]; then
@@ -108,7 +117,7 @@ bindkey '^[[B' down-line-or-search
 
 # Path customizations
 if [[ ! "$PATH" == *.dotfiles/bin* ]]; then
-  PATH="/usr/local/bin:/usr/local/sbin${PATH:+:$PATH}"
+  #PATH="/usr/local/bin:/usr/local/sbin${PATH:+:$PATH}" # Why was I doing this again?
   PATH="${PATH:+${PATH}:}$HOME/.dotfiles/bin"
   export PATH
 fi
@@ -137,10 +146,11 @@ fi
 #[ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh
 #[ -f /usr/local/opt/asdf/completions/asdf.bash ] && source /usr/local/opt/asdf/completions/asdf.bash
 
-# fzf support (worked better than using OMZ for some reason)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Really should put these elsewhere but this works for now
+listpath() {
+  echo $PATH | tr ':' '\n'
+}
 
-# Really should put this elsewhere but this works for now
 serve() {
     # Get port (if specified)
     local port="${1:-8000}"
@@ -159,14 +169,14 @@ serve() {
     # PHP has a service now, which seems to work a little better for my needs
     php -S localhost:$port
 }
-
-stashbase() {
-  git stash \
-    && mv .git/hooks/prepare-commit-msg .git/hooks/prepare-commit-msg.disable \
-    && git rebase -i origin/master \
-    && mv .git/hooks/prepare-commit-msg.disable .git/hooks/prepare-commit-msg \
-    && git stash pop
-}
+# Shouldn't need this anymore but keeping just in case
+#stashbase() {
+#  git stash \
+#    && mv .git/hooks/prepare-commit-msg .git/hooks/prepare-commit-msg.disable \
+#    && git rebase -i origin/master \
+#    && mv .git/hooks/prepare-commit-msg.disable .git/hooks/prepare-commit-msg \
+#    && git stash pop
+#}
 
 gifify() {
   if [[ -n "$1" ]]; then
@@ -181,6 +191,9 @@ gifify() {
     echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
   fi
 }
+
+# fzf support (worked better than using OMZ for some reason)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Load anything else local (intentionally last)
 if [[ -f ~/.zshrc.local ]]; then
