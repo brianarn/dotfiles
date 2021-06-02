@@ -32,8 +32,9 @@ log '=== dotfiles install ==='
 pushd "$ROOT_DIR"
 
 # Set up submodules
-log "--- Initializing git submodules..."
-git submodule update --init
+# Should now be unnecessary but keeping this to quickly restore, for now
+#log "--- Initializing git submodules..."
+#git submodule update --init
 
 # Do the stow thing
 log '--- Stowing files...'
@@ -100,4 +101,4 @@ done
 
 popd
 
-log "=== Done!"
+log "=== Install complete!"

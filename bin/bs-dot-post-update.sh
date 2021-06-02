@@ -17,13 +17,25 @@ function popd () {
 BIN_DIR=$( get_path $( dirname "${BASH_SOURCE[0]}" ) )
 ROOT_DIR=$( get_path "$BIN_DIR/.." )
 EXTERNAL_DIR="$ROOT_DIR/external"
+OMZ_DIR="$EXTERNAL_DIR/oh-my-zsh"
+OMZ_CUSTOM_THEMES_DIR="$OMZ_DIR/custom/themes"
 
-
-SPACESHIP_FILE="$EXTERNAL_DIR/spaceship-prompt/spaceship.zsh-theme"
-SPACESHIP_LINK="$EXTERNAL_DIR/oh-my-zsh/custom/themes/spaceship.zsh-theme"
+SPACESHIP_DIR="$EXTERNAL_DIR/spaceship-prompt"
+SPACESHIP_FILE="$SPACESHIP_DIR/spaceship.zsh-theme"
+SPACESHIP_LINK="$OMZ_CUSTOM_THEMES_DIR/spaceship.zsh-theme"
 if [ ! -L "$SPACESHIP_LINK" ]; then
-  printf "\nInstalling Spaceship theme symlink...\n"
+  printf "\nInstalling Spaceship theme symlink ...\n"
   ln -s "$SPACESHIP_FILE" "$SPACESHIP_LINK"
+fi
+
+CUSTOM_THEMES_DIR="$ROOT_DIR/misc/custom-omz-themes"
+BRIANARN_THEME="brianarn.zsh-theme"
+BRIANARN_FILE="$CUSTOM_THEMES_DIR/$BRIANARN_THEME"
+BRIANARN_LINK="$OMZ_CUSTOM_THEMES_DIR/$BRIANARN_THEME"
+printf "CUSTOM_THEMES_DIR=$CUSTOM_THEMES_DIR\n";
+if [ ! -L "$BRIANARN_LINK" ]; then
+  printf "\nInstalling brianarn theme symlink ...\n"
+  ln -s "$BRIANARN_FILE" "$BRIANARN_LINK"
 fi
 
 printf "\nInstalling fzf ...\n"

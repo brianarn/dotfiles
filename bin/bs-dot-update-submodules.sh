@@ -19,6 +19,9 @@ ROOT_DIR=$( get_path "$BIN_DIR/.." )
 
 pushd "$ROOT_DIR"
 
+printf "Synchronizing all submodules ...\n"
+git submodule sync --recursive
+
 printf "Updating all submodules to master branch...\n"
 git submodule foreach 'git checkout master && git pull origin master'
 
