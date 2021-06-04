@@ -32,7 +32,6 @@ CUSTOM_THEMES_DIR="$ROOT_DIR/misc/custom-omz-themes"
 BRIANARN_THEME="brianarn.zsh-theme"
 BRIANARN_FILE="$CUSTOM_THEMES_DIR/$BRIANARN_THEME"
 BRIANARN_LINK="$OMZ_CUSTOM_THEMES_DIR/$BRIANARN_THEME"
-printf "CUSTOM_THEMES_DIR=$CUSTOM_THEMES_DIR\n";
 if [ ! -L "$BRIANARN_LINK" ]; then
   printf "\nInstalling brianarn theme symlink ...\n"
   ln -s "$BRIANARN_FILE" "$BRIANARN_LINK"
