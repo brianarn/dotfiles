@@ -96,6 +96,9 @@ source $ZSH/oh-my-zsh.sh
 
 ### Customizations:
 
+# Keep fzf from searching _everything_
+export FZF_DEFAULT_COMMAND='rg --files'
+
 # I don't like an rprompt
 export RPS1=''
 
