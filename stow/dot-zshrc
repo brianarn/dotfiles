@@ -6,7 +6,9 @@ echo "zsh: loading ~/.zshrc"
 #BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/base16-monokai.dark.sh"
 #[[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/"
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        source "$BASE16_SHELL/profile_helper.sh"
 
 ### From oh-my-zsh:
 # Path to your oh-my-zsh configuration.
@@ -84,7 +86,8 @@ fi
 
 ### Pre-OMZ configuration
 # The nvm plugin wants these options defined first
-NVM_AUTOLOAD=1
+#NVM_AUTOLOAD=1
+zstyle ':omz:plugins:nvm' autoload yes
 
 ### Load any local configuration before OMZ is loaded
 if [[ -f ~/.zshrc.local.before ]]; then
