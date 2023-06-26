@@ -75,7 +75,7 @@ Plug 'mhinz/vim-startify'
 " Used to use: Syntastic, one of the best syntax checkers ever
 " Plug 'vim-syntastic/syntastic'
 " Trying out Ale for syntax checking, pretty great so far
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " Dispatch, mostly for experimenting with RSpec stuff for now
 Plug 'tpope/vim-dispatch'
