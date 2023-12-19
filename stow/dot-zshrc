@@ -85,8 +85,7 @@ fi
 
 ### Pre-OMZ configuration
 # The nvm plugin wants these options defined first
-#NVM_AUTOLOAD=1
-zstyle ':omz:plugins:nvm' autoload yes
+#zstyle ':omz:plugins:nvm' autoload yes
 
 ### Load any local configuration before OMZ is loaded
 if [[ -f ~/.zshrc.local.before ]]; then
