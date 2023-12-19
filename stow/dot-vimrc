@@ -92,6 +92,13 @@ vmap <leader>co s<code>
 nnoremap <leader>ev :tabnew ~/.vimrc<CR>
 nnoremap <leader>ep :tabnew ~/.vim/plug.vim<CR>
 
+" Telescope suggested set from their docs
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
+nnoremap <leader>fh <cmd>Telescope help_tags<CR>
+
 " Fugitive mappings
 nnoremap <leader>gb :Gblame<CR>
 nnoremap <leader>gd :Gdiff<CR>
