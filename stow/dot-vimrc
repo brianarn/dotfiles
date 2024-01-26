@@ -91,6 +91,8 @@ vmap <leader>co s<code>
 " Edit various files
 nnoremap <leader>ev :tabnew ~/.vimrc<CR>
 nnoremap <leader>ep :tabnew ~/.vim/plug.vim<CR>
+nnoremap <leader>elv :tabnew ~/.vimrc.local<CR>
+nnoremap <leader>elp :tabnew ~/.vimplug.local<CR>
 
 " Telescope suggested set from their docs
 " Find files using Telescope command-line sugar.

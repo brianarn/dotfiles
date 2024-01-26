@@ -31,12 +31,9 @@ cask "font-source-code-pro-for-powerline"
 cask "font-sauce-code-pro-nerd-font"
 
 cask "alfred"
-#cask "backblaze" TODO this is failing, commenting out for now
-cask "docker"
 cask "discord"
 cask "google-chrome"
 cask "iterm2"
 cask "moom"
 cask "slack"
-cask "steam"
 cask "visual-studio-code"

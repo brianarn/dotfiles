@@ -25,7 +25,7 @@ BIN_DIR=$( get_path $( dirname "${BASH_SOURCE[0]}" ) )
 ROOT_DIR=$( get_path "$BIN_DIR/.." )
 CUTSTRING="DO NOT EDIT BELOW THIS LINE"
 STOWFILES="bash fzf misc tmux vim zsh"
-COPYFILES="gitconfig vimrc.local"
+COPYFILES="gitconfig vimrc.local vimplug.local"
 
 log '=== dotfiles install ==='
 

@@ -1,0 +1,6 @@
+" Local plugins
+
+" For example, maybe only running Sourcegraph in certain environments
+"Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
+
+" vim: set filetype=vim :

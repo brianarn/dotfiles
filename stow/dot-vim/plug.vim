@@ -189,14 +189,8 @@ Plug 'tpope/vim-surround'
 " Tabular, because aligning text is nice
 Plug 'godlygeek/tabular'
 
-"---- Indeed
-
-" Seems to be a Cody pre-req
-Plug 'nvim-lua/plenary.nvim'
-" Cody to try and automate some stuff
-Plug 'sourcegraph/sg.nvim', { 'do': 'nvim -l build/init.lua' }
-" Also seems like Telescope is important
-Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+"---- Local
+source $HOME/.vimplug.local
 
 "--- End
 call plug#end()
