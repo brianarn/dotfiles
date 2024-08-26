@@ -62,10 +62,11 @@ plugins=(
   colored-man-pages
   command-not-found
   cp
-  docker
-  docker-compose
+  #docker
+  #docker-compose
   git
   gitfast
+  git-commit
   node
   npm
   nvm

@@ -37,6 +37,7 @@ Thumbs.db
 #####################################################
 stow/dot-config/coc
 stow/dot-config/code-server
+stow/dot-config/cody-ai
 stow/dot-config/configstore
 stow/dot-config/direnv/allow
 stow/dot-config/fontforge
