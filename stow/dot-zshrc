@@ -70,7 +70,6 @@ plugins=(
   node
   npm
   nvm
-  ripgrep
   vi-mode
   z
 )
