@@ -35,6 +35,7 @@ Thumbs.db
 
 # Stow-specific files that should _not_ be retained #
 #####################################################
+stow/dot-config/Autodesk
 stow/dot-config/coc
 stow/dot-config/code-server
 stow/dot-config/cody-ai
