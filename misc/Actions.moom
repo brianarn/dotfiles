@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Custom Controls (4001)</key>
+	<array>
+		<dict>
+			<key>Action</key>
+			<integer>-101</integer>
+			<key>Identifier</key>
+			<string>EA9D07DF-C770-4BC0-9CF2-77136D2EC187</string>
+			<key>Title</key>
+			<string>Positions</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>EA5116A9-4CEB-4910-AD5A-0F6541F2B47A</string>
+				<key>Key Code</key>
+				<integer>18</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>1</string>
+			</dict>
+			<key>Identifier</key>
+			<string>EA5116A9-4CEB-4910-AD5A-0F6541F2B47A</string>
+			<key>Relative Frame</key>
+			<string>{{0, 0.10000000000000001}, {0.83333333333333337, 0.90000000000000002}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>2E06A25C-5BD3-4915-87D9-60ACAF8AA877</string>
+				<key>Key Code</key>
+				<integer>19</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>2</string>
+			</dict>
+			<key>Identifier</key>
+			<string>2E06A25C-5BD3-4915-87D9-60ACAF8AA877</string>
+			<key>Relative Frame</key>
+			<string>{{0.16666666666666666, 0}, {0.83333333333333337, 0.79999999999999993}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>2C1D4AC8-CF9B-4288-9CA2-CF17230818A4</string>
+				<key>Key Code</key>
+				<integer>20</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>3</string>
+			</dict>
+			<key>Identifier</key>
+			<string>2C1D4AC8-CF9B-4288-9CA2-CF17230818A4</string>
+			<key>Relative Frame</key>
+			<string>{{0.16666666666666666, 0.20000000000000001}, {0.83333333333333337, 0.80000000000000004}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>77872C88-5D1C-48E8-8D4C-AAB61F347A1D</string>
+				<key>Key Code</key>
+				<integer>8</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>C</string>
+			</dict>
+			<key>Identifier</key>
+			<string>77872C88-5D1C-48E8-8D4C-AAB61F347A1D</string>
+			<key>Relative Frame</key>
+			<string>{{0.083333333333333329, 0.10000000000000001}, {0.83333333333333337, 0.79999999999999993}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>17301812-8595-4C37-8902-6CE793E785D4</string>
+				<key>Key Code</key>
+				<integer>32</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>U</string>
+			</dict>
+			<key>Identifier</key>
+			<string>17301812-8595-4C37-8902-6CE793E785D4</string>
+			<key>Relative Frame</key>
+			<string>{{0, 0.5}, {0.49999999999999994, 0.5}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>F24AEF7E-DC0D-4FB0-BC69-A53A8527ABFA</string>
+				<key>Key Code</key>
+				<integer>34</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>I</string>
+			</dict>
+			<key>Identifier</key>
+			<string>F24AEF7E-DC0D-4FB0-BC69-A53A8527ABFA</string>
+			<key>Relative Frame</key>
+			<string>{{0.49999999999999994, 0.5}, {0.5, 0.5}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>822DA65C-FB42-4208-8A21-573FAC615209</string>
+				<key>Key Code</key>
+				<integer>45</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>N</string>
+			</dict>
+			<key>Identifier</key>
+			<string>822DA65C-FB42-4208-8A21-573FAC615209</string>
+			<key>Relative Frame</key>
+			<string>{{0, 0}, {0.49999999999999994, 0.5}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>EC780528-15F8-47A0-901B-A3850BE3FDA0</string>
+				<key>Key Code</key>
+				<integer>46</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>M</string>
+			</dict>
+			<key>Identifier</key>
+			<string>EC780528-15F8-47A0-901B-A3850BE3FDA0</string>
+			<key>Relative Frame</key>
+			<string>{{0.49999999999999994, 0}, {0.5, 0.5}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>-101</integer>
+			<key>Identifier</key>
+			<string>C8639EF8-DF3B-44F1-A0DB-5F02B01F0858</string>
+			<key>Title</key>
+			<string>Movement</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>41</integer>
+			<key>Hot Key</key>
+			<dict>
+				<key>Identifier</key>
+				<string>A045F455-DB95-4004-872E-95FE751BA10B</string>
+				<key>Key Code</key>
+				<integer>41</integer>
+				<key>Modifier Flags</key>
+				<integer>256</integer>
+				<key>Visual Representation</key>
+				<string>;</string>
+			</dict>
+			<key>Identifier</key>
+			<string>A045F455-DB95-4004-872E-95FE751BA10B</string>
+			<key>Loop Through Displays</key>
+			<true/>
+			<key>Move Direction</key>
+			<integer>5</integer>
+			<key>Resize Proportionally</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>-101</integer>
+			<key>Identifier</key>
+			<string>160986DD-B964-4350-92F4-700FEE3B6F71</string>
+			<key>Title</key>
+			<string>D&amp;D</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Identifier</key>
+			<string>B4D111E8-971C-41FD-A3BD-CB8D7935E26F</string>
+			<key>Relative Frame</key>
+			<string>{{0, 0.20000000000000001}, {0.66666666666666663, 0.80000000000000004}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>19</integer>
+			<key>Identifier</key>
+			<string>79934BB1-34CA-4F93-9E45-BA572C1499FF</string>
+			<key>Relative Frame</key>
+			<string>{{0.66666666666666663, 0.20000000000000001}, {0.33333333333333337, 0.80000000000000004}}</string>
+		</dict>
+		<dict>
+			<key>Action</key>
+			<integer>1001</integer>
+			<key>Apply to Overlapping Windows</key>
+			<true/>
+			<key>Auto-Trigger</key>
+			<false/>
+			<key>Auto-Trigger Display Count</key>
+			<integer>1</integer>
+			<key>Generic</key>
+			<false/>
+			<key>Identifier</key>
+			<string>5B846625-E168-4884-A0B3-A7CE17AAA8AF</string>
+			<key>Snapshot</key>
+			<array>
+				<dict>
+					<key>Application Name</key>
+					<string>Google Chrome</string>
+					<key>Available Screen Frame</key>
+					<string>{{0, 0}, {1728, 1079}}</string>
+					<key>Bundle Identifier</key>
+					<string>com.google.chrome</string>
+					<key>Screen Frame</key>
+					<string>{{0, 0}, {1728, 1117}}</string>
+					<key>Window Frame</key>
+					<string>{{0, 108}, {1440, 971}}</string>
+					<key>Window Subrole</key>
+					<string>AXStandardWindow</string>
+					<key>Window Title</key>
+					<string>What's New - Google Chrome - Brian</string>
+				</dict>
+			</array>
+			<key>Snapshot Screens</key>
+			<array>
+				<string>{{0, 0}, {1728, 1117}}</string>
+			</array>
+			<key>Stubborn</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>
