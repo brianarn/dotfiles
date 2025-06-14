@@ -197,7 +197,18 @@ gifify() {
 }
 
 # fzf support (worked better than using OMZ for some reason)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+else
+  echo "No fzf.zsh file found. Run 'fzf --install' to generate it."
+fi
+
+# pnpm autocompletion
+if [[ -f ~/.pnpm-completion.zsh ]]; then
+  source ~/.pnpm-completion.zsh
+else
+  echo "No pnpm autocompletion file found. Run 'pnpm completion zsh > ~/.pnpm-completion.zsh' to generate it."
+fi
 
 # Load anything else local (intentionally last)
 if [[ -f ~/.zshrc.local ]]; then

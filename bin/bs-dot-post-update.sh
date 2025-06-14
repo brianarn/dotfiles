@@ -40,4 +40,7 @@ fi
 printf "\nInstalling fzf ...\n"
 external/fzf/install --all
 
+printf "\nGenerating pnpm autocompletion ...\n"
+pnpm completion zsh > "$HOME/.pnpm-completion.zsh"
+
 printf "Post-update tasks complete\n"
