@@ -97,7 +97,9 @@ Plug 'will133/vim-dirdiff'
 " Trying out CoC since I'm gonna be doing typescript more
 " Initially found at:
 " https://medium.com/swlh/ultimate-vim-typescript-setup-35b5ac5c8c4e
-Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
+if has('nvim')
+  Plug 'neoclide/coc.nvim' , { 'branch' : 'release' }
+endif
 
 "---- Language Syntaxes / Utilities
 
