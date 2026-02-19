@@ -55,7 +55,14 @@ run_post_update() {
     if [[ "$DRY_RUN" -eq 1 ]]; then
       info "[dry-run] Would generate pnpm completion to ~/.pnpm-completion.zsh"
     else
-      pnpm completion zsh > "$HOME/.pnpm-completion.zsh"
+      local tmp
+      tmp="$(mktemp "$HOME/.pnpm-completion.zsh.tmp.XXXXXX")"
+      if pnpm completion zsh > "$tmp"; then
+        mv "$tmp" "$HOME/.pnpm-completion.zsh"
+      else
+        rm -f "$tmp"
+        warn "pnpm completion generation failed"
+      fi
     fi
   else
     info "pnpm not found, skipping completion generation"
