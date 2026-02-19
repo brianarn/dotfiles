@@ -10,6 +10,31 @@ FORCE="${FORCE:-0}"
 QUIET="${QUIET:-0}"
 
 DOTFILES_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+
+# Files that were managed by the old stow-based system.
+# Used by migrate.sh and doctor.sh to identify stale symlinks.
+STOW_DOTFILES=(
+  .ackrc
+  .asdfrc
+  .bash_profile
+  .bashrc
+  .config
+  .default-gems
+  .gitignore_global
+  .gvimrc
+  .screenrc
+  .slate
+  .spacemacs
+  .tarexcludes
+  .tmux-linux.conf
+  .tmux-osx.conf
+  .tmux.conf
+  .todo.cfg
+  .vim
+  .vimrc
+  .vimrc_background
+  .zshrc
+)
 DOTFILES_HOME="$DOTFILES_ROOT/home"
 DOTFILES_COPY="$DOTFILES_ROOT/copy"
 

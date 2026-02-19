@@ -14,31 +14,6 @@
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 source "$SCRIPT_DIR/lib.sh"
 
-# Files that were managed by stow (including ones we're no longer tracking).
-# Used to identify stow symlinks to remove.
-STOW_DOTFILES=(
-  .ackrc
-  .asdfrc
-  .bash_profile
-  .bashrc
-  .config
-  .default-gems
-  .gitignore_global
-  .gvimrc
-  .screenrc
-  .slate
-  .spacemacs
-  .tarexcludes
-  .tmux-linux.conf
-  .tmux-osx.conf
-  .tmux.conf
-  .todo.cfg
-  .vim
-  .vimrc
-  .vimrc_background
-  .zshrc
-)
-
 is_stow_symlink() {
   local target="$1"
   if [[ ! -L "$target" ]]; then

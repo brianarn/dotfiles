@@ -153,14 +153,8 @@ check_stale_stow_links() {
   header "Stale stow symlinks"
 
   local stale=0
-  local stow_targets=(
-    .ackrc .asdfrc .bash_profile .bashrc .config .default-gems
-    .gitignore_global .gvimrc .screenrc .slate .spacemacs .tarexcludes
-    .tmux-linux.conf .tmux-osx.conf .tmux.conf .todo.cfg .vim .vimrc
-    .vimrc_background .zshrc
-  )
 
-  for dotfile in "${stow_targets[@]}"; do
+  for dotfile in "${STOW_DOTFILES[@]}"; do
     local target="$HOME/$dotfile"
     if [[ -L "$target" ]]; then
       local link_dest
