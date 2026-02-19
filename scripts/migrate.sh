@@ -2,10 +2,9 @@
 # Migrate from stow-based dotfiles to the new symlink-based system.
 #
 # This script:
-#   1. Finds symlinks in $HOME that point to the old stow/ directory
-#   2. If ~/.config is a symlink to stow/dot-config, moves untracked
-#      contents into a real ~/.config directory first
-#   3. Removes all old stow-based symlinks
+#   1. Migrates directory symlinks (~/.config, ~/.vim) by preserving
+#      untracked contents into real directories
+#   2. Removes all old stow-based symlinks
 #
 # Usage: ./scripts/migrate.sh [--dry-run] [--force]
 #
@@ -28,74 +27,75 @@ is_stow_symlink() {
   return 1
 }
 
-migrate_config_dir() {
-  local config_link="$HOME/.config"
+migrate_stow_dir() {
+  local dotfile="$1"        # e.g. ".config" or ".vim"
+  local stow_name="$2"      # e.g. "dot-config" or "dot-vim"
+  local target="$HOME/$dotfile"
 
-  if [[ ! -L "$config_link" ]]; then
-    info "~/.config is not a symlink, nothing to migrate"
+  if [[ ! -L "$target" ]]; then
+    info "~/$dotfile is not a symlink, nothing to migrate"
     return 0
   fi
 
   local link_dest
-  link_dest="$(readlink "$config_link")"
-  if [[ "$link_dest" != *"/stow/dot-config"* && "$link_dest" != *".dotfiles/stow/dot-config"* ]]; then
-    info "~/.config doesn't point to stow, skipping config migration"
+  link_dest="$(readlink "$target")"
+  if [[ "$link_dest" != *"/stow/$stow_name"* && "$link_dest" != *".dotfiles/stow/$stow_name"* ]]; then
+    info "~/$dotfile doesn't point to stow, skipping"
     return 0
   fi
 
-  header "Migrating ~/.config"
+  header "Migrating ~/$dotfile"
 
   # Resolve the actual directory the symlink points to
-  local real_config
+  local real_dir
   if [[ "$link_dest" == /* ]]; then
-    real_config="$link_dest"
+    real_dir="$link_dest"
   else
-    real_config="$HOME/$link_dest"
+    real_dir="$HOME/$link_dest"
   fi
 
-  if [[ ! -d "$real_config" ]]; then
-    warn "Stow config directory not found at $real_config, just removing symlink"
-    run rm "$config_link"
-    run mkdir -p "$config_link"
+  if [[ ! -d "$real_dir" ]]; then
+    warn "Stow directory not found at $real_dir, just removing symlink"
+    run rm "$target"
+    run mkdir -p "$target"
     return 0
   fi
 
-  # Collect untracked items (things that aren't in our managed home/.config)
-  local managed_config="$DOTFILES_HOME/.config"
+  # Collect untracked items (things that aren't in our managed home/ tree)
+  local managed_dir="$DOTFILES_HOME/$dotfile"
   local untracked=()
 
   while IFS= read -r item; do
     local name
     name="$(basename "$item")"
-    # Check if this item is managed by our new dotfiles
-    if [[ ! -e "$managed_config/$name" ]]; then
+    if [[ ! -e "$managed_dir/$name" ]]; then
       untracked+=("$item")
     fi
-  done < <(find "$real_config" -mindepth 1 -maxdepth 1 2>/dev/null)
+  done < <(find "$real_dir" -mindepth 1 -maxdepth 1 2>/dev/null)
 
-  log "Found ${#untracked[@]} untracked item(s) in ~/.config to preserve"
+  log "Found ${#untracked[@]} untracked item(s) in ~/$dotfile to preserve"
 
   # Remove the symlink
-  info "Removing ~/.config symlink (pointed to $link_dest)"
-  run rm "$config_link"
+  info "Removing ~/$dotfile symlink (pointed to $link_dest)"
+  run rm "$target"
 
-  # Create real ~/.config directory
-  run mkdir -p "$HOME/.config"
+  # Create real directory
+  run mkdir -p "$target"
 
-  # Move untracked items into the real ~/.config
+  # Copy untracked items into the real directory
   for item in "${untracked[@]}"; do
     local name
     name="$(basename "$item")"
-    local dest="$HOME/.config/$name"
+    local dest="$target/$name"
     if [[ -e "$dest" ]]; then
-      warn "Cannot move $name to ~/.config/ — already exists"
+      warn "Cannot move $name to ~/$dotfile/ — already exists"
       continue
     fi
-    info "Preserving untracked config: $name"
+    info "Preserving untracked: ~/$dotfile/$name"
     run cp -R "$item" "$dest"
   done
 
-  log "~/.config migration complete"
+  log "~/$dotfile migration complete"
 }
 
 remove_stow_symlinks() {
@@ -107,8 +107,8 @@ remove_stow_symlinks() {
   for dotfile in "${STOW_DOTFILES[@]}"; do
     local target="$HOME/$dotfile"
 
-    # Skip .config — handled separately by migrate_config_dir
-    if [[ "$dotfile" == ".config" ]]; then
+    # Skip dirs handled separately by migrate_stow_dir
+    if [[ "$dotfile" == ".config" || "$dotfile" == ".vim" ]]; then
       continue
     fi
 
@@ -119,10 +119,10 @@ remove_stow_symlinks() {
     if is_stow_symlink "$target"; then
       info "Removing stow symlink: $target → $(readlink "$target")"
       run rm "$target"
-      ((removed++))
+      ((removed++)) || true
     else
       info "Skipping $target (not a stow symlink)"
-      ((skipped++))
+      ((skipped++)) || true
     fi
   done
 
@@ -138,8 +138,9 @@ main() {
     log "Running in dry-run mode — no changes will be made"
   fi
 
-  # Step 1: Handle ~/.config specially (preserve untracked files)
-  migrate_config_dir
+  # Step 1: Handle directory symlinks (preserve untracked files)
+  migrate_stow_dir ".config" "dot-config"
+  migrate_stow_dir ".vim" "dot-vim"
 
   # Step 2: Remove all other stow symlinks
   remove_stow_symlinks
