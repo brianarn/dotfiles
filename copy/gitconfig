@@ -29,5 +29,3 @@
 [rebase]
 	autosquash = true
 
-[init]
-	templatedir = ~/.dotfiles/misc/git_template
