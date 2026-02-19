@@ -26,13 +26,13 @@ EOF
 
 init_submodules() {
   header "Initializing submodules"
-  run git -C "$DOTFILES_ROOT" submodule update --init --recursive
+  run git -C "$DOTFILES_ROOT" submodule update --init
   log "Submodules initialized"
 }
 
 update_submodules() {
   header "Updating submodules"
-  run git -C "$DOTFILES_ROOT" submodule update --remote --merge --recursive
+  run git -C "$DOTFILES_ROOT" submodule update --remote --merge
   log "Submodules updated"
 }
 
