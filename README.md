@@ -5,34 +5,48 @@ mess, even.
 
 Apparently I started saving these in here in 2010 and now I feel really old.
 
-## Requirements
-
-- Stow 2.3+ (for `--dotfiles` flag)
-
 ## Installation
 
-    git clone git@github.com:brianarn/dotfiles.git $HOME/.dotfiles
-    make
+    git clone https://github.com/brianarn/dotfiles.git $HOME/.dotfiles
+    cd $HOME/.dotfiles
+    ./install.sh
 
-### Mac-specific
+### Migrating from stow-based setup
 
-There's a `Brewfile` in the `misc` directory.
+If you previously used the stow-based dotfiles on this machine:
 
-    brew bundle --file $HOME/.dotfiles/misc/Brewfile
+    ./scripts/migrate.sh        # Remove old stow symlinks (preserves ~/.config contents)
+    ./install.sh                # Set up new symlinks
 
-## Updating submodules
+Use `--dry-run` to preview what either script will do before making changes.
 
-It's a good idea to update those once in awhile.
+## Usage
 
-    make update
+### Install
 
-## Credits
+    ./install.sh [--dry-run] [--force] [--quiet]
 
-Thanks to the awesome MIT license usage, I took Joe Ferris' install.sh
-from his project at http://github.com/jferris/config_files and modified it
-to allow me a simple list of files to skip. It's far from perfect, but
-it's also functional, and works sufficiently well enough.
+Sets up symlinks from `home/` into `$HOME`, merges managed config files,
+initializes submodules, and runs post-update tasks.
 
-In particular, I like that it allows for local options with a section where
-one can supply a cutline, and all content after that will be overwritten by
-the installer.
+### Update
+
+    ./install.sh update [--dry-run] [--force] [--quiet]
+
+Updates git submodules and re-runs post-update tasks (fzf, shell completions,
+oh-my-zsh themes).
+
+### Doctor
+
+    ./scripts/doctor.sh
+
+Analyzes the current installation and reports issues: missing symlinks,
+stale stow links, uninitialized submodules, missing tools, etc.
+
+## Structure
+
+- `home/` — Dotfiles symlinked into `$HOME` (mirrors the target directory structure)
+- `copy/` — Files copied (not symlinked) to allow machine-local customization
+- `external/` — Git submodules (oh-my-zsh, fzf, base16-shell, spaceship-prompt)
+- `misc/` — Extras (custom themes, git template)
+- `scripts/` — Install helpers, migration, and doctor
