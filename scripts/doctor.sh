@@ -16,12 +16,12 @@ ok() {
 
 problem() {
   printf '  %s✗ %s%s\n' "$_RED" "$*" "$_RESET" >&2
-  ((ISSUES++))
+  ((ISSUES++)) || true
 }
 
 notice() {
   printf '  %s⚠ %s%s\n' "$_YELLOW" "$*" "$_RESET" >&2
-  ((WARNINGS++))
+  ((WARNINGS++)) || true
 }
 
 # --- Checks ---
@@ -43,27 +43,27 @@ check_symlinks() {
       continue
     fi
 
-    ((total++))
+    ((total++)) || true
 
     if [[ ! -e "$target" && ! -L "$target" ]]; then
       problem "Missing: ~/$rel"
-      ((missing++))
+      ((missing++)) || true
       continue
     fi
 
     if [[ ! -L "$target" ]]; then
       problem "Not a symlink: ~/$rel"
-      ((wrong++))
+      ((wrong++)) || true
       continue
     fi
 
     local link_dest
     link_dest="$(readlink "$target")"
     if [[ "$link_dest" == "$src" ]]; then
-      ((correct++))
+      ((correct++)) || true
     else
       problem "Wrong target: ~/$rel → $link_dest (expected $src)"
-      ((wrong++))
+      ((wrong++)) || true
     fi
   done < <(cd "$DOTFILES_HOME" && find . -mindepth 1 | sed 's|^\./||' | sort)
 
@@ -167,7 +167,7 @@ check_stale_stow_links() {
       link_dest="$(readlink "$target")"
       if [[ "$link_dest" == *"/stow/dot-"* || "$link_dest" == *".dotfiles/stow/"* ]]; then
         problem "Stale stow symlink: ~/$dotfile → $link_dest (run scripts/migrate.sh)"
-        ((stale++))
+        ((stale++)) || true
       fi
     fi
   done
