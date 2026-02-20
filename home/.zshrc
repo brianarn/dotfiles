@@ -267,9 +267,6 @@ else
   echo "No pnpm autocompletion file found. Run 'pnpm completion zsh > ~/.pnpm-completion.zsh' to generate it."
 fi
 
-# Amp
-export PATH="$HOME/.local/bin:$PATH"
-
 # Load anything else local (intentionally last)
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
