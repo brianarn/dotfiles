@@ -1,7 +1,5 @@
 # .bash_profile
 
-# DO NOT MODIFY: The guard string below must remain exactly as-is. Employer system
-# tooling greps for it and overwrites the file if it's missing.
 # Block's system management tooling greps this file for "config_files/square/bash_profile"
 # and overwrites it if the string is missing. This comment satisfies that check.
 # Actual work-environment setup is loaded via .bash_profile.local.
