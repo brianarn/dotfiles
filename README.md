@@ -47,6 +47,6 @@ stale stow links, uninitialized submodules, missing tools, etc.
 
 - `home/` — Dotfiles symlinked into `$HOME` (mirrors the target directory structure)
 - `copy/` — Files copied (not symlinked) to allow machine-local customization
-- `external/` — Git submodules (oh-my-zsh, fzf, base16-shell, spaceship-prompt)
+- `external/` — Git submodules (oh-my-zsh, fzf, tinted-shell, spaceship-prompt)
 - `misc/` — Extras (custom themes, Moom config)
 - `scripts/` — Install helpers, migration, and doctor

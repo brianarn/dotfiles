@@ -1,10 +1,9 @@
 # Mmm, giant zshrc
 echo "zsh: loading ~/.zshrc"
 
-#### Base16 Color setup
-# Note: This location for BASE16_SHELL is different from the default,
-#       and assumes my typical dotfiles config.
-BASE16_SHELL="$HOME/.dotfiles/external/base16-shell/"
+#### Tinted Shell (base16/base24 color setup)
+# https://github.com/tinted-theming/tinted-shell
+BASE16_SHELL="$HOME/.dotfiles/external/tinted-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         source "$BASE16_SHELL/profile_helper.sh"

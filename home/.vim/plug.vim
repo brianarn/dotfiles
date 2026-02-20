@@ -42,7 +42,7 @@ Plug 'tmhedberg/matchit'
 "Plug 'jremmen/vim-ripgrep'
 
 " Base16 for tons of color options
-Plug 'chriskempson/base16-vim'
+Plug 'tinted-theming/base16-vim'
 
 " Airline, a phenomenal status/tabline
 Plug 'vim-airline/vim-airline'
