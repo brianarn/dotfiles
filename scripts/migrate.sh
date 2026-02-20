@@ -129,6 +129,54 @@ remove_stow_symlinks() {
   log "Removed $removed stow symlink(s), skipped $skipped"
 }
 
+cleanup_base16() {
+  header "Cleaning up old base16-shell"
+
+  # Remove the old submodule worktree
+  local submodule_path="$DOTFILES_ROOT/external/base16-shell"
+  if [[ -d "$submodule_path" ]]; then
+    info "Removing $submodule_path"
+    run rm -rf "$submodule_path"
+  else
+    info "external/base16-shell already removed"
+  fi
+
+  # Remove the cached git module
+  local git_module_path="$DOTFILES_ROOT/.git/modules/external/base16-shell"
+  if [[ -d "$git_module_path" ]]; then
+    info "Removing $git_module_path"
+    run rm -rf "$git_module_path"
+  else
+    info ".git/modules/external/base16-shell already removed"
+  fi
+
+  # Remove the .gitmodules entry if it still exists
+  local gitmodules="$DOTFILES_ROOT/.gitmodules"
+  if [[ -f "$gitmodules" ]] && grep -q 'submodule "external/base16-shell"' "$gitmodules" 2>/dev/null; then
+    info "Removing base16-shell entry from .gitmodules"
+    run git config --file "$gitmodules" --remove-section 'submodule.external/base16-shell'
+  else
+    info ".gitmodules entry for base16-shell already removed"
+  fi
+
+  # Remove ~/.base16_theme if it points to the old base16-shell
+  local theme_link="$HOME/.base16_theme"
+  if [[ -L "$theme_link" ]]; then
+    local link_dest
+    link_dest="$(readlink "$theme_link")"
+    if [[ "$link_dest" == *"base16-shell"* ]]; then
+      info "Removing ~/.base16_theme (pointed to $link_dest)"
+      run rm "$theme_link"
+    else
+      info "~/.base16_theme does not point to base16-shell, skipping"
+    fi
+  else
+    info "~/.base16_theme not found or not a symlink"
+  fi
+
+  log "base16-shell cleanup complete"
+}
+
 main() {
   parse_global_flags "$@"
 
@@ -144,6 +192,9 @@ main() {
 
   # Step 2: Remove all other stow symlinks
   remove_stow_symlinks
+
+  # Step 3: Remove old base16-shell (replaced by tinted-shell)
+  cleanup_base16
 
   header "Migration complete!"
   log ""

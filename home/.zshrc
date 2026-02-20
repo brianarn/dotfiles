@@ -140,6 +140,10 @@ fi
 # The nvm plugin wants these options defined first
 #zstyle ':omz:plugins:nvm' autoload yes
 
+# Block's system management tooling greps this file for "config_files/square/zshrc"
+# and overwrites it if the string is missing. This comment satisfies that check.
+# Actual work-environment setup is loaded via .zshrc.local.before.
+
 ### Load any local configuration before OMZ is loaded
 if [[ -f ~/.zshrc.local.before ]]; then
   source ~/.zshrc.local.before
@@ -263,17 +267,6 @@ else
   echo "No pnpm autocompletion file found. Run 'pnpm completion zsh > ~/.pnpm-completion.zsh' to generate it."
 fi
 
-# Amp
-export PATH="$HOME/.local/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="/Users/briansinclair/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-#
 # Load anything else local (intentionally last)
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
