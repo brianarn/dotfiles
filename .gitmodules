@@ -1,12 +1,12 @@
 [submodule "external/oh-my-zsh"]
 	path = external/oh-my-zsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
-[submodule "external/base16-shell"]
-	path = external/base16-shell
-	url = https://github.com/chriskempson/base16-shell.git
 [submodule "external/fzf"]
 	path = external/fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "external/spaceship-prompt"]
 	path = external/spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt.git
+[submodule "external/tinted-shell"]
+	path = external/tinted-shell
+	url = https://github.com/tinted-theming/tinted-shell.git

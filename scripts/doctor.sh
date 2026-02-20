@@ -149,6 +149,31 @@ check_tools() {
   done
 }
 
+check_dead_links() {
+  header "Dead symlinks"
+
+  local dead=0
+
+  while IFS= read -r target; do
+    local link_dest
+    link_dest="$(readlink "$target")"
+    if [[ "$link_dest" == "$DOTFILES_HOME/"* && ! -e "$target" ]]; then
+      local rel="${target#"$HOME/"}"
+      problem "Dead symlink: ~/$rel → $link_dest (run ./install.sh)"
+      ((dead++)) || true
+    fi
+  done < <(
+    find "$HOME" -maxdepth 1 -type l 2>/dev/null
+    while IFS= read -r rel; do
+      [[ -d "$HOME/$rel" ]] && find "$HOME/$rel" -type l 2>/dev/null
+    done < <(cd "$DOTFILES_HOME" && find . -mindepth 1 -type d 2>/dev/null | sed 's|^\./||' | sort)
+  )
+
+  if [[ "$dead" -eq 0 ]]; then
+    ok "No dead symlinks found"
+  fi
+}
+
 check_stale_stow_links() {
   header "Stale stow symlinks"
 
@@ -199,6 +224,7 @@ main() {
   check_copy_files
   check_submodules
   check_tools
+  check_dead_links
   check_stale_stow_links
   check_vim_dirs
 
