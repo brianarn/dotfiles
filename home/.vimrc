@@ -285,9 +285,6 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
-"---- JSX options
-let g:jsx_ext_required = 0 " Highlight JSX in files that are suffix'd .js
-
 "---- Perl customizations
 let perl_include_pod=1             " Recognize POD, color differently
 let perl_want_scope_in_variables=1 " Gives package names another color
