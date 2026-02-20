@@ -30,8 +30,8 @@ Plug 'airblade/vim-gitgutter'
 
 "---- Miscellaneous Utilities
 
-" Base16 for tons of color options
-Plug 'tinted-theming/base16-vim'
+" Tinted colorschemes (base16 + base24)
+Plug 'tinted-theming/tinted-vim'
 
 " Airline, a phenomenal status/tabline
 Plug 'vim-airline/vim-airline'

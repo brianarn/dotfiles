@@ -131,11 +131,13 @@ if !has('nvim')
   set t_Co=256
 endif
 
-" Base16 color scheme
+" Tinted colorschemes (base16 + base24)
 let base16colorspace=256
-if exists('$BASE16_THEME')
+if exists('$BASE24_THEME')
+    \ && (!exists('g:colors_name') || g:colors_name != 'base24-$BASE24_THEME')
+  colorscheme base24-$BASE24_THEME
+elseif exists('$BASE16_THEME')
     \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
-  let base16colorspace=256
   colorscheme base16-$BASE16_THEME
 else
   colorscheme base16-unikitty-dark

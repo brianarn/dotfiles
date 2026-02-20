@@ -1,4 +1,8 @@
-if exists('$BASE16_THEME')
+if exists('$BASE24_THEME')
+      \ && (!exists('g:colors_name') || g:colors_name != 'base24-$BASE24_THEME')
+    let base16colorspace=256
+    colorscheme base24-$BASE24_THEME
+elseif exists('$BASE16_THEME')
       \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
     let base16colorspace=256
     colorscheme base16-$BASE16_THEME
