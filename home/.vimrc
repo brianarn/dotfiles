@@ -132,13 +132,20 @@ if !has('nvim')
 endif
 
 " Tinted colorschemes (base16 + base24)
+" Read theme name and system (base16/base24) from files for tmux compatibility
 let base16colorspace=256
-if exists('$BASE24_THEME')
-    \ && (!exists('g:colors_name') || g:colors_name != 'base24-$BASE24_THEME')
-  colorscheme base24-$BASE24_THEME
-elseif exists('$BASE16_THEME')
-    \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
-  colorscheme base16-$BASE16_THEME
+let s:tinted_config = expand("$HOME/.config/tinted-theming")
+let s:tinted_theme_path = s:tinted_config . "/theme_name"
+let s:tinted_system_path = s:tinted_config . "/theme_system"
+if filereadable(s:tinted_theme_path)
+  let s:tinted_theme = trim(readfile(s:tinted_theme_path)[0])
+  let s:tinted_system = filereadable(s:tinted_system_path)
+        \ ? trim(readfile(s:tinted_system_path)[0]) : 'base16'
+  try
+    execute 'colorscheme ' . s:tinted_system . '-' . s:tinted_theme
+  catch
+    colorscheme base16-unikitty-dark
+  endtry
 else
   colorscheme base16-unikitty-dark
 endif
