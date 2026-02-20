@@ -67,6 +67,7 @@ cmd_install() {
   header "Dotfiles install"
   init_submodules
   install_links
+  prune_dead_links
   install_copies
   create_vim_dirs
   run_post_update

@@ -155,6 +155,35 @@ link_tree() {
   done < <(cd "$source_dir" && find . -mindepth 1 | sed 's|^\./||' | sort)
 }
 
+prune_dead_links() {
+  header "Pruning dead symlinks"
+  local pruned=0
+
+  while IFS= read -r target; do
+    local link_dest
+    link_dest="$(readlink "$target")"
+    if [[ "$link_dest" == "$DOTFILES_HOME/"* && ! -e "$target" ]]; then
+      local rel="${target#"$HOME/"}"
+      info "Removing dead symlink: ~/$rel → $link_dest"
+      run rm "$target"
+      ((pruned++)) || true
+    fi
+  done < <(
+    # Top-level symlinks in $HOME
+    find "$HOME" -maxdepth 1 -type l 2>/dev/null
+    # Symlinks inside subdirectories managed by home/
+    while IFS= read -r rel; do
+      [[ -d "$HOME/$rel" ]] && find "$HOME/$rel" -type l 2>/dev/null
+    done < <(cd "$DOTFILES_HOME" && find . -mindepth 1 -type d 2>/dev/null | sed 's|^\./||' | sort)
+  )
+
+  if [[ "$pruned" -eq 0 ]]; then
+    log "No dead symlinks found"
+  else
+    log "Pruned $pruned dead symlink(s)"
+  fi
+}
+
 # --- Copy/merge operations ---
 copy_if_missing() {
   local src="$1" target="$2"
