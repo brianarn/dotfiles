@@ -150,6 +150,15 @@ cleanup_base16() {
     info ".git/modules/external/base16-shell already removed"
   fi
 
+  # Remove the .gitmodules entry if it still exists
+  local gitmodules="$DOTFILES_ROOT/.gitmodules"
+  if [[ -f "$gitmodules" ]] && grep -q 'submodule "external/base16-shell"' "$gitmodules" 2>/dev/null; then
+    info "Removing base16-shell entry from .gitmodules"
+    run git config --file "$gitmodules" --remove-section 'submodule.external/base16-shell'
+  else
+    info ".gitmodules entry for base16-shell already removed"
+  fi
+
   # Remove ~/.base16_theme if it points to the old base16-shell
   local theme_link="$HOME/.base16_theme"
   if [[ -L "$theme_link" ]]; then
