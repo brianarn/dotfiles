@@ -95,6 +95,11 @@ If it needs post-install wiring (like theme symlinks), add the logic to
 
 ## Guidelines for Making Changes
 
+- **No sensitive or employer-specific content** — this is a public repo. Never commit
+  internal tool names, internal URLs, registry paths, proprietary configuration, or
+  anything that identifies internal systems beyond what is already public knowledge.
+  Work-specific configuration belongs in `dotfiles-private` (a separate private repo)
+  or in `.local` files that are not tracked here.
 - **Don't hardcode absolute paths** in dotfiles — use `$HOME` or `$DOTFILES_ROOT`
   (set in `scripts/lib.sh`)
 - **Preserve the home/ directory structure** — it must mirror `$HOME` exactly
@@ -104,3 +109,8 @@ If it needs post-install wiring (like theme symlinks), add the logic to
 - **Run `./scripts/doctor.sh`** after changes to verify everything is healthy
 - **Don't commit machine-specific content** — use the `.local` file pattern
   (`.zshrc.local`, `.vimrc.local`) for per-machine overrides
+- **Do not modify guard comments** — `.zshrc`, `.bashrc`, and `.bash_profile` each
+  contain a comment with a literal string (e.g., `"config_files/square/zshrc"`) that
+  employer system tooling greps for. If the string is missing, the tooling overwrites
+  the file. These comments must remain exactly as-is — this is a deliberate exception
+  to the "no employer-specific content" guideline
