@@ -7,6 +7,9 @@
 # Source /etc/bashrc if it exists
 [ -f /etc/bashrc ] && . /etc/bashrc
 
+# Colors (tinted-shell base16/base24)
+[[ -f ~/.shell/colors.sh ]] && source ~/.shell/colors.sh
+
 # Source shared shell environment and aliases
 for file in ~/.shell/{env,aliases,functions}.sh; do
   [[ -f "$file" ]] && source "$file"

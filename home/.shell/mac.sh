@@ -6,32 +6,11 @@ if [ "$(uname)" != "Darwin" ]; then
     return 0
 fi
 
-# Homebrew configuration (Apple Silicon)
-export HOMEBREW_PREFIX="/opt/homebrew"
-
-# Use GNU tools with their default names (installed via homebrew coreutils)
-# This is optional - remove if you prefer BSD tools
-if [ -d "$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin" ]; then
-    PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
-fi
-
-# Use GNU sed if available
-if [ -d "$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin" ]; then
-    PATH="$HOMEBREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
-fi
-
-export PATH
-
-# macOS-specific aliases (with color)
+# macOS-specific aliases
 alias ls="ls -G"
 alias ll="ls -lh"
 alias l="ls -lh"
 alias la="ls -lah"
-
-# Open files with default application
-alias open="open"
-
-# Get macOS version
 alias osver="sw_vers"
 
 # Show/hide hidden files in Finder
@@ -44,8 +23,10 @@ if [ -d "/opt/local" ]; then
     export PATH
 fi
 
-# OpenSSL (if it exists, set compiler flags)
-if [ -d "$HOMEBREW_PREFIX/opt/openssl/include" ] && [ -d "$HOMEBREW_PREFIX/opt/openssl/lib" ]; then
+# OpenSSL (if it exists, set compiler flags for building native extensions)
+if [ -n "$HOMEBREW_PREFIX" ] && \
+   [ -d "$HOMEBREW_PREFIX/opt/openssl/include" ] && \
+   [ -d "$HOMEBREW_PREFIX/opt/openssl/lib" ]; then
     export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
     export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl/include"
     PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"

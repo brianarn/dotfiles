@@ -18,8 +18,5 @@ fi
 export LESS="-R"
 export MANPAGER="less -X"
 
-# grep
-export GREP_OPTIONS="--color=auto"
-
 # Umask
 umask 022

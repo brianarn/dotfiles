@@ -11,6 +11,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
+alias grep='grep --color=auto'
 
 # Git shortcuts
 alias gs='git status'
