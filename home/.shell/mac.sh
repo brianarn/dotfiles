@@ -38,30 +38,17 @@ alias osver="sw_vers"
 alias show-hidden="defaults write com.apple.finder AppleShowAllFiles YES && killall Finder"
 alias hide-hidden="defaults write com.apple.finder AppleShowAllFiles NO && killall Finder"
 
-# Copy to clipboard
-alias pbcopy="pbcopy"
-alias pbpaste="pbpaste"
-
 # Macports (if installed)
 if [ -d "/opt/local" ]; then
     PATH="/opt/local/bin:/opt/local/sbin:$PATH"
     export PATH
 fi
 
-# Ruby, OpenSSL, coreutils on macOS (brew-installed)
-# Avoid calling brew --prefix (slow at startup), use direct paths if HOMEBREW_PREFIX is set
-if [ -n "${HOMEBREW_PREFIX:-}" ]; then
-    # Ruby
-    if [ -d "$HOMEBREW_PREFIX/opt/ruby/bin" ]; then
-        PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
-    fi
-
-    # OpenSSL (if it exists, set compiler flags)
-    if [ -d "$HOMEBREW_PREFIX/opt/openssl/include" ] && [ -d "$HOMEBREW_PREFIX/opt/openssl/lib" ]; then
-        export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
-        export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl/include"
-        PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"
-    fi
+# OpenSSL (if it exists, set compiler flags)
+if [ -d "$HOMEBREW_PREFIX/opt/openssl/include" ] && [ -d "$HOMEBREW_PREFIX/opt/openssl/lib" ]; then
+    export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
+    export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl/include"
+    PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"
 fi
 
 # Function: Show battery percentage and status
