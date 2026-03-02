@@ -1,17 +1,17 @@
-# .bash_profile
+# ~/.bash_profile
+# Login shell config for bash
 
-# Block's system management tooling greps this file for "config_files/square/bash_profile"
-# and overwrites it if the string is missing. This comment satisfies that check.
-# Actual work-environment setup is loaded via .bash_profile.local.
-
-# Basically just pull the .bashrc
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
+# Homebrew (macOS only — no-op on Linux or if brew not installed)
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# Source .bashrc for interactive settings
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
 
-# Load machine-local configuration
+# Load machine-local config
 if [ -f ~/.bash_profile.local ]; then
-	. ~/.bash_profile.local
+  . ~/.bash_profile.local
 fi

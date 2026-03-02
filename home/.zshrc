@@ -1,273 +1,46 @@
-# Mmm, giant zshrc
-echo "zsh: loading ~/.zshrc"
+# ~/.zshrc
+# Lightweight zsh configuration with starship prompt
 
-#### Tinted Shell (base16/base24 color setup)
-# https://github.com/tinted-theming/tinted-shell
-BASE16_SHELL="$HOME/.dotfiles/external/tinted-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        source "$BASE16_SHELL/profile_helper.sh"
+# Early return if non-interactive (prevents shell scripts from sourcing this)
+[[ -o interactive ]] || return
 
-# base24 support (profile_helper.sh only handles base16 themes)
-if [ -n "$BASE16_SHELL_PATH" ]; then
-  # Restore base24 theme on startup — profile_helper always loads the
-  # base16 variant, so we re-source the base24 script to correct it
-  _tinted_sys_file="$BASE16_CONFIG_PATH/theme_system"
-  if [ -f "$_tinted_sys_file" ]; then
-    read -r _tinted_sys < "$_tinted_sys_file"
-    if [ "$_tinted_sys" = "base24" ]; then
-      read -r _tinted_name < "$BASE16_SHELL_THEME_NAME_PATH" 2>/dev/null
-      if [ -n "$_tinted_name" ] && [ -f "$BASE16_SHELL_PATH/scripts/base24-$_tinted_name.sh" ]; then
-        . "$BASE16_SHELL_PATH/scripts/base24-$_tinted_name.sh"
-        ln -fs "$BASE16_SHELL_PATH/scripts/base24-$_tinted_name.sh" \
-          "$BASE16_SHELL_COLORSCHEME_PATH" >/dev/null
-      fi
-    fi
-  fi
-  unset _tinted_sys_file _tinted_sys _tinted_name
+# Colors (tinted-shell base16/base24)
+[[ -f ~/.shell/colors.sh ]] && source ~/.shell/colors.sh
 
-  # Wrap set_theme so base16_* aliases clear the base24 marker
-  functions[_tinted_original_set_theme]=$functions[set_theme]
-  set_theme() {
-    _tinted_original_set_theme "$@"
-    echo "base16" >| "$BASE16_CONFIG_PATH/theme_system"
-  }
+# Source shared shell environment and aliases
+for file in ~/.shell/{env,aliases,functions}.sh; do
+  [[ -f "$file" ]] && source "$file"
+done
 
-  # base24 theme switching
-  set_base24_theme() {
-    local theme_name="$1"
-    local script_path="$BASE16_SHELL_PATH/scripts/base24-$theme_name.sh"
-    if [ ! -f "$script_path" ]; then
-      echo "base24 theme not found: $theme_name"
-      return 1
-    fi
-    echo "$theme_name" >| "$BASE16_SHELL_THEME_NAME_PATH"
-    echo "base24" >| "$BASE16_CONFIG_PATH/theme_system"
-    ln -fs "$script_path" "$BASE16_SHELL_COLORSCHEME_PATH" >/dev/null
-    . "$script_path"
-    if [ -d "$BASE16_SHELL_HOOKS_PATH" ]; then
-      for hook in "$BASE16_SHELL_HOOKS_PATH"/*.sh; do
-        [ -x "$hook" ] && . "$hook"
-      done
-    fi
-  }
+# macOS-specific functions/aliases
+[[ "$(uname -s)" == "Darwin" ]] && [[ -f ~/.shell/mac.sh ]] && source ~/.shell/mac.sh
 
-  # Generate base24_* aliases (mirrors profile_helper's base16_* aliases)
-  for _b24_script in "$BASE16_SHELL_PATH"/scripts/base24-*.sh; do
-    _b24_name=${_b24_script##*/}
-    _b24_slug=${_b24_name#base24-}
-    _b24_slug=${_b24_slug%.sh}
-    alias "base24_${_b24_slug}"="set_base24_theme '${_b24_slug}'"
-  done
-  unset _b24_script _b24_name _b24_slug
+# Direnv hook (before prompt init, so direnv-managed vars are available)
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
 fi
 
-### From oh-my-zsh:
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.dotfiles/external/oh-my-zsh
-
-# Set name of the theme to load.
-# Look in $ZSH/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="brianarn-oldbash"
-
-# Trying out spaceship
-ZSH_THEME="spaceship"
-SPACESHIP_TIME_SHOW="true"
-SPACESHIP_EXIT_CODE_SHOW="true"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-#DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how often before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment following line if you want to disable marking untracked files under
-# VCS as dirty. This makes repository status check for large repositories much,
-# much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Personalizations before oh-my-zsh is loaded:
-# Speed up the transition to vi mode
-export KEYTIMEOUT=1
-
-# Which plugins would you like to load? (plugins can be found in $ZSH/plugins/*)
-# Custom plugins may be added to $ZSH/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(
-  asdf
-  colored-man-pages
-  command-not-found
-  cp
-  #docker
-  #docker-compose
-  git
-  gitfast
-  git-commit
-  node
-  npm
-  nvm
-  vi-mode
-  z
-)
-if [[ $(uname -s) == "Darwin" ]]; then
-  plugins=(
-    $plugins
-    brew
-    httpie
-    macos
-  )
+# Starship prompt (only if available)
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
 fi
 
-
-### Pre-OMZ configuration
-# The nvm plugin wants these options defined first
-#zstyle ':omz:plugins:nvm' autoload yes
-
-# Block's system management tooling greps this file for "config_files/square/zshrc"
-# and overwrites it if the string is missing. This comment satisfies that check.
-# Actual work-environment setup is loaded via .zshrc.local.before.
-
-### Load any local configuration before OMZ is loaded
-if [[ -f ~/.zshrc.local.before ]]; then
-  source ~/.zshrc.local.before
-fi
-
-### Load up OMZ!
-source $ZSH/oh-my-zsh.sh
-
-### Customizations:
-
-# Keep fzf from searching _everything_
-export FZF_DEFAULT_COMMAND='rg --files'
-
-# I don't like an rprompt
-export RPS1=''
-
-# Aliases
-alias git='nocorrect git'
-alias gch="sha=\$(git log --oneline -1 | awk {'print \$1'}); echo \$sha | tr -d '\n' | pbcopy; echo SHA \$sha copied to clipboard";
-alias dm='docker-machine'
-
-# Keybindings to restore some Emacs-mode stuff while in vi-mode
-bindkey '^A' beginning-of-line
-bindkey '^E' end-of-line
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^[[A' up-line-or-search
-bindkey '^[[B' down-line-or-search
-
-# Path customizations
-if [[ ! "$PATH" == *.dotfiles/bin* ]]; then
-  #PATH="/usr/local/bin:/usr/local/sbin${PATH:+:$PATH}" # Why was I doing this again?
-  PATH="${PATH:+${PATH}:}$HOME/.dotfiles/bin"
-  export PATH
-fi
-
-# Mac-specific content
-if [[ $(uname -s) == "Darwin" ]]; then
-  # Setting up z
-  # Commenting out in favor of using z via OMZ
-  #source $(brew --prefix)/etc/profile.d/z.sh
-
-  # Homebrew updates in a way that makes it easy to see what's outdated
-  alias bup="brew update; printf '=======\n'; brew outdated"
-
-  # From https://github.com/Wilto/dotfiles/blob/master/bash/bash_aliases
-  alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-  alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
-  # Hide/show all desktop icons (useful when presenting)
-  alias showdeskicons="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-  alias hidedeskicons="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-  # Add gaps to the Dock
-  alias addgaptodock="defaults write com.apple.dock persistent-apps -array-add '{\"tile-type\"=\"spacer-tile\";}'"
-fi
-
-# trying out asdf instead
-# Commenting out in lieu of asdf OMZ plugin
-#[ -f /usr/local/opt/asdf/asdf.sh ] && source /usr/local/opt/asdf/asdf.sh
-#[ -f /usr/local/opt/asdf/completions/asdf.bash ] && source /usr/local/opt/asdf/completions/asdf.bash
-
-# Really should put these elsewhere but this works for now
-listpath() {
-  echo $PATH | tr ':' '\n'
-}
-
-serve() {
-    # Get port (if specified)
-    local port="${1:-8000}"
-
-    echo "Starting at http://localhost:${port}"
-
-    # Redefining the default content-type to text/plain instead of the default
-    # application/octet-stream allows "unknown" files to be viewable in-browser
-    # as text instead of being downloaded.
-    #
-    # Unfortunately, "python -m SimpleHTTPServer" doesn't allow you to redefine
-    # the default content-type, but the SimpleHTTPServer module can be executed
-    # manually with just a few lines of code.
-    #python -c $'import SimpleHTTPServer;\nSimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map[""] = "text/plain";\nSimpleHTTPServer.test();' "$port"
-
-    # PHP has a service now, which seems to work a little better for my needs
-    php -S localhost:$port
-}
-# Shouldn't need this anymore but keeping just in case
-#stashbase() {
-#  git stash \
-#    && mv .git/hooks/prepare-commit-msg .git/hooks/prepare-commit-msg.disable \
-#    && git rebase -i origin/master \
-#    && mv .git/hooks/prepare-commit-msg.disable .git/hooks/prepare-commit-msg \
-#    && git stash pop
-#}
-
-gifify() {
-  if [[ -n "$1" ]]; then
-    if [[ $2 == '--good' ]]; then
-      ffmpeg -i $1 -r 10 -vcodec png out-static-%05d.png
-      time convert -verbose +dither -layers Optimize -resize 600x600\> out-static*.png  GIF:- | gifsicle --colors 128 --delay=5 --loop --optimize=3 --multifile - > $1.gif
-      rm out-static*.png
-    else
-      ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 > $1.gif
-    fi
-  else
-    echo "proper usage: gifify <input_movie.mov>. You DO need to include extension."
-  fi
-}
-
-# fzf support (worked better than using OMZ for some reason)
+# fzf keybindings
 if [[ -f ~/.fzf.zsh ]]; then
   source ~/.fzf.zsh
-else
-  echo "No fzf.zsh file found. Run 'fzf --install' to generate it."
 fi
 
-# pnpm autocompletion
+# pnpm shell completion
 if [[ -f ~/.pnpm-completion.zsh ]]; then
   source ~/.pnpm-completion.zsh
-else
-  echo "No pnpm autocompletion file found. Run 'pnpm completion zsh > ~/.pnpm-completion.zsh' to generate it."
 fi
 
-# Load anything else local (intentionally last)
-if [[ -f ~/.zshrc.local ]]; then
-  source ~/.zshrc.local
-fi
+# Zsh-specific history and completion settings
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_FIND_NO_DUPS
+setopt INC_APPEND_HISTORY SHARE_HISTORY
+
+# Load machine-local config (intentionally last, overrides everything)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

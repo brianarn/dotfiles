@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Post-install/update tasks: theme symlinks, fzf, pnpm completion
+# Post-install/update tasks: fzf, pnpm completion
 # Sourced by install.sh; can also be run standalone.
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
@@ -10,35 +10,6 @@ run_post_update() {
   local external="$root/external"
 
   header "Post-update tasks"
-
-  # Spaceship theme symlink into oh-my-zsh
-  local omz_themes="$external/oh-my-zsh/custom/themes"
-  local spaceship_src="$external/spaceship-prompt/spaceship.zsh-theme"
-  local spaceship_link="$omz_themes/spaceship.zsh-theme"
-
-  if [[ -d "$external/oh-my-zsh" && -d "$external/spaceship-prompt" ]]; then
-    if [[ ! -d "$omz_themes" ]]; then
-      run mkdir -p "$omz_themes"
-    fi
-    if [[ -f "$spaceship_src" ]]; then
-      link_one "$spaceship_src" "$spaceship_link"
-    else
-      warn "Spaceship theme file not found: $spaceship_src"
-    fi
-  else
-    info "oh-my-zsh or spaceship-prompt submodule not present, skipping theme link"
-  fi
-
-  # Custom brianarn theme symlink
-  local custom_themes="$root/misc/custom-omz-themes"
-  local brianarn_src="$custom_themes/brianarn.zsh-theme"
-  local brianarn_link="$omz_themes/brianarn.zsh-theme"
-
-  if [[ -d "$external/oh-my-zsh" && -f "$brianarn_src" ]]; then
-    link_one "$brianarn_src" "$brianarn_link"
-  else
-    info "oh-my-zsh or brianarn theme not present, skipping theme link"
-  fi
 
   # Install fzf
   local fzf_install="$external/fzf/install"

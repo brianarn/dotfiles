@@ -19,7 +19,14 @@ There are no test, lint, or typecheck commands.
 home/           Dotfiles symlinked into $HOME (mirrors target directory structure)
   .config/      XDG config (amp, direnv, git, nvim, starship)
   .vim/         Vim runtime files (after/, colors/, plug.vim)
-  .zshrc        Primary shell config (oh-my-zsh, fzf, tinted-shell)
+  .zprofile     Zsh login shell config (Homebrew init)
+  .zshrc        Primary shell config (starship, fzf, tinted-shell)
+  .shell/       Shared shell config sourced by both .zshrc and .bashrc
+    aliases.sh    Common aliases
+    colors.sh     Tinted-shell base16/base24 color initialization
+    env.sh        Environment variables and PATH
+    functions.sh  Shared functions (serve, gifify, listpath, etc.)
+    mac.sh        macOS-specific aliases and functions
   .tmux.conf    Tmux configuration
   ...           Other dotfiles (.bashrc, .bash_profile, .vimrc, etc.)
 copy/           Files copied (not symlinked) to allow machine-local edits
@@ -27,20 +34,17 @@ copy/           Files copied (not symlinked) to allow machine-local edits
   vimrc.local   Copied only if missing — local vim overrides
   vimplug.local Copied only if missing — local vim-plug additions
 external/       Git submodules
-  oh-my-zsh/    Zsh framework
   fzf/          Fuzzy finder
   tinted-shell/ Terminal color schemes (base16/base24, migrated from base16-shell)
-  spaceship-prompt/  Zsh prompt theme
 misc/           Extras not symlinked automatically
-  custom-omz-themes/ Custom oh-my-zsh themes (symlinked by post-update)
+  custom-omz-themes/ Legacy zsh prompt themes (not active; starship is used)
   Actions.moom  Moom window manager config
 scripts/        Install helpers and utilities
   lib.sh        Shared functions (logging, linking, merging, flag parsing)
-  post-update.sh  Post-install tasks (theme symlinks, fzf install, pnpm completion)
+  post-update.sh  Post-install tasks (fzf install, pnpm completion)
   migrate.sh    One-time migration from old GNU Stow layout
   doctor.sh     Health checker — reports broken symlinks, missing tools, etc.
   tmux-battery.sh  Battery indicator for tmux status bar (macOS)
-old-stow-trash/ Remnants of old stow-based directory layout (can be removed)
 ```
 
 ## How Installation Works
@@ -55,8 +59,7 @@ old-stow-trash/ Remnants of old stow-based directory layout (can be removed)
    "DO NOT EDIT BELOW THIS LINE" is preserved as local config); `vimrc.local` and
    `vimplug.local` are copied only if they don't already exist
 5. **Vim directories** (`~/.vim/tmp/{backup,swap,undo}`) are created
-6. **Post-update tasks**: spaceship and brianarn themes are symlinked into oh-my-zsh,
-   fzf is installed, pnpm completion is generated
+6. **Post-update tasks**: fzf is installed, pnpm completion is generated
 
 ## Conventions
 
@@ -88,10 +91,13 @@ If it needs post-install wiring (like theme symlinks), add the logic to
 
 ### Shell Configuration
 
-- Primary shell: **zsh** via oh-my-zsh (spaceship theme)
-- `.zshrc.local.before` and `.zshrc.local` are sourced if they exist (for
-  machine-local config not tracked in the repo)
-- Color theming uses **tinted-shell** (base16/base24 themes)
+- Primary shell: **zsh** with starship prompt
+- `.zshrc.local` is sourced if it exists (for machine-local config not tracked
+  in the repo)
+- `.zprofile.local` and `.bash_profile.local` are sourced if they exist (for
+  machine-local login shell config, e.g. from `~/.dotfiles-private`)
+- Color theming uses **tinted-shell** (base16/base24 themes) via shared
+  `.shell/colors.sh`
 
 ## Guidelines for Making Changes
 
@@ -100,10 +106,6 @@ If it needs post-install wiring (like theme symlinks), add the logic to
   anything that identifies internal systems beyond what is already public knowledge.
   Work-specific configuration should go in `.local` files (not tracked here) or
   another location — ask the user where to store it.
-  - **Exception:** It is public knowledge that the author works at Block. Mentioning
-    Block by name is fine. The guard comments in shell dotfiles (see below) reference
-    `config_files/square/*` paths — this is the only employer-specific content
-    permitted in this repo, because removing or changing it would break system tooling.
 - **Don't hardcode absolute paths** in dotfiles — use `$HOME` or `$DOTFILES_ROOT`
   (set in `scripts/lib.sh`)
 - **Preserve the home/ directory structure** — it must mirror `$HOME` exactly
@@ -113,8 +115,3 @@ If it needs post-install wiring (like theme symlinks), add the logic to
 - **Run `./scripts/doctor.sh`** after changes to verify everything is healthy
 - **Don't commit machine-specific content** — use the `.local` file pattern
   (`.zshrc.local`, `.vimrc.local`) for per-machine overrides
-- **Do not modify guard comments** — `.zshrc`, `.bashrc`, and `.bash_profile` each
-  contain a comment with a literal string (e.g., `"config_files/square/zshrc"`) that
-  Block's system management tooling greps for. If the string is missing, the tooling overwrites
-  the file. These comments must remain exactly as-is — this is a deliberate exception
-  to the "no employer-specific content" guideline
