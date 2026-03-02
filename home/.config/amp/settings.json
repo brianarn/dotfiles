@@ -1,6 +1,3 @@
 {
-  "amp.dangerouslyAllowAll": false,
-  "amp.guardedFiles.allowlist": [
-    "/Users/briansinclair/.dotfiles/home/.bashrc"
-  ]
+  "amp.dangerouslyAllowAll": false
 }
