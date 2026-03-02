@@ -34,6 +34,6 @@ alias du='du -h'
 alias dus='du -sh *'
 
 # Environment
-alias reload='exec $SHELL -l'
-alias editconfig='$EDITOR ~/.zshrc'
-alias src='source ~/.zshrc'
+alias reload="exec $SHELL -l"
+alias editconfig="$EDITOR ~/.zshrc"
+alias src="source ~/.zshrc"

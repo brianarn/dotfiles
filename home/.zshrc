@@ -73,7 +73,7 @@ for file in ~/.shell/{env,aliases,functions}.sh; do
 done
 
 # macOS-specific functions/aliases
-[[ $(uname -s) == "Darwin" ]] && [[ -f ~/.shell/mac.sh ]] && source ~/.shell/mac.sh
+[[ "$(uname -s)" == "Darwin" ]] && [[ -f ~/.shell/mac.sh ]] && source ~/.shell/mac.sh
 
 # Direnv hook (before prompt init, so direnv-managed vars are available)
 if command -v direnv >/dev/null 2>&1; then

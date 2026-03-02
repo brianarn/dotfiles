@@ -6,14 +6,8 @@ if [ "$(uname)" != "Darwin" ]; then
     return 0
 fi
 
-# Homebrew configuration
-if [ -d "/opt/homebrew" ]; then
-    # Apple Silicon Macs
-    export HOMEBREW_PREFIX="/opt/homebrew"
-elif [ -d "/usr/local/Homebrew" ]; then
-    # Intel Macs
-    export HOMEBREW_PREFIX="/usr/local"
-fi
+# Homebrew configuration (Apple Silicon)
+export HOMEBREW_PREFIX="/opt/homebrew"
 
 # Use GNU tools with their default names (installed via homebrew coreutils)
 # This is optional - remove if you prefer BSD tools
@@ -29,24 +23,24 @@ fi
 export PATH
 
 # macOS-specific aliases (with color)
-alias ls='ls -G'
-alias ll='ls -lh'
-alias l='ls -lh'
-alias la='ls -lah'
+alias ls="ls -G"
+alias ll="ls -lh"
+alias l="ls -lh"
+alias la="ls -lah"
 
 # Open files with default application
-alias open='open'
+alias open="open"
 
 # Get macOS version
-alias osver='sw_vers'
+alias osver="sw_vers"
 
 # Show/hide hidden files in Finder
-alias show-hidden='defaults write com.apple.finder AppleShowAllFiles YES && killall Finder'
-alias hide-hidden='defaults write com.apple.finder AppleShowAllFiles NO && killall Finder'
+alias show-hidden="defaults write com.apple.finder AppleShowAllFiles YES && killall Finder"
+alias hide-hidden="defaults write com.apple.finder AppleShowAllFiles NO && killall Finder"
 
 # Copy to clipboard
-alias pbcopy='pbcopy'
-alias pbpaste='pbpaste'
+alias pbcopy="pbcopy"
+alias pbpaste="pbpaste"
 
 # Macports (if installed)
 if [ -d "/opt/local" ]; then
@@ -58,8 +52,10 @@ fi
 # Avoid calling brew --prefix (slow at startup), use direct paths if HOMEBREW_PREFIX is set
 if [ -n "${HOMEBREW_PREFIX:-}" ]; then
     # Ruby
-    [ -d "$HOMEBREW_PREFIX/opt/ruby/bin" ] && PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
-    
+    if [ -d "$HOMEBREW_PREFIX/opt/ruby/bin" ]; then
+        PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
+    fi
+
     # OpenSSL (if it exists, set compiler flags)
     if [ -d "$HOMEBREW_PREFIX/opt/openssl/include" ] && [ -d "$HOMEBREW_PREFIX/opt/openssl/lib" ]; then
         export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
@@ -70,7 +66,7 @@ fi
 
 # Function: Show battery percentage and status
 battery() {
-    pmset -g batt | grep -E "(\d+%)" | awk '{print $3}' | tr -d ';'
+    pmset -g batt | grep -E '([0-9]+%)' | awk '{print $3}' | tr -d ';'
 }
 
 # Function: Lock screen
@@ -86,7 +82,7 @@ empty-trash() {
 
 # Function: Get current WiFi network
 wifi-name() {
-    /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk -F' SSID: ' '{ print $2 }'
+    /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk -F' SSID: ' '{print $2}'
 }
 
 # Function: Flush DNS cache
