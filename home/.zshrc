@@ -25,13 +25,13 @@ if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
 fi
 
-# fzf keybindings (interactive only)
-if [[ -o interactive ]] && [[ -f ~/.fzf.zsh ]]; then
+# fzf keybindings
+if [[ -f ~/.fzf.zsh ]]; then
   source ~/.fzf.zsh
 fi
 
-# pnpm shell completion (interactive only)
-if [[ -o interactive ]] && [[ -f ~/.pnpm-completion.zsh ]]; then
+# pnpm shell completion
+if [[ -f ~/.pnpm-completion.zsh ]]; then
   source ~/.pnpm-completion.zsh
 fi
 

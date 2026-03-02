@@ -33,8 +33,7 @@ initializes submodules, and runs post-update tasks.
 
     ./install.sh update [--dry-run] [--force] [--quiet]
 
-Updates git submodules and re-runs post-update tasks (fzf, shell completions,
-oh-my-zsh themes).
+Updates git submodules and re-runs post-update tasks (fzf, shell completions).
 
 ### Doctor
 
@@ -47,6 +46,6 @@ stale stow links, uninitialized submodules, missing tools, etc.
 
 - `home/` — Dotfiles symlinked into `$HOME` (mirrors the target directory structure)
 - `copy/` — Files copied (not symlinked) to allow machine-local customization
-- `external/` — Git submodules (oh-my-zsh, fzf, tinted-shell, spaceship-prompt)
+- `external/` — Git submodules (fzf, tinted-shell)
 - `misc/` — Extras (custom themes, Moom config)
 - `scripts/` — Install helpers, migration, and doctor

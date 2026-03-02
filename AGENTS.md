@@ -36,7 +36,6 @@ copy/           Files copied (not symlinked) to allow machine-local edits
 external/       Git submodules
   fzf/          Fuzzy finder
   tinted-shell/ Terminal color schemes (base16/base24, migrated from base16-shell)
-  spaceship-prompt/  Zsh prompt theme
 misc/           Extras not symlinked automatically
   custom-omz-themes/ Custom oh-my-zsh themes (kept for potential future use)
   Actions.moom  Moom window manager config
@@ -94,8 +93,8 @@ If it needs post-install wiring (like theme symlinks), add the logic to
 ### Shell Configuration
 
 - Primary shell: **zsh** with starship prompt
-- `.zshrc.local.before` and `.zshrc.local` are sourced if they exist (for
-  machine-local config not tracked in the repo)
+- `.zshrc.local` is sourced if it exists (for machine-local config not tracked
+  in the repo)
 - `.zprofile.local` and `.bash_profile.local` are sourced if they exist (for
   machine-local login shell config, e.g. from `~/.dotfiles-private`)
 - Color theming uses **tinted-shell** (base16/base24 themes) via shared

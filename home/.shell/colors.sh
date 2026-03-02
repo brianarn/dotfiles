@@ -56,34 +56,19 @@ if [ -n "$BASE16_SHELL_PATH" ]; then
     ln -fs "$script_path" "$BASE16_SHELL_COLORSCHEME_PATH" >/dev/null
     . "$script_path"
     if [ -d "$BASE16_SHELL_HOOKS_PATH" ]; then
-      if [ -n "$ZSH_VERSION" ]; then
-        for hook in "$BASE16_SHELL_HOOKS_PATH"/*.sh(N-.); do
-          [ -r "$hook" ] && . "$hook"
-        done
-      else
-        for hook in "$BASE16_SHELL_HOOKS_PATH"/*.sh; do
-          [ -r "$hook" ] && . "$hook"
-        done
-      fi
+      for hook in "$BASE16_SHELL_HOOKS_PATH"/*.sh; do
+        [ -r "$hook" ] && . "$hook"
+      done
     fi
   }
 
   # Generate base24_* aliases
-  if [ -n "$ZSH_VERSION" ]; then
-    for _b24_script in "$BASE16_SHELL_PATH"/scripts/base24-*.sh(N-.); do
-      _b24_name=${_b24_script##*/}
-      _b24_slug=${_b24_name#base24-}
-      _b24_slug=${_b24_slug%.sh}
-      alias "base24_${_b24_slug}"="set_base24_theme '${_b24_slug}'"
-    done
-  else
-    for _b24_script in "$BASE16_SHELL_PATH"/scripts/base24-*.sh; do
-      [ -f "$_b24_script" ] || continue
-      _b24_name=${_b24_script##*/}
-      _b24_slug=${_b24_name#base24-}
-      _b24_slug=${_b24_slug%.sh}
-      alias "base24_${_b24_slug}"="set_base24_theme '${_b24_slug}'"
-    done
-  fi
+  for _b24_script in "$BASE16_SHELL_PATH"/scripts/base24-*.sh; do
+    [ -f "$_b24_script" ] || continue
+    _b24_name=${_b24_script##*/}
+    _b24_slug=${_b24_name#base24-}
+    _b24_slug=${_b24_slug%.sh}
+    alias "base24_${_b24_slug}"="set_base24_theme '${_b24_slug}'"
+  done
   unset _b24_script _b24_name _b24_slug
 fi
