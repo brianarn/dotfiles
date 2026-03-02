@@ -1,20 +1,7 @@
 # Shared shell aliases
 # Sourced by both .zshrc and .bashrc
 
-# Directory navigation
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias cd-='cd -'
-
-# Navigation shortcuts
-alias home='cd ~'
-alias desk='cd ~/Desktop'
-alias docs='cd ~/Documents'
-alias dl='cd ~/Downloads'
-
 # List directory (basic, non-colorized by default; color handling is OS-specific in mac.sh/linux.sh)
-alias l='ls -lh'
 alias la='ls -lah'
 alias ll='ls -lh'
 
@@ -25,7 +12,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
 
-# Git shortcuts (lean set)
+# Git shortcuts
 alias gs='git status'
 alias gb='git branch'
 alias gbd='git branch --delete'
