@@ -177,6 +177,39 @@ cleanup_base16() {
   log "base16-shell cleanup complete"
 }
 
+cleanup_oh_my_zsh() {
+  header "Cleaning up oh-my-zsh (if present)"
+
+  # Remove the OMZ submodule worktree
+  local submodule_path="$DOTFILES_ROOT/external/oh-my-zsh"
+  if [[ -d "$submodule_path" ]]; then
+    info "Removing $submodule_path"
+    run rm -rf "$submodule_path"
+  else
+    info "external/oh-my-zsh already removed"
+  fi
+
+  # Remove the cached git module
+  local git_module_path="$DOTFILES_ROOT/.git/modules/external/oh-my-zsh"
+  if [[ -d "$git_module_path" ]]; then
+    info "Removing $git_module_path"
+    run rm -rf "$git_module_path"
+  else
+    info ".git/modules/external/oh-my-zsh already removed"
+  fi
+
+  # Remove the .gitmodules entry if it still exists
+  local gitmodules="$DOTFILES_ROOT/.gitmodules"
+  if [[ -f "$gitmodules" ]] && grep -q 'submodule "external/oh-my-zsh"' "$gitmodules" 2>/dev/null; then
+    info "Removing oh-my-zsh entry from .gitmodules"
+    run git config --file "$gitmodules" --remove-section 'submodule.external/oh-my-zsh'
+  else
+    info ".gitmodules entry for oh-my-zsh already removed"
+  fi
+
+  log "oh-my-zsh cleanup complete"
+}
+
 main() {
   parse_global_flags "$@"
 
@@ -195,6 +228,9 @@ main() {
 
   # Step 3: Remove old base16-shell (replaced by tinted-shell)
   cleanup_base16
+
+  # Step 4: Remove oh-my-zsh (replaced by lightweight starship+shared shell config)
+  cleanup_oh_my_zsh
 
   header "Migration complete!"
   log ""
