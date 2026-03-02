@@ -24,6 +24,7 @@ alias gl='git log'
 alias glo='git log --oneline'
 alias gsh='git show'
 alias gcp='git cherry-pick'
+alias ggpush='git push -u origin HEAD'
 
 # Networking
 alias ip='curl -s https://ifconfig.me && echo'

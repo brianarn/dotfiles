@@ -67,17 +67,3 @@ gch() {
     git checkout "$branch"
   fi
 }
-
-# Git push with upstream setup
-ggpush() {
-  local branch
-  branch=$(git symbolic-ref --short HEAD 2>/dev/null) || return 1
-
-  if [ -z "$branch" ]; then
-    echo "Error: not on a branch"
-    return 1
-  fi
-
-  echo "Pushing branch '$branch' to origin and setting upstream..."
-  git push --set-upstream origin "$branch"
-}
