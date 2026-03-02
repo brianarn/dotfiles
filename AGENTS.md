@@ -37,15 +37,14 @@ external/       Git submodules
   fzf/          Fuzzy finder
   tinted-shell/ Terminal color schemes (base16/base24, migrated from base16-shell)
 misc/           Extras not symlinked automatically
-  custom-omz-themes/ Custom oh-my-zsh themes (kept for potential future use)
+  custom-omz-themes/ Legacy zsh prompt themes (not active; starship is used)
   Actions.moom  Moom window manager config
 scripts/        Install helpers and utilities
   lib.sh        Shared functions (logging, linking, merging, flag parsing)
-  post-update.sh  Post-install tasks (theme symlinks, fzf install, pnpm completion)
+  post-update.sh  Post-install tasks (fzf install, pnpm completion)
   migrate.sh    One-time migration from old GNU Stow layout
   doctor.sh     Health checker — reports broken symlinks, missing tools, etc.
   tmux-battery.sh  Battery indicator for tmux status bar (macOS)
-old-stow-trash/ Remnants of old stow-based directory layout (can be removed)
 ```
 
 ## How Installation Works

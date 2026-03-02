@@ -1,5 +1,5 @@
 # ~/.zshrc
-# Lightweight zsh configuration without oh-my-zsh
+# Lightweight zsh configuration with starship prompt
 
 # Early return if non-interactive (prevents shell scripts from sourcing this)
 [[ -o interactive ]] || return
@@ -41,11 +41,6 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt HIST_IGNORE_DUPS HIST_IGNORE_SPACE HIST_FIND_NO_DUPS
 setopt INC_APPEND_HISTORY SHARE_HISTORY
-
-# Keybindings: restore Emacs-mode keys while in vi-mode (optional; remove if you don't use vi-mode)
-# Note: vi-mode plugin is no longer loaded from OMZ; if you want it, add here
-# bindkey -M viins '^A' beginning-of-line
-# bindkey -M viins '^E' end-of-line
 
 # Load machine-local config (intentionally last, overrides everything)
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
