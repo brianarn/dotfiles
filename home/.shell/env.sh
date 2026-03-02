@@ -1,8 +1,8 @@
 # ~/.shell/env.sh
 # Shared environment variables and PATH setup for zsh and bash
 
-# PATH: .local/bin first (amp/claude), then .dotfiles/bin, then system
-export PATH="$HOME/.local/bin:$HOME/.dotfiles/bin:/usr/local/bin:/usr/local/sbin:${PATH}"
+# PATH setup: prepend .local/bin for common local utilities
+export PATH="$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:${PATH}"
 
 # Editor
 export VISUAL=nvim
@@ -16,7 +16,6 @@ fi
 
 # Less
 export LESS='-R'
-export LESSOPEN='|~/.dotfiles/bin/lessfilter.sh %s'
 export MANPAGER="less -X"
 
 # grep

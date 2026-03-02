@@ -20,8 +20,10 @@ if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook bash)"
 fi
 
-# Starship prompt
-eval "$(starship init bash)"
+# Starship prompt (only if available)
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init bash)"
+fi
 
 # fzf keybindings (if available)
 [[ -f ~/.fzf.bash ]] && source ~/.fzf.bash

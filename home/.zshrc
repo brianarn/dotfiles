@@ -4,8 +4,6 @@
 # Early return if non-interactive (prevents shell scripts from sourcing this)
 [[ -o interactive ]] || return
 
-echo "zsh: loading ~/.zshrc"
-
 #### Tinted Shell (base16/base24 color setup)
 # https://github.com/tinted-theming/tinted-shell
 BASE16_SHELL="$HOME/.dotfiles/external/tinted-shell/"
@@ -31,11 +29,14 @@ if [ -n "$BASE16_SHELL_PATH" ]; then
   unset _tinted_sys_file _tinted_sys _tinted_name
 
   # Wrap set_theme so base16_* aliases clear the base24 marker
-  functions[_tinted_original_set_theme]=$functions[set_theme]
-  set_theme() {
-    _tinted_original_set_theme "$@"
-    echo "base16" >| "$BASE16_CONFIG_PATH/theme_system"
-  }
+  # (only if set_theme exists)
+  if (( $+functions[set_theme] )); then
+    functions[_tinted_original_set_theme]=$functions[set_theme]
+    set_theme() {
+      _tinted_original_set_theme "$@"
+      echo "base16" >| "$BASE16_CONFIG_PATH/theme_system"
+    }
+  fi
 
   # base24 theme switching
   set_base24_theme() {
@@ -50,14 +51,14 @@ if [ -n "$BASE16_SHELL_PATH" ]; then
     ln -fs "$script_path" "$BASE16_SHELL_COLORSCHEME_PATH" >/dev/null
     . "$script_path"
     if [ -d "$BASE16_SHELL_HOOKS_PATH" ]; then
-      for hook in "$BASE16_SHELL_HOOKS_PATH"/*.sh; do
+      for hook in "$BASE16_SHELL_HOOKS_PATH"/*.sh(N-.); do
         [ -r "$hook" ] && . "$hook"
       done
     fi
   }
 
-  # Generate base24_* aliases
-  for _b24_script in "$BASE16_SHELL_PATH"/scripts/base24-*.sh; do
+  # Generate base24_* aliases (safe glob with nomatch qualifier)
+  for _b24_script in "$BASE16_SHELL_PATH"/scripts/base24-*.sh(N-.); do
     _b24_name=${_b24_script##*/}
     _b24_slug=${_b24_name#base24-}
     _b24_slug=${_b24_slug%.sh}
@@ -79,14 +80,20 @@ if command -v direnv >/dev/null 2>&1; then
   eval "$(direnv hook zsh)"
 fi
 
-# Starship prompt (sourcing once, here)
-eval "$(starship init zsh)"
+# Starship prompt (only if available)
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
 
-# fzf keybindings (if available)
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+# fzf keybindings (interactive only)
+if [[ -o interactive ]] && [[ -f ~/.fzf.zsh ]]; then
+  source ~/.fzf.zsh
+fi
 
-# pnpm shell completion (if available)
-[[ -f ~/.pnpm-completion.zsh ]] && source ~/.pnpm-completion.zsh
+# pnpm shell completion (interactive only)
+if [[ -o interactive ]] && [[ -f ~/.pnpm-completion.zsh ]]; then
+  source ~/.pnpm-completion.zsh
+fi
 
 # Zsh-specific history and completion settings
 HISTFILE=~/.zsh_history

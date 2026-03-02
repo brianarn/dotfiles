@@ -28,7 +28,8 @@ fi
 
 export PATH
 
-# macOS-specific aliases
+# macOS-specific aliases (with color)
+alias ls='ls -G'
 alias ll='ls -lh'
 alias l='ls -lh'
 alias la='ls -lah'
@@ -53,19 +54,17 @@ if [ -d "/opt/local" ]; then
     export PATH
 fi
 
-# Ruby on macOS (brew-installed)
-if command -v brew &>/dev/null; then
-    if [ -d "$(brew --prefix ruby)" ]; then
-        export PATH="$(brew --prefix ruby)/bin:$PATH"
-    fi
-fi
-
-# OpenSSL on macOS (brew-installed)
-if command -v brew &>/dev/null; then
-    if [ -d "$(brew --prefix openssl)" ]; then
-        export PATH="$(brew --prefix openssl)/bin:$PATH"
-        export LDFLAGS="-L$(brew --prefix openssl)/lib"
-        export CPPFLAGS="-I$(brew --prefix openssl)/include"
+# Ruby, OpenSSL, coreutils on macOS (brew-installed)
+# Avoid calling brew --prefix (slow at startup), use direct paths if HOMEBREW_PREFIX is set
+if [ -n "${HOMEBREW_PREFIX:-}" ]; then
+    # Ruby
+    [ -d "$HOMEBREW_PREFIX/opt/ruby/bin" ] && PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
+    
+    # OpenSSL (if it exists, set compiler flags)
+    if [ -d "$HOMEBREW_PREFIX/opt/openssl/include" ] && [ -d "$HOMEBREW_PREFIX/opt/openssl/lib" ]; then
+        export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl/lib"
+        export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl/include"
+        PATH="$HOMEBREW_PREFIX/opt/openssl/bin:$PATH"
     fi
 fi
 

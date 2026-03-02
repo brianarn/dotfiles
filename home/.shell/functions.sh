@@ -54,8 +54,14 @@ gch() {
         return 1
     fi
     
+    if ! git rev-parse --git-dir >/dev/null 2>&1; then
+        echo "Error: not in a git repository"
+        return 1
+    fi
+    
     local branch
-    branch=$(git branch --list | sed 's/^\s*\*\s*//g' | fzf --preview 'git log --oneline -5 {}')
+    # Use portable [[:space:]] instead of \s for macOS sed compatibility
+    branch=$(git branch --list | sed 's/^[[:space:]]*\*[[:space:]]*//g' | fzf --preview 'git log --oneline -5 {}')
     
     if [ -n "$branch" ]; then
         git checkout "$branch"
