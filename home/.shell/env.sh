@@ -14,6 +14,11 @@ if command -v rg >/dev/null 2>&1; then
   export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 
+# Support Obsidian CLI if the command is present
+if command -v /Applications/Obsidian.app/Contents/MacOS/obsidian >/dev/null 2>&1; then
+  export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+fi
+
 # Less
 export LESS="-R"
 export MANPAGER="less -X"
