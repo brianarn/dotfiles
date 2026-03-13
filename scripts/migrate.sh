@@ -287,24 +287,24 @@ main() {
     log "Running in dry-run mode — no changes will be made"
   fi
 
-  # Step 1: Handle directory symlinks (preserve untracked files)
-  migrate_stow_dir ".config" "dot-config"
-  migrate_stow_dir ".vim" "dot-vim"
+  # Step 1: Handle directory symlinks and clean up nested stow symlinks
+  for entry in "${STOW_DIRS[@]}"; do
+    local dotfile="${entry%%:*}"
+    local stow_name="${entry##*:}"
+    migrate_stow_dir "$dotfile" "$stow_name"
+    remove_stow_symlinks_under "$HOME/$dotfile"
+  done
 
-  # Step 2: Remove nested stow symlinks inside migrated directories
-  remove_stow_symlinks_under "$HOME/.config"
-  remove_stow_symlinks_under "$HOME/.vim"
-
-  # Step 3: Remove all other stow symlinks
+  # Step 2: Remove all other stow symlinks
   remove_stow_symlinks
 
-  # Step 4: Remove old base16-shell (replaced by tinted-shell)
+  # Step 3: Remove old base16-shell (replaced by tinted-shell)
   cleanup_base16
 
-  # Step 5: Remove oh-my-zsh (replaced by lightweight starship+shared shell config)
+  # Step 4: Remove oh-my-zsh (replaced by lightweight starship+shared shell config)
   cleanup_oh_my_zsh
 
-  # Step 6: Check for files that will block install.sh
+  # Step 5: Check for files that will block install.sh
   prepare_managed_targets
 
   header "Migration complete!"

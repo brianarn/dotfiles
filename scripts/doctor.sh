@@ -192,7 +192,8 @@ check_stale_stow_links() {
   done
 
   # Also check for nested stow symlinks inside managed directories
-  for dir in "$HOME/.config" "$HOME/.vim"; do
+  for entry in "${STOW_DIRS[@]}"; do
+    local dir="$HOME/${entry%%:*}"
     if [[ ! -d "$dir" ]]; then
       continue
     fi

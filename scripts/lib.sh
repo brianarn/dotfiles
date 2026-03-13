@@ -36,6 +36,13 @@ STOW_DOTFILES=(
   .vimrc_background
   .zshrc
 )
+# Directories that were symlinked wholesale by stow (e.g. ~/.config → stow/dot-config).
+# Used by migrate.sh (to convert + clean up) and doctor.sh (to detect stale nested links).
+# Format: "dotfile_name:stow_package_name"
+STOW_DIRS=(
+  ".config:dot-config"
+  ".vim:dot-vim"
+)
 DOTFILES_HOME="$DOTFILES_ROOT/home"
 DOTFILES_COPY="$DOTFILES_ROOT/copy"
 
