@@ -8,6 +8,7 @@ set -euo pipefail
 DRY_RUN="${DRY_RUN:-0}"
 FORCE="${FORCE:-0}"
 QUIET="${QUIET:-0}"
+SKIP_COUNT="${SKIP_COUNT:-0}"
 
 DOTFILES_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
 
@@ -34,6 +35,13 @@ STOW_DOTFILES=(
   .vimrc
   .vimrc_background
   .zshrc
+)
+# Directories that were symlinked wholesale by stow (e.g. ~/.config → stow/dot-config).
+# Used by migrate.sh (to convert + clean up) and doctor.sh (to detect stale nested links).
+# Format: "dotfile_name:stow_package_name"
+STOW_DIRS=(
+  ".config:dot-config"
+  ".vim:dot-vim"
 )
 DOTFILES_HOME="$DOTFILES_ROOT/home"
 DOTFILES_COPY="$DOTFILES_ROOT/copy"
@@ -101,6 +109,42 @@ ensure_parent_dir() {
   fi
 }
 
+# --- Copy helpers ---
+# Copy a file/directory tree, skipping socket files (e.g. git fsmonitor IPC).
+copy_preserved_item() {
+  local src="$1"
+  local dest="$2"
+
+  # Skip bare sockets
+  if [[ -S "$src" ]]; then
+    return 0
+  fi
+
+  # For directories, walk the tree manually so we can skip sockets inside
+  if [[ -d "$src" && ! -L "$src" ]]; then
+    run mkdir -p "$dest"
+
+    while IFS= read -r -d '' path; do
+      local rel="${path#"$src"/}"
+      local out="$dest/$rel"
+
+      if [[ -S "$path" ]]; then
+        continue
+      elif [[ -d "$path" && ! -L "$path" ]]; then
+        run mkdir -p "$out"
+      else
+        ensure_parent_dir "$out"
+        run cp -P "$path" "$out"
+      fi
+    done < <(find "$src" -mindepth 1 -print0)
+
+    return 0
+  fi
+
+  # Plain files / symlinks
+  run cp -P "$src" "$dest"
+}
+
 # --- Symlink operations ---
 link_one() {
   local src="$1" target="$2"
@@ -128,7 +172,8 @@ link_one() {
       info "Linking $target → $src"
       run ln -s "$src" "$target"
     else
-      warn "Skipping $target (exists and is not a symlink; use --force to override)"
+      warn "Skipping $target (exists and is not a symlink ; use --force to override)"
+      ((SKIP_COUNT++)) || true
     fi
     return 0
   fi

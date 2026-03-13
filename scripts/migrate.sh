@@ -92,10 +92,29 @@ migrate_stow_dir() {
       continue
     fi
     info "Preserving untracked: ~/$dotfile/$name"
-    run cp -R "$item" "$dest"
+    copy_preserved_item "$item" "$dest"
   done
 
   log "~/$dotfile migration complete"
+}
+
+remove_stow_symlinks_under() {
+  local root="$1"
+  [[ -d "$root" ]] || return 0
+
+  local removed=0
+  while IFS= read -r link; do
+    if is_stow_symlink "$link"; then
+      local rel="${link#"$HOME/"}"
+      info "Removing nested stow symlink: ~/$rel → $(readlink "$link")"
+      run rm "$link"
+      ((removed++)) || true
+    fi
+  done < <(find "$root" -type l 2>/dev/null)
+
+  if [[ "$removed" -gt 0 ]]; then
+    log "Removed $removed nested stow symlink(s) under $root"
+  fi
 }
 
 remove_stow_symlinks() {
@@ -127,6 +146,55 @@ remove_stow_symlinks() {
   done
 
   log "Removed $removed stow symlink(s), skipped $skipped"
+}
+
+prepare_managed_targets() {
+  header "Checking for install blockers"
+
+  local blocked=0
+
+  while IFS= read -r rel; do
+    local src="$DOTFILES_HOME/$rel"
+    local target="$HOME/$rel"
+
+    # Only check file entries (install.sh only links non-directories)
+    if [[ -d "$src" && ! -L "$src" ]]; then
+      continue
+    fi
+
+    if [[ -L "$target" ]]; then
+      local current
+      current="$(readlink "$target")"
+      if [[ "$current" == "$src" ]]; then
+        continue
+      fi
+      if is_stow_symlink "$target"; then
+        info "Removing stale stow symlink: ~/$rel → $current"
+        run rm "$target"
+      elif [[ "$FORCE" -eq 1 ]]; then
+        backup_path "$target"
+      else
+        warn "~/$rel exists as symlink → $current (rerun with --force to override)"
+        ((blocked++)) || true
+      fi
+      continue
+    fi
+
+    if [[ -e "$target" ]]; then
+      if [[ "$FORCE" -eq 1 ]]; then
+        backup_path "$target"
+      else
+        warn "~/$rel exists and is not a symlink (rerun with --force to override)"
+        ((blocked++)) || true
+      fi
+    fi
+  done < <(cd "$DOTFILES_HOME" && find . -mindepth 1 | sed 's|^\./||' | sort)
+
+  if [[ "$blocked" -gt 0 ]]; then
+    warn "$blocked managed path(s) will block install; rerun migrate.sh --force to back them up"
+  else
+    log "No install blockers found"
+  fi
 }
 
 cleanup_base16() {
@@ -219,9 +287,13 @@ main() {
     log "Running in dry-run mode — no changes will be made"
   fi
 
-  # Step 1: Handle directory symlinks (preserve untracked files)
-  migrate_stow_dir ".config" "dot-config"
-  migrate_stow_dir ".vim" "dot-vim"
+  # Step 1: Handle directory symlinks and clean up nested stow symlinks
+  for entry in "${STOW_DIRS[@]}"; do
+    local dotfile="${entry%%:*}"
+    local stow_name="${entry##*:}"
+    migrate_stow_dir "$dotfile" "$stow_name"
+    remove_stow_symlinks_under "$HOME/$dotfile"
+  done
 
   # Step 2: Remove all other stow symlinks
   remove_stow_symlinks
@@ -231,6 +303,9 @@ main() {
 
   # Step 4: Remove oh-my-zsh (replaced by lightweight starship+shared shell config)
   cleanup_oh_my_zsh
+
+  # Step 5: Check for files that will block install.sh
+  prepare_managed_targets
 
   header "Migration complete!"
   log ""

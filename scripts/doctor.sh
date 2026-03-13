@@ -191,6 +191,23 @@ check_stale_stow_links() {
     fi
   done
 
+  # Also check for nested stow symlinks inside managed directories
+  for entry in "${STOW_DIRS[@]}"; do
+    local dir="$HOME/${entry%%:*}"
+    if [[ ! -d "$dir" ]]; then
+      continue
+    fi
+    while IFS= read -r link; do
+      local link_dest
+      link_dest="$(readlink "$link")"
+      if [[ "$link_dest" == *"/stow/dot-"* || "$link_dest" == *".dotfiles/stow/"* ]]; then
+        local rel="${link#"$HOME/"}"
+        problem "Stale stow symlink: ~/$rel → $link_dest (run scripts/migrate.sh)"
+        ((stale++)) || true
+      fi
+    done < <(find "$dir" -type l 2>/dev/null)
+  done
+
   if [[ "$stale" -eq 0 ]]; then
     ok "No stale stow symlinks found"
   fi
