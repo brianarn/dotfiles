@@ -71,6 +71,13 @@ cmd_install() {
   install_copies
   create_vim_dirs
   run_post_update
+
+  if [[ "$SKIP_COUNT" -gt 0 ]]; then
+    warn "$SKIP_COUNT file(s) skipped (rerun with --force to override)"
+    header "Install incomplete"
+    exit 1
+  fi
+
   header "Install complete!"
 }
 
