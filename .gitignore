@@ -37,3 +37,7 @@ Thumbs.db
 ######
 *.swp
 .*.swp
+
+# Temporary docs #
+###################
+docs/superpowers/

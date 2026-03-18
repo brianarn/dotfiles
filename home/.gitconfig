@@ -1,6 +1,3 @@
-# LOCAL CONFIG
-
-# DO NOT EDIT BELOW THIS LINE
 [user]
 	name = Brian Sinclair
 	email = brianarn@gmail.com
@@ -64,3 +61,6 @@
 	track = !sh -c 'git branch --track "$0" "origin/$0" && git checkout "$0"'
 	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 	cleanup-branches = !sh -c 'git branch --merged | grep -v ^* | xargs -n 1 git branch -d'
+
+[include]
+	path = ~/.gitconfig-local
