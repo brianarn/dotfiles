@@ -6,8 +6,6 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)"
 source "$SCRIPT_DIR/scripts/lib.sh"
 source "$SCRIPT_DIR/scripts/post-update.sh"
 
-CUTSTRING="DO NOT EDIT BELOW THIS LINE"
-
 usage() {
   cat <<EOF
 Usage: ./install.sh [options] [command]
@@ -44,7 +42,6 @@ install_links() {
 
 install_copies() {
   header "Installing copied files"
-  merge_cutstring "$DOTFILES_COPY/gitconfig" "$HOME/.gitconfig" "$CUTSTRING"
   copy_if_missing "$DOTFILES_COPY/vimrc.local" "$HOME/.vimrc.local"
   copy_if_missing "$DOTFILES_COPY/vimplug.local" "$HOME/.vimplug.local"
   log "Copied files installed"
