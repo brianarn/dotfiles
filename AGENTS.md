@@ -5,11 +5,14 @@ editor settings, and tool configs via symlinks from `home/` into `$HOME`.
 
 ## Commands
 
+All commands are run from the repo root.
+
 - **Install**: `./install.sh` (or `./install.sh install`)
 - **Update submodules**: `./install.sh update`
 - **Health check**: `./scripts/doctor.sh`
 - **Migration from stow**: `./scripts/migrate.sh`
 - **Dry-run any command**: append `--dry-run`
+- **Other global flags**: `--force` (override conflicts), `--quiet` (suppress output)
 
 There are no test, lint, or typecheck commands.
 
@@ -30,7 +33,6 @@ home/           Dotfiles symlinked into $HOME (mirrors target directory structur
   .tmux.conf    Tmux configuration
   ...           Other dotfiles (.bashrc, .bash_profile, .vimrc, etc.)
 copy/           Files copied (not symlinked) to allow machine-local edits
-  gitconfig     Merged into ~/.gitconfig using a cutstring separator
   vimrc.local   Copied only if missing — local vim overrides
   vimplug.local Copied only if missing — local vim-plug additions
 external/       Git submodules
@@ -55,9 +57,8 @@ scripts/        Install helpers and utilities
    `home/.config/nvim/init.vim` → `~/.config/nvim/init.vim`). Directories in `home/`
    become real directories in `$HOME`; only files and nested symlinks are linked.
 3. **Dead symlinks** pointing into `home/` are pruned
-4. **Copied files**: `gitconfig` is merged using a cutstring pattern (content above
-   "DO NOT EDIT BELOW THIS LINE" is preserved as local config); `vimrc.local` and
-   `vimplug.local` are copied only if they don't already exist
+4. **Copied files**: `vimrc.local` and `vimplug.local` are copied only if they
+   don't already exist
 5. **Vim directories** (`~/.vim/tmp/{backup,swap,undo}`) are created
 6. **Post-update tasks**: fzf is installed, pnpm completion is generated
 
@@ -115,3 +116,28 @@ If it needs post-install wiring (like theme symlinks), add the logic to
 - **Run `./scripts/doctor.sh`** after changes to verify everything is healthy
 - **Don't commit machine-specific content** — use the `.local` file pattern
   (`.zshrc.local`, `.vimrc.local`) for per-machine overrides
+- **Never commit directly to `main`** — always use a feature branch
+- **Use feature branches, not worktrees** — this repo rarely has parallel work;
+  prefer a simple feature branch off `main`
+- **Never use force options** — do not use `-f`, `--force`, or similar flags that
+  could overwrite existing files or symlinks without user consent
+
+## Pull Requests
+
+This is a single-contributor repo. PRs should **not** be opened as drafts —
+always open as ready for review. This supersedes the global "always open as
+draft" rule.
+
+Always use `--squash` when merging PRs (e.g., `gh pr merge --squash`).
+
+## Documentation Drift Prevention
+
+When making changes that affect repo structure, commands, or conventions, check
+that AGENTS.md still accurately reflects the current state. Specifically:
+
+- If you add/remove/rename files in `scripts/`, update the repo structure tree
+- If you change how installation works, update the "How Installation Works" section
+- If you add/remove submodules in `external/`, update the structure tree
+- If you change shell configuration loading, update the Conventions section
+
+Update AGENTS.md in the same PR as the change, or flag the drift explicitly.
