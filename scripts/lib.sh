@@ -244,46 +244,6 @@ copy_if_missing() {
   run cp "$src" "$target"
 }
 
-merge_cutstring() {
-  local src="$1" target="$2" cutstring="$3"
-
-  ensure_parent_dir "$target"
-
-  if [[ ! -e "$target" ]]; then
-    info "Creating $target (from $src)"
-    run cp "$src" "$target"
-    return 0
-  fi
-
-  if ! grep -qF "$cutstring" "$src"; then
-    warn "Source missing cutstring, skipping merge: $src"
-    return 0
-  fi
-
-  if ! grep -qF "$cutstring" "$target"; then
-    warn "Target missing cutstring, skipping merge: $target"
-    return 0
-  fi
-
-  info "Merging managed content into $target"
-
-  if [[ "$DRY_RUN" -eq 1 ]]; then
-    info "[dry-run] Would merge $src into $target (preserving content above cutstring)"
-    return 0
-  fi
-
-  local tmp
-  tmp="$(mktemp "${target}.tmp.XXXXXX")"
-
-  # Keep everything above the cutstring from the target (user's local config)
-  awk -v cut="$cutstring" 'index($0, cut) { exit } { print }' "$target" > "$tmp"
-
-  # Append everything from the cutstring onward from the source (managed config)
-  awk -v cut="$cutstring" 'found { print; next } index($0, cut) { found=1; print }' "$src" >> "$tmp"
-
-  mv "$tmp" "$target"
-}
-
 # --- Argument parsing ---
 parse_global_flags() {
   local args=()
