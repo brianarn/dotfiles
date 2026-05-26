@@ -42,7 +42,7 @@ misc/           Extras not symlinked automatically
   custom-omz-themes/ Legacy zsh prompt themes (not active; starship is used)
   Actions.moom  Moom window manager config
 scripts/        Install helpers and utilities
-  lib.sh        Shared functions (logging, linking, merging, flag parsing)
+  lib.sh        Shared functions (logging, linking, copying, flag parsing)
   post-update.sh  Post-install tasks (fzf install, pnpm completion)
   migrate.sh    One-time migration from old GNU Stow layout
   doctor.sh     Health checker — reports broken symlinks, missing tools, etc.
@@ -76,8 +76,7 @@ Run `./install.sh` to create the symlink. Parent directories are created automat
 ### Files That Need Local Customization
 
 If a file needs per-machine edits (credentials, machine-specific paths), put it in
-`copy/` instead. Use `copy_if_missing` for files that should only be seeded once, or
-`merge_cutstring` for files that need both managed and local sections.
+`copy/` instead. Use `copy_if_missing` for files that should only be seeded once.
 
 ### Submodules
 

@@ -74,21 +74,6 @@ check_symlinks() {
   fi
 }
 
-check_copy_files() {
-  header "Copied files"
-
-  local gitconfig="$HOME/.gitconfig"
-  local cutstring="DO NOT EDIT BELOW THIS LINE"
-
-  if [[ ! -f "$gitconfig" ]]; then
-    problem "~/.gitconfig does not exist"
-  elif ! grep -qF "$cutstring" "$gitconfig"; then
-    notice "~/.gitconfig exists but is missing cutstring — managed content may be out of date"
-  else
-    ok "~/.gitconfig exists and has cutstring"
-  fi
-}
-
 check_submodules() {
   header "Submodule status"
 
@@ -238,7 +223,6 @@ main() {
   header "Dotfiles doctor"
 
   check_symlinks
-  check_copy_files
   check_submodules
   check_tools
   check_dead_links
