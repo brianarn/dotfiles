@@ -47,6 +47,7 @@ scripts/        Install helpers and utilities
   migrate.sh    One-time migration from old GNU Stow layout
   doctor.sh     Health checker — reports broken symlinks, missing tools, etc.
   tmux-battery.sh  Battery indicator for tmux status bar (macOS)
+  tmux-rename-window.sh  Renames a tmux window to its git branch's ticket ref
 ```
 
 ## How Installation Works
