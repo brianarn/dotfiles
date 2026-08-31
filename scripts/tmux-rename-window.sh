@@ -4,14 +4,14 @@
 # rename-window prompt when no ticket-shaped branch is found.
 dir="$1"
 target="$2"
+client="$3"
 
-ticket=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null \
-  | sed 's#.*/##' \
-  | grep -oE '^[A-Za-z0-9]+-[0-9]+' \
-  | tr '[:lower:]' '[:upper:]')
+branch=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
+ticket=""
+[[ ${branch##*/} =~ ^([A-Za-z0-9]+-[0-9]+)($|--) ]] && ticket=$(tr '[:lower:]' '[:upper:]' <<< "${BASH_REMATCH[1]}")
 
 if [ -n "$ticket" ]; then
   tmux rename-window -t "$target" "$ticket"
 else
-  tmux command-prompt -t "$target" -I "" "rename-window -t '$target' -- '%%'"
+  tmux command-prompt -t "$client" -I "" "rename-window -t '$target' -- '%%'"
 fi
