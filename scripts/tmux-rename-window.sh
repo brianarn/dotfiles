@@ -4,6 +4,7 @@
 # rename-window prompt when no ticket-shaped branch is found.
 dir="$1"
 target="$2"
+client="$3"
 
 last_segment=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null | sed 's#.*/##')
 
@@ -15,5 +16,5 @@ fi
 if [ -n "$ticket" ]; then
   tmux rename-window -t "$target" "$ticket"
 else
-  tmux command-prompt -t "$target" -I "" "rename-window -t '$target' -- '%%'"
+  tmux command-prompt -t "$client" -I "" "rename-window -t '$target' -- '%%'"
 fi
