@@ -5,10 +5,12 @@
 dir="$1"
 target="$2"
 
-ticket=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null \
-  | sed 's#.*/##' \
-  | grep -oE '^[A-Za-z0-9]+-[0-9]+' \
-  | tr '[:lower:]' '[:upper:]')
+last_segment=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null | sed 's#.*/##')
+
+ticket=""
+if echo "$last_segment" | grep -qE '^[A-Za-z0-9]+-[0-9]+($|--)'; then
+  ticket=$(echo "$last_segment" | grep -oE '^[A-Za-z0-9]+-[0-9]+' | tr '[:lower:]' '[:upper:]')
+fi
 
 if [ -n "$ticket" ]; then
   tmux rename-window -t "$target" "$ticket"
